@@ -31,9 +31,10 @@ export default function LoginPage() {
             <Button variant="primary">Entrar</Button>
           </form>
         </IndexForm.container>
-        <div className="flex justify-between mt-40">
-          <a href="">Esqueceu a senha?</a>
-          <a href="">Login</a>
+        <div className="flex justify-center mt-20">
+          <a className="text-Orange-500 font-bold" href="">
+            Cadastrar-se
+          </a>
         </div>
       </div>
     </main>

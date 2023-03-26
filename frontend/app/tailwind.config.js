@@ -40,6 +40,9 @@ module.exports = {
       Black: {
         500: '#040B14',
       },
+      Orange: {
+        500: '#BA5C3D',
+      },
       Green: {
         100: '#CED55B',
       },
