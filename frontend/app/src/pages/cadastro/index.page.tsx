@@ -1,8 +1,21 @@
 import { Button } from '@/layout/components/Button'
 import { IndexForm } from '@/layout/themes/Form/Index/theme'
 import Link from 'next/link'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useForm } from 'react-hook-form'
+import { RegisterUserSchema, RegisterUserSchemaType } from './schema'
 
 export default function RegisterPage() {
+  const {
+    handleSubmit,
+    formState: { errors, isSubmitSuccessful },
+    register,
+    setError,
+    reset,
+  } = useForm<RegisterUserSchemaType>({
+    resolver: zodResolver(RegisterUserSchema),
+  })
+
   return (
     <main className="grow flex justify-center">
       <div className="w-full max-w-esm px-6 mt-28">
