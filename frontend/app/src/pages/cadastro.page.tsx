@@ -1,22 +1,13 @@
 import { Button } from '@/layout/components/Button'
 import { IndexForm } from '@/layout/themes/Form/Index/theme'
-import Image from 'next/image'
-import Link from 'next/link'
-import HelloIcon from '../assets/icons/hello.svg'
 
-export default function LoginPage() {
+export default function RegisterPage() {
   return (
     <main className="grow flex justify-center">
-      <div className="w-full max-w-esm px-6 mt-40">
-        <header className="flex items-center gap-x-2 text-1xl">
-          <Image
-            src={HelloIcon}
-            width={22}
-            height={22}
-            alt="ícone de mão acenando"
-          />
-          <h1 className="font-bold">
-            Bem vindo ao <span className="text-Green-100">Remotely.io</span>
+      <div className="w-full max-w-esm px-6 mt-28">
+        <header>
+          <h1 className="font-bold text-1xl">
+            Cadastre-se no <span className="text-Green-100">Remotely.io</span>
           </h1>
         </header>
         <IndexForm.container>
@@ -29,13 +20,17 @@ export default function LoginPage() {
               <label htmlFor="">Senha</label>
               <input type="password" placeholder="Digite sua senha" />
             </div>
-            <Button variant="primary">Entrar</Button>
+            <div className="field">
+              <label htmlFor="">Confirmar senha</label>
+              <input type="password" placeholder="Digite sua senha" />
+            </div>
+            <Button variant="primary">Cadastrar</Button>
           </form>
         </IndexForm.container>
         <div className="flex justify-center mt-20">
-          <Link className="text-Orange-500 font-bold" href="/cadastro">
-            Cadastrar-se
-          </Link>
+          <a className="text-Orange-500 font-bold" href="/login">
+            Entrar
+          </a>
         </div>
       </div>
     </main>
