@@ -33,7 +33,7 @@ export default function RegisterPage() {
       })
       renderFeedback('success', {
         message: 'Usuário cadastrado com sucesso',
-        onClose: () => router.push('/'),
+        onClose: () => router.push('/login'),
       })
     } catch (error) {
       processFormErrorResponse<RegisterUserSchemaType>(
