@@ -86,10 +86,6 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'pt-BR'
 
-# LANGUAGES = [
-#     ('pt-BR', 'Português'),
-# ]
-
 TIME_ZONE = 'UTC'
 
 USE_I18N = True

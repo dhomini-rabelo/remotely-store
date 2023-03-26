@@ -1,3 +1,4 @@
+from Core.forms.errors import ErrorMessages
 from apps.accounts.actions.serializer.auth.typings import (
     CreateUserRequestBodyType,
     CreateUserValidatedDataType,
@@ -19,7 +20,7 @@ class CreateUserSerializer(serializers.ModelSerializer):
     def validate(self, validated_data: CreateUserValidatedDataType):
         initial_data: CreateUserRequestBodyType = self.initial_data
         if not initial_data.get('confirm_password'):
-            raise serializers.ValidationError({'confirm_password': ['Este campo é obrigatório']})
+            raise serializers.ValidationError({'confirm_password': [ErrorMessages.REQUIRED]})
         elif initial_data['confirm_password'] != validated_data['password']:
             raise serializers.ValidationError({'confirm_password': ['As senhas são diferentes']})
         return validated_data
@@ -39,7 +40,7 @@ class CreateUserSerializer(serializers.ModelSerializer):
         extra_kwargs = {
             'email': {
                 'required': True,
-                'validators': [UniqueValidator(queryset=User.objects.all(), message='Este campo é obrigatório')],
+                'validators': [UniqueValidator(queryset=User.objects.all(), message='Este email já foi cadastrado')],
             },
         }
 
