@@ -6,15 +6,11 @@ from django.contrib import admin
 admin.site.empty_value_display = 'NULL'
 
 
-
-
 @admin.register(User)
 class UserAdmin(auth_admin.UserAdmin):
     form = UserChangeForm
     add_form = UserCreationForm
     model = User
-    fieldsets = auth_admin.UserAdmin.fieldsets + (
-    ("My fields", {"fields": ("img",)}),
-    )
-    list_display = 'first_name', 'username'
-    list_display_links = 'first_name', 'username'
+    fieldsets = auth_admin.UserAdmin.fieldsets + (("My fields", {"fields": ("name",)}),)
+    list_display = 'name', 'username'
+    list_display_links = 'name', 'username'
