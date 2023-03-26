@@ -6,8 +6,10 @@ export interface ButtonStylesProps {
 
 /* eslint-disable */
 export const ButtonStyles = styled.button((props: ButtonStylesProps) => `
-  padding-top: 1.1875rem;
-  padding-bottom: 1.1875rem;
+  &:not(.custom-length) {
+    padding-top: 1.1875rem;
+    padding-bottom: 1.1875rem;
+  }
   font-weight: 500;
   color: var(--Black-500);
   line-height: 22px;
