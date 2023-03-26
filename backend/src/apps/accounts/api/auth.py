@@ -4,7 +4,7 @@ from rest_framework.response import Response
 from rest_framework_simplejwt.exceptions import InvalidToken, TokenError
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework.permissions import BasePermission
-from apps.accounts.actions.serializer.auth.main import CreateUserSerializer, UserLoginSerializer
+from apps.accounts.actions.serializers.auth.main import CreateUserSerializer, UserLoginSerializer
 
 from apps.accounts.app.models import User
 

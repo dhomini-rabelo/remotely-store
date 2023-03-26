@@ -1,5 +1,5 @@
 from Core.forms.errors import ErrorMessages
-from apps.accounts.actions.serializer.auth.typings import (
+from apps.accounts.actions.serializers.auth.typings import (
     CreateUserRequestBodyType,
     CreateUserValidatedDataType,
 )
