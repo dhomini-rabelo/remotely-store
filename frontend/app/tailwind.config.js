@@ -2,7 +2,25 @@
 module.exports = {
   content: ['./src/**/*.{ts,tsx}'],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        Gray: {
+          100: '#FCFCFC',
+          200: '#f6f6f5',
+          500: '#A6A798',
+        },
+        Black: {
+          500: '#040B14',
+        },
+        Orange: {
+          500: '#BA5C3D',
+        },
+        Green: {
+          300: '#DCE362',
+          500: '#CED55B',
+        },
+      },
+    },
     fontSize: {
       xs: '0.75rem',
       sm: '0.875rem',
@@ -30,23 +48,6 @@ module.exports = {
       md: {'max': '768px'},
       sm: {'max': '640px'},
       esm: {'max': '414px'},
-    },
-    colors: {
-      Gray: {
-        100: '#FCFCFC',
-        200: '#f6f6f5',
-        500: '#A6A798',
-      },
-      Black: {
-        500: '#040B14',
-      },
-      Orange: {
-        500: '#BA5C3D',
-      },
-      Green: {
-        300: '#DCE362',
-        500: '#CED55B',
-      },
     },
   },
   plugins: [],
