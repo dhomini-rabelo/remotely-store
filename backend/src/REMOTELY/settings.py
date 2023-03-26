@@ -14,6 +14,10 @@ ALLOWED_HOSTS: list[str] = []
 
 PROJECT_NAME = 'REMOTELY'
 
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+]
+
 INSTALLED_APPS = [
     # Django apps
     'commands.CommandsConfig',
@@ -26,12 +30,14 @@ INSTALLED_APPS = [
     # My apps
     'apps.accounts.app.AccountsConfig',
     # Others apps
+    "corsheaders",
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.locale.LocaleMiddleware',
+    "corsheaders.middleware.CorsMiddleware",
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
