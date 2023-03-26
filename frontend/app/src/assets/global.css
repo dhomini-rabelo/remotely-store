@@ -5,12 +5,15 @@
 
 :root {
     --Gray-100: #FCFCFC;
+    --Green-100: #CED55B;
+    --Black-500: #040B14;
 }
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Poppins', Arial, sans-serif;
 }
 
 body {
@@ -43,7 +46,7 @@ a {
 }
 
 body {
-    color: #212529;
+    color: var(--Black-500);
 }
 
 .roboto, .roboto > * {
@@ -64,4 +67,8 @@ body {
 
 .lh-125 {
     line-height: 125%;
+}
+
+.max-w-esm {
+    max-width: 414px;
 }
