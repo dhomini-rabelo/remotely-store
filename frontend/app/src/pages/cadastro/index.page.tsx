@@ -9,6 +9,7 @@ import { processFormErrorResponse } from '@/code/utils/errors'
 import { simpleClient } from '@/code/settings/main'
 import { useRouter } from 'next/router'
 import { AxiosError } from 'axios'
+import { Error } from '@/layout/themes/Form/Index/Error'
 
 export default function RegisterPage() {
   const { FeedbackElement, renderFeedback } = useFeedback()
@@ -62,15 +63,30 @@ export default function RegisterPage() {
             >
               <div className="field">
                 <label htmlFor="">Email</label>
-                <input type="text" placeholder="Digite seu email" />
+                <input
+                  type="text"
+                  placeholder="Digite seu email"
+                  {...register('email')}
+                />
+                <Error>{errors.email?.message}</Error>
               </div>
               <div className="field">
                 <label htmlFor="">Senha</label>
-                <input type="password" placeholder="Digite sua senha" />
+                <input
+                  type="password"
+                  placeholder="Digite sua senha"
+                  {...register('password')}
+                />
+                <Error>{errors.password?.message}</Error>
               </div>
               <div className="field">
                 <label htmlFor="">Confirmar senha</label>
-                <input type="password" placeholder="Digite sua senha" />
+                <input
+                  type="password"
+                  placeholder="Confirme sua senha"
+                  {...register('confirm_password')}
+                />
+                <Error>{errors.confirm_password?.message}</Error>
               </div>
               <Button variant="primary" isSubmitting={isSubmitting}>
                 Cadastrar
