@@ -16,7 +16,7 @@ export const ButtonStyles = styled.button((props: ButtonStylesProps) => `
 
 
   ${props.variant === 'primary' && `
-    background-color: var(--Green-100);
+    background-color: var(--Green-300);
   `}
 
 

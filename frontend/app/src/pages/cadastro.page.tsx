@@ -7,7 +7,7 @@ export default function RegisterPage() {
       <div className="w-full max-w-esm px-6 mt-28">
         <header>
           <h1 className="font-bold text-1xl">
-            Cadastre-se no <span className="text-Green-100">Remotely.io</span>
+            Cadastre-se no <span className="text-Green-300">Remotely.io</span>
           </h1>
         </header>
         <IndexForm.container>
