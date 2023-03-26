@@ -2,7 +2,7 @@ import { Button } from '@/layout/components/Button'
 import { IndexForm } from '@/layout/themes/Form/Index/theme'
 import Image from 'next/image'
 import Link from 'next/link'
-import HelloIcon from '../assets/icons/hello.svg'
+import HelloIcon from '../../assets/icons/hello.svg'
 
 export default function LoginPage() {
   return (
