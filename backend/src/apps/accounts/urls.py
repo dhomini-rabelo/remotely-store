@@ -1,7 +1,7 @@
 from django.urls import path
-
-# from .api import *
+from . import api
 
 urlpatterns = [
-    path(),
+    path('login', api.LoginAPI.as_view(), name='login'),
+    path('me', api.MeAPI.as_view(), name='me'),
 ]
