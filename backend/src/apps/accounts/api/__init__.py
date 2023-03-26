@@ -1,1 +1,1 @@
-from .auth import LoginAPI, MeAPI
+from .auth import LoginAPI, MeAPI, CreateUserAPI

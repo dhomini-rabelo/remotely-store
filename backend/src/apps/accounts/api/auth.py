@@ -4,9 +4,15 @@ from rest_framework.response import Response
 from rest_framework_simplejwt.exceptions import InvalidToken, TokenError
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework.permissions import BasePermission
-from apps.accounts.actions.serializer.auth import UserLoginSerializer
+from apps.accounts.actions.serializer.auth.main import CreateUserSerializer, UserLoginSerializer
 
 from apps.accounts.app.models import User
+
+
+class CreateUserAPI(generics.CreateAPIView):
+    serializer_class = CreateUserSerializer
+    queryset = User.objects.all()
+    permission_classes: list[BasePermission] = []
 
 
 class LoginAPI(TokenObtainPairView):

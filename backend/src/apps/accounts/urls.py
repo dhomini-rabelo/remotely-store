@@ -4,4 +4,5 @@ from . import api
 urlpatterns = [
     path('login', api.LoginAPI.as_view(), name='login'),
     path('me', api.MeAPI.as_view(), name='me'),
+    path('register', api.CreateUserAPI.as_view(), name='register'),
 ]
