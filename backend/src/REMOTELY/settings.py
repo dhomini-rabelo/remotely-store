@@ -25,12 +25,13 @@ SECRET_KEY = 'django-insecure-(8e!%zlvk3)_31l&1%&e^sk^*_v#dht8j_2&w=@ktmwq)a2xm7
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS: list[str] = []
 
 
-# Application definition
+PROJECT_NAME = 'REMOTELY'
 
 INSTALLED_APPS = [
+    'commands.CommandsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
