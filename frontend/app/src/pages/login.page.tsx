@@ -1,3 +1,4 @@
+import { Button } from '@/layout/components/Button'
 import { IndexForm } from '@/layout/themes/Form/Index/theme'
 import Image from 'next/image'
 import HelloIcon from '../assets/icons/hello.svg'
@@ -27,7 +28,7 @@ export default function LoginPage() {
               <label htmlFor="">Password</label>
               <input type="password" placeholder="Digite sua senha" />
             </div>
-            <button>Entrar</button>
+            <Button variant="primary">Entrar</Button>
           </form>
         </IndexForm.container>
         <div className="flex justify-between mt-40">
