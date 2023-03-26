@@ -1,5 +1,6 @@
 import { Button } from '@/layout/components/Button'
 import { IndexForm } from '@/layout/themes/Form/Index/theme'
+import Link from 'next/link'
 
 export default function RegisterPage() {
   return (
@@ -28,9 +29,9 @@ export default function RegisterPage() {
           </form>
         </IndexForm.container>
         <div className="flex justify-center mt-20">
-          <a className="text-Orange-500 font-bold" href="/login">
+          <Link className="text-Orange-500 font-bold" href="/login">
             Entrar
-          </a>
+          </Link>
         </div>
       </div>
     </main>

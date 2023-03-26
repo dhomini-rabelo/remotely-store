@@ -17,6 +17,10 @@ export const ButtonStyles = styled.button((props: ButtonStylesProps) => `
 
   ${props.variant === 'primary' && `
     background-color: var(--Green-300);
+
+    :hover {
+      background-color: var(--Green-500);
+    }
   `}
 
 
