@@ -5,19 +5,45 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { RegisterUserSchema, RegisterUserSchemaType } from './schema'
 import { useFeedback } from '@/layout/hooks/useFeedback'
-import { useEffect } from 'react'
+import { processFormErrorResponse } from '@/code/utils/errors'
+import { simpleClient } from '@/code/settings/main'
+import { useRouter } from 'next/router'
+import { AxiosError } from 'axios'
 
 export default function RegisterPage() {
   const { FeedbackElement, renderFeedback } = useFeedback()
   const {
     handleSubmit,
-    formState: { errors, isSubmitSuccessful },
+    formState: { errors, isSubmitting },
     register,
     setError,
     reset,
   } = useForm<RegisterUserSchemaType>({
     resolver: zodResolver(RegisterUserSchema),
   })
+  const router = useRouter()
+
+  async function onValidSubmit(data: RegisterUserSchemaType) {
+    try {
+      await simpleClient.post('register', {
+        email: data.email,
+        password: data.password,
+        confirm_password: data.confirm_password,
+      })
+      renderFeedback('success', {
+        message: 'Usuário cadastrado com sucesso',
+        onClose: () => router.push('/'),
+      })
+    } catch (error) {
+      processFormErrorResponse<RegisterUserSchemaType>(
+        error as AxiosError,
+        data,
+        setError,
+        reset,
+        renderFeedback,
+      )
+    }
+  }
 
   return (
     <>
@@ -30,7 +56,10 @@ export default function RegisterPage() {
             </h1>
           </header>
           <IndexForm.container>
-            <form className="mt-16 flex flex-col gap-y-6">
+            <form
+              className="mt-16 flex flex-col gap-y-6"
+              onSubmit={handleSubmit(onValidSubmit)}
+            >
               <div className="field">
                 <label htmlFor="">Email</label>
                 <input type="text" placeholder="Digite seu email" />
@@ -43,7 +72,9 @@ export default function RegisterPage() {
                 <label htmlFor="">Confirmar senha</label>
                 <input type="password" placeholder="Digite sua senha" />
               </div>
-              <Button variant="primary">Cadastrar</Button>
+              <Button variant="primary" isSubmitting={isSubmitting}>
+                Cadastrar
+              </Button>
             </form>
           </IndexForm.container>
           <div className="flex justify-center mt-20">
