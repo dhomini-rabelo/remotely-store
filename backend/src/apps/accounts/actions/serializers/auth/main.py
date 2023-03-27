@@ -4,7 +4,6 @@ from apps.accounts.actions.serializers.auth.typings import (
     CreateUserValidatedDataType,
 )
 from apps.accounts.app.models import User
-from rest_framework import serializers
 from rest_framework.validators import UniqueValidator
 from apps.accounts.app.models import User
 from rest_framework import serializers
