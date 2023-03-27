@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from apps.sales.app.models.products import Department, Product
+from apps.sales.app.models.products import Department, Product, Provider
 
 
 class DepartmentHomeSerializer(serializers.ModelSerializer):
@@ -8,7 +8,18 @@ class DepartmentHomeSerializer(serializers.ModelSerializer):
         fields = 'id', 'name', 'image'
 
 
+class ProviderHomeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Provider
+        fields = (
+            'id',
+            'name',
+        )
+
+
 class ProductHomeSerializer(serializers.ModelSerializer):
+    provider = ProviderHomeSerializer()
+
     def to_representation(self, product: Product):
         print(product.price)
         return {
@@ -19,9 +30,4 @@ class ProductHomeSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Product
-        fields = (
-            'id',
-            'name',
-            'image',
-            'description',
-        )
+        fields = ('id', 'name', 'image', 'description', 'provider')

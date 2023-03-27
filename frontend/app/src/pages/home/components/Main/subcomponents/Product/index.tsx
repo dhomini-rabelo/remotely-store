@@ -18,7 +18,9 @@ export function Product({ product }: { product: IProductData }) {
       <div className="flex flex-col">
         <strong className="lh-22 text-base font-medium">{product.name}</strong>
         <div className="mt-1 mb-3 text-xs flex gap-x-2">
-          <span className="text-Gray-500 font-medium">Hughlan</span>
+          <span className="text-Gray-500 font-medium">
+            {product.provider.name}
+          </span>
           <span>•</span>
           <span className="flex items-center gap-x-0.5 text-xs">
             <span className="text-Gray-600">

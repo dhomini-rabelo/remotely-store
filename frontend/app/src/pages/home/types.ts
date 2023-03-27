@@ -8,4 +8,8 @@ export interface IProductData {
     value: number
     promotional_value: number | null
   }
+  provider: {
+    id: string
+    name: string
+  }
 }
