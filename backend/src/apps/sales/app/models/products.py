@@ -18,6 +18,7 @@ class Provider(BaseModel):
 
 class Department(BaseModel):
     name = models.CharField(max_length=256, verbose_name='Nome')
+    image = models.ImageField(blank=True, null=True, upload_to='departments/%Y/%m', verbose_name='Imagem')
     products: RelatedManager['Product']
 
     def __str__(self):
