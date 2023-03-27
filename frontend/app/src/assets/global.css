@@ -74,6 +74,10 @@ body {
     line-height: 125%;
 }
 
+.lh-22 {
+    line-height: 22px;
+}
+
 .max-w-esm {
     max-width: 414px;
 }
