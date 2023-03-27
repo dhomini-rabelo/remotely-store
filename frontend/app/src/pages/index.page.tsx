@@ -9,9 +9,21 @@ export default function HomePage(props: HomeProps) {
 export const getStaticProps: GetStaticProps = async () => {
   try {
     const response = await simpleClient.get('/home/data')
-    console.log(response.data)
+    const data = response.data as HomeProps
     return {
-      props: response.data,
+      props: {
+        departments: data.departments,
+        products: data.products.map((product) => ({
+          ...product,
+          rating: product.rating / 10,
+          price: {
+            value: product.price.value / 100,
+            promotional_value: product.price.promotional_value
+              ? product.price.promotional_value / 100
+              : null,
+          },
+        })),
+      },
       revalidate: 60 * 60 * 6,
     }
   } catch {
