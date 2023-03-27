@@ -1,9 +1,10 @@
 import { CaretRight } from 'phosphor-react'
+import { HomeProps } from '../..'
 import { Banner } from './subcomponents/Banner'
 import { Department } from './subcomponents/Department'
 import { Product } from './subcomponents/Product'
 
-export function Main() {
+export function Main({ departments }: HomeProps) {
   return (
     <main>
       <h2 className="text-1xl font-bold mt-10">Em destaque</h2>
@@ -16,8 +17,13 @@ export function Main() {
         </div>
       </div>
       <div className="flex mt-3 gap-x-5">
-        <Department name="Desenvolvedor" />
-        <Department name="Desenvolvedor" />
+        {departments.map((department) => (
+          <Department
+            key={department.id}
+            name={department.name}
+            imageUrl={department.image}
+          />
+        ))}
       </div>
       <div className="flex justify-between items-center mt-8">
         <h2 className="text-1xl font-bold">Em alta</h2>
