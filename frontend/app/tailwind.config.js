@@ -7,9 +7,10 @@ module.exports = {
         Gray: {
           100: '#FCFCFC',
           200: '#f6f6f5',
-          250: '#e7e7e7',
+          250: '#ededed',
           300: '#DDDDDB',
           500: '#A6A798',
+          600: '#8A8B7A',
         },
         Black: {
           500: '#040B14',
