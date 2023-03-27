@@ -4,7 +4,7 @@ import { Banner } from './subcomponents/Banner'
 import { Department } from './subcomponents/Department'
 import { Product } from './subcomponents/Product'
 
-export function Main({ departments }: HomeProps) {
+export function Main({ departments, products }: HomeProps) {
   return (
     <main>
       <h2 className="text-1xl font-bold mt-10">Em destaque</h2>
@@ -33,11 +33,9 @@ export function Main({ departments }: HomeProps) {
         </div>
       </div>
       <div className="flex flex-col mt-3 gap-y-3">
-        <Product />
-        <Product />
-        <Product />
-        <Product />
-        <Product />
+        {products.map((product) => (
+          <Product key={product.id} product={product} />
+        ))}
       </div>
     </main>
   )
