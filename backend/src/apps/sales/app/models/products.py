@@ -36,7 +36,7 @@ class Product(BaseModel):
         Department, on_delete=models.SET_NULL, null=True, related_name='products', verbose_name='departamento'
     )
     provider = models.ForeignKey(
-        Department, on_delete=models.SET_NULL, null=True, related_name='products', verbose_name='fornecedor'
+        Provider, on_delete=models.SET_NULL, null=True, related_name='products', verbose_name='fornecedor'
     )
     options = models.JSONField(default=dict)
     prices: RelatedManager['Price']

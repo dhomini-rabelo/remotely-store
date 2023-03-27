@@ -10,6 +10,19 @@ from apps.sales.app.models.products import Product
 from apps.sales.app.models.support.choices import SalePaymentTypeChoices, SaleStatusChoices
 
 
+class Rating(BaseModel):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='ratings', verbose_name='Produto')
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='ratings', verbose_name='Produto')
+    rate = models.IntegerField(blank=True, null=True, verbose_name='Taxa de avaliação')
+
+    def __str__(self):
+        return 'Avaliação'
+
+    class Meta:
+        verbose_name = 'Avaliação'
+        verbose_name_plural = 'Avaliações'
+
+
 class ProductSold(BaseModel):
     product = models.ForeignKey(Product, on_delete=models.CASCADE, verbose_name='Produto')
     quantity = models.PositiveIntegerField(verbose_name='Quantidade')
