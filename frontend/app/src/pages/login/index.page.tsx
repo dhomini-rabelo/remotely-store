@@ -1,5 +1,6 @@
 import { Button } from '@/layout/components/Button'
 import { IndexForm } from '@/layout/themes/Form/Index/theme'
+import { GetStaticProps } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import HelloIcon from '../../assets/icons/hello.svg'
@@ -40,4 +41,10 @@ export default function LoginPage() {
       </div>
     </main>
   )
+}
+
+export const getStaticProps: GetStaticProps = async () => {
+  return {
+    props: {},
+  }
 }

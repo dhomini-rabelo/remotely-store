@@ -10,6 +10,7 @@ import { simpleClient } from '@/code/settings/main'
 import { useRouter } from 'next/router'
 import { AxiosError } from 'axios'
 import { Error } from '@/layout/themes/Form/Index/Error'
+import { GetStaticProps } from 'next'
 
 export default function RegisterPage() {
   const { FeedbackElement, renderFeedback } = useFeedback()
@@ -102,4 +103,10 @@ export default function RegisterPage() {
       </main>
     </>
   )
+}
+
+export const getStaticProps: GetStaticProps = async () => {
+  return {
+    props: {},
+  }
 }
