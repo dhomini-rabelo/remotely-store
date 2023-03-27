@@ -15,14 +15,14 @@ export function Banner() {
         <div className="mt-2 mb-5 text-xs flex gap-x-2">
           <span className="text-Gray-500 font-medium">Hughlan</span>
           <span>•</span>
-          <span className="flex items-center gap-x-1">
+          <span className="flex items-center gap-x-0.5">
             <span className="text-Gray-300">4,8</span>
             <Image
               src={StarIcon}
               width={12}
               height={12}
               alt="Ícone de estrela amarela"
-              className="inline-block"
+              className="inline-block relative bottom-[1px]"
             />
           </span>
         </div>
