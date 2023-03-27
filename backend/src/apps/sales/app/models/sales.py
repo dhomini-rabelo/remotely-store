@@ -11,7 +11,7 @@ from apps.sales.app.models.support.choices import SalePaymentTypeChoices, SaleSt
 
 
 class Rating(BaseModel):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='ratings', verbose_name='Produto')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='ratings', verbose_name='Usuário')
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='ratings', verbose_name='Produto')
     rate = models.IntegerField(blank=True, null=True, verbose_name='Taxa de avaliação')
 

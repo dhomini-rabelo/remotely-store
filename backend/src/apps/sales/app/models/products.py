@@ -42,8 +42,7 @@ class Product(BaseModel):
     options = models.JSONField(default=dict)
     prices: RelatedManager['Price']
 
-    @property
-    def price(self) -> int | None:
+    def get_price(self) -> int | None:
         current_price = self.prices.filter(disabled_at=None).first()
         return current_price.value if current_price else None
 
