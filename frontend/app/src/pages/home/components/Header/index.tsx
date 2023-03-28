@@ -11,7 +11,7 @@ export function Header() {
       <div className="logo px-3.5 py-2 rounded-full bg-Black-500 border-Green-300 border flex justify-center">
         <Image
           src={CartIcon}
-          className="w-[1.75rem] h-[1.75rem] sm:w-[1.375rem] sm:h-[1.375rem]"
+          className="w-[1.5rem] h-[1.5rem] sm:w-[1.375rem] sm:h-[1.375rem]"
           alt="ícone de carrinho de compras personalizado"
         />
       </div>
@@ -25,7 +25,7 @@ export function Header() {
           />
           <Image
             src={SearchIcon}
-            className="w-[1.65rem] h-[1.65rem] sm:w-[1.375rem] sm:h-[1.375rem]"
+            className="w-[1.5rem] h-[1.5rem] sm:w-[1.375rem] sm:h-[1.375rem]"
             alt="ícone de uma lupa grande com cabo pequeno"
           />
         </div>
@@ -35,7 +35,7 @@ export function Header() {
         >
           <Image
             src={SearchIcon}
-            className="w-[1.75rem] h-[1.75rem] sm:w-[1.375rem] sm:h-[1.375rem]"
+            className="w-[1.5rem] h-[1.5rem] sm:w-[1.375rem] sm:h-[1.375rem]"
             alt="ícone de uma lupa grande com cabo pequeno"
           />
         </a>
@@ -43,7 +43,7 @@ export function Header() {
           href=""
           className="rounded-full border border-Gray-300 p-2.5 flex items-end gap-x-2"
         >
-          <User className="w-[1.75rem] h-[1.75rem] sm:w-[1.375rem] sm:h-[1.375rem] text-Black-500" />
+          <User className="w-[1.5rem] h-[1.5rem] sm:w-[1.375rem] sm:h-[1.375rem] text-Black-500" />
           <span className="text-lg sm:hidden">Conta</span>
         </a>
         <Bag inHeader={true} />

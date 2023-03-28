@@ -4,7 +4,7 @@ export function Bag({ inHeader }: { inHeader: boolean }) {
   return inHeader ? (
     <div className="relative sm:hidden">
       <div className="bg-Black-500 p-2.5 rounded-full flex justify-center items-center">
-        <Tote className="w-[2rem] h-[2rem]" color="#fff" />
+        <Tote className="w-[1.75rem] h-[1.75rem]" color="#fff" />
       </div>
       <div className="absolute bg-[#FF7B2C] py-1 px-[0.54rem] -right-1 -top-1 rounded-full text-white text-xs">
         1
