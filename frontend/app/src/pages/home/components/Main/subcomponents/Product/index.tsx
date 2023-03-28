@@ -3,6 +3,8 @@ import StarIcon from '../../../../../../assets/icons/star.svg'
 import { IProductData } from '@/pages/home/types'
 import { getImage } from '@/code/utils/layout'
 import { priceFormatter } from '@/code/utils/layout/formatters'
+import { activeProductAtom, currentPageAtom } from '@/pages/home/code/states'
+import { useAtom } from 'jotai'
 
 export function Product({
   product,
@@ -11,8 +13,18 @@ export function Product({
   product: IProductData
   variant?: 'primary' | 'secondary'
 }) {
+  const [page, setPage] = useAtom(currentPageAtom)
+  const [, setActiveProduct] = useAtom(activeProductAtom)
+
+  function showProductPage() {
+    if (page !== 'product') {
+      setPage('product')
+    }
+    setActiveProduct(product)
+  }
+
   return variant === 'primary' ? (
-    <div className="bg-white p-3 flex gap-x-2.5 border border-Gray-300 rounded-lg col-span-1">
+    <div onClick={showProductPage} className="bg-white p-3 flex gap-x-2.5 border border-Gray-300 rounded-lg col-span-1">
       <div className="flex justify-center items-center bg-Gray-200 p-2.5 min-w-[105px] min-h-[86px]">
         <Image
           src={getImage(product.image)}
@@ -47,7 +59,7 @@ export function Product({
       </div>
     </div>
   ) : (
-    <div className="bg-Gray-250 p-3 flex flex-col gap-x-2.5 border border-Gray-300 rounded-lg col-span-1">
+    <div onClick={showProductPage} className="bg-Gray-250 p-3 flex flex-col gap-x-2.5 border border-Gray-300 rounded-lg col-span-1">
       <div className="flex justify-center items-center bg-transparent p-2.5 min-w-[105px] min-h-[86px]">
         <Image
           src={getImage(product.image)}
