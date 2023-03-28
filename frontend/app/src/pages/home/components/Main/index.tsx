@@ -5,6 +5,7 @@ import { currentPageAtom, searchTextAtom } from '../../code/states'
 import { Banner } from './subcomponents/Banner'
 import { Department } from './subcomponents/Department'
 import { Product } from './subcomponents/Product'
+import { Search } from './subcomponents/Search'
 
 export function Main({ departments, products }: HomeProps) {
   const [page] = useAtom(currentPageAtom)
@@ -63,20 +64,6 @@ export function Main({ departments, products }: HomeProps) {
       </div> */}
     </main>
   ) : (
-    <main className="mt-10">
-      <h2 className="text-1xl font-bold"> Resultados para {`"${search}"`}</h2>
-      <div className="grid grid-cols-3 md:grid-cols-2 gap-x-5 sm:flex sm:flex-col mt-3 gap-y-3">
-        {products
-          .filter((product) =>
-            `
-              ${product.name.toLowerCase()}
-              ${product.provider.name.toLowerCase()}
-            `.includes(search.toLowerCase()),
-          )
-          .map((product) => (
-            <Product key={product.id} product={product} />
-          ))}
-      </div>
-    </main>
+    <Search search={search} products={products} />
   )
 }
