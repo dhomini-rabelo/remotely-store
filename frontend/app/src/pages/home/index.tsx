@@ -11,7 +11,7 @@ export interface HomeProps {
 
 export function Home(props: HomeProps) {
   return (
-    <div className="px-6 mt-8 grow max-w-[1148px] mx-auto">
+    <div className="px-6 mt-8 grow max-w-[1148px] mx-auto pb-8">
       <Header />
       <div className="max-w-[1024px] mx-auto">
         <Main {...props} />

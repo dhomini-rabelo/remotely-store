@@ -44,6 +44,18 @@ export function Main({ departments, products }: HomeProps) {
           <Product key={product.id} product={product} />
         ))}
       </div>
+      {/* <div className="flex justify-between items-center mt-8">
+        <h2 className="text-1xl font-bold">Em alta 2</h2>
+        <div className="text-Gray-500 flex items-center gap-x-2">
+          <span className="text-xs">Ver mais</span>
+          <CaretRight size={16} />
+        </div>
+      </div>
+      <div className="grid grid-cols-5 md:grid-cols-2 gap-x-5 sm:flex-col mt-3 gap-y-3">
+        {products.map((product) => (
+          <Product key={product.id} product={product} variant="secondary" />
+        ))}
+      </div> */}
     </main>
   )
 }
