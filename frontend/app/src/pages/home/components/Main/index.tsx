@@ -1,13 +1,18 @@
+import { useAtom } from 'jotai'
 import { CaretRight } from 'phosphor-react'
 import { HomeProps } from '../..'
+import { currentPageAtom, searchTextAtom } from '../../code/states'
 import { Banner } from './subcomponents/Banner'
 import { Department } from './subcomponents/Department'
 import { Product } from './subcomponents/Product'
 
 export function Main({ departments, products }: HomeProps) {
-  return (
-    <main>
-      <h2 className="text-1xl font-bold mt-10">Em destaque</h2>
+  const [page] = useAtom(currentPageAtom)
+  const [search] = useAtom(searchTextAtom)
+
+  return page === 'home' || search === '' ? (
+    <main className="mt-10">
+      <h2 className="text-1xl font-bold">Em destaque</h2>
       <div className="grid grid-cols-2 gap-x-8 md:block">
         <div className="col-span-1">
           <Banner />
@@ -56,6 +61,22 @@ export function Main({ departments, products }: HomeProps) {
           <Product key={product.id} product={product} variant="secondary" />
         ))}
       </div> */}
+    </main>
+  ) : (
+    <main className="mt-10">
+      <h2 className="text-1xl font-bold"> Resultados para {`"${search}"`}</h2>
+      <div className="grid grid-cols-3 md:grid-cols-2 gap-x-5 sm:flex sm:flex-col mt-3 gap-y-3">
+        {products
+          .filter((product) =>
+            `
+              ${product.name.toLowerCase()}
+              ${product.provider.name.toLowerCase()}
+            `.includes(search.toLowerCase()),
+          )
+          .map((product) => (
+            <Product key={product.id} product={product} />
+          ))}
+      </div>
     </main>
   )
 }

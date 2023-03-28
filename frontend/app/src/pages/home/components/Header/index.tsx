@@ -2,13 +2,14 @@ import CartIcon from '../../../../assets/icons/cart.svg'
 import SearchIcon from '../../../../assets/icons/search.svg'
 // import BagIcon from '../../../../assets/icons/bag.svg'
 import Image from 'next/image'
-import { useSetAtom } from 'jotai'
+import { useAtom } from 'jotai'
 import { User } from 'phosphor-react'
 import { Bag } from '../Main/subcomponents/Bag'
-import { currentPageAtom } from '../../code/states'
+import { currentPageAtom, searchTextAtom } from '../../code/states'
 
 export function Header() {
-  const setPage = useSetAtom(currentPageAtom)
+  const [page, setPage] = useAtom(currentPageAtom)
+  const [search, setSearch] = useAtom(searchTextAtom)
 
   return (
     <header className="flex justify-between items-center">
@@ -25,6 +26,8 @@ export function Header() {
             type="text"
             className="bg-transparent px-1 text-base"
             placeholder="Buscar..."
+            value={search}
+            onChange={(e) => setSearch(e.currentTarget.value)}
             name="s"
           />
           <Image
