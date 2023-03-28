@@ -2,7 +2,7 @@ import CartIcon from '../../../../assets/icons/cart.svg'
 import SearchIcon from '../../../../assets/icons/search.svg'
 // import BagIcon from '../../../../assets/icons/bag.svg'
 import Image from 'next/image'
-import { Star, User } from 'phosphor-react'
+import { User } from 'phosphor-react'
 
 export function Header() {
   return (
@@ -24,9 +24,6 @@ export function Header() {
             height={22}
             alt="ícone de uma lupa grande com cabo pequeno"
           />
-        </a>
-        <a href="" className="rounded-full border border-Gray-300 block p-2.5">
-          <Star size={24} className="text-Black-500" />
         </a>
         <a href="" className="rounded-full border border-Gray-300 block p-2.5">
           <User size={24} className="text-Black-500" />
