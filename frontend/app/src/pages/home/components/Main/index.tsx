@@ -32,7 +32,7 @@ export function Main({ departments, products }: HomeProps) {
           <CaretRight size={16} />
         </div>
       </div>
-      <div className="flex flex-col mt-3 gap-y-3">
+      <div className="grid grid-cols-3 md:grid-cols-2 gap-x-5 sm:flex sm:flex-col mt-3 gap-y-3">
         {products.map((product) => (
           <Product key={product.id} product={product} />
         ))}

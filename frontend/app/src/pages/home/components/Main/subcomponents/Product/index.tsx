@@ -6,7 +6,7 @@ import { priceFormatter } from '@/code/utils/layout/formatters'
 
 export function Product({ product }: { product: IProductData }) {
   return (
-    <div className="bg-white p-3 flex gap-x-2.5 border border-Gray-300 rounded-lg">
+    <div className="bg-white p-3 flex gap-x-2.5 border border-Gray-300 rounded-lg col-span-1">
       <div className="flex justify-center items-center bg-Gray-200 p-2.5 min-w-[105px] min-h-[86px]">
         <Image
           src={getImage(product.image)}
