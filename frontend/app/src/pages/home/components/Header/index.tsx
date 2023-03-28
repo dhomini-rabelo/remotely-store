@@ -2,10 +2,14 @@ import CartIcon from '../../../../assets/icons/cart.svg'
 import SearchIcon from '../../../../assets/icons/search.svg'
 // import BagIcon from '../../../../assets/icons/bag.svg'
 import Image from 'next/image'
+import { useSetAtom } from 'jotai'
 import { User } from 'phosphor-react'
 import { Bag } from '../Main/subcomponents/Bag'
+import { currentPageAtom } from '../../code/states'
 
 export function Header() {
+  const setPage = useSetAtom(currentPageAtom)
+
   return (
     <header className="flex justify-between items-center">
       <div className="logo px-3.5 py-2 rounded-full bg-Black-500 border-Green-300 border flex justify-center">
@@ -19,7 +23,7 @@ export function Header() {
         <div className="rounded-full border border-Gray-300 p-2.5 sm:hidden flex items-center">
           <input
             type="text"
-            className="bg-transparent px-0.5 text-base"
+            className="bg-transparent px-1 text-base"
             placeholder="Buscar..."
             name="s"
           />
@@ -29,8 +33,8 @@ export function Header() {
             alt="ícone de uma lupa grande com cabo pequeno"
           />
         </div>
-        <a
-          href=""
+        <div
+          onClick={() => setPage('search')}
           className="rounded-full border border-Gray-300 p-2.5 hidden sm:block"
         >
           <Image
@@ -38,7 +42,7 @@ export function Header() {
             className="w-[1.5rem] h-[1.5rem] sm:w-[1.375rem] sm:h-[1.375rem]"
             alt="ícone de uma lupa grande com cabo pequeno"
           />
-        </a>
+        </div>
         <a
           href=""
           className="rounded-full border border-Gray-300 p-2.5 flex items-end gap-x-2"
