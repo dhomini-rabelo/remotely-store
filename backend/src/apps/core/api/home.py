@@ -24,7 +24,9 @@ class HomeDataAPI(APIView):
                                 promotional_value="promotional_value",
                             )
                         )[:1],
-                    ).all(),
+                    )
+                    .all()
+                    .order_by('rating'),
                     many=True,
                 ).data,
             },
