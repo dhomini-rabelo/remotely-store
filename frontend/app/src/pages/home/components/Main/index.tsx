@@ -8,7 +8,14 @@ export function Main({ departments, products }: HomeProps) {
   return (
     <main>
       <h2 className="text-1xl font-bold mt-10">Em destaque</h2>
-      <Banner />
+      <div className="grid grid-cols-2 gap-x-8 md:block">
+        <div className="col-span-1">
+          <Banner />
+        </div>
+        <div className="col-span-1 md:hidden">
+          <Banner />
+        </div>
+      </div>
       <div className="flex justify-between items-center mt-8">
         <h2 className="text-1xl font-bold">Departamentos</h2>
         <div className="text-Gray-500 flex items-center gap-x-2">
