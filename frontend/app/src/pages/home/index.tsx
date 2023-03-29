@@ -14,9 +14,9 @@ export interface HomeProps {
 export function Home(props: HomeProps) {
   const page = useAtomValue(currentPageAtom)
   return (
-    <div className="px-6 mt-8 grow max-w-[1148px] mx-auto pb-8">
+    <div id="container" className="mt-8 grow max-w-[1148px] mx-auto flex flex-col">
       <Header />
-      <div className="max-w-[1024px] mx-auto">
+      <div className="max-w-[1024px] mx-auto grow flex flex-col w-full">
         <Main {...props} />
         {page !== 'product' && (
           <Bag inHeader={false} />
