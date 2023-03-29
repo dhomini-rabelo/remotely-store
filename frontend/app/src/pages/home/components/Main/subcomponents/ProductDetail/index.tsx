@@ -1,4 +1,4 @@
-import { activeProductAtom } from '@/pages/home/code/states'
+import { activeProductAtom, currentPageAtom } from '@/pages/home/code/states'
 import { useAtom } from 'jotai'
 import { getImage } from '@/code/utils/layout'
 import Image from 'next/image'
@@ -6,12 +6,19 @@ import StarIcon from '../../../../../../assets/icons/star.svg'
 import { priceFormatter } from '@/code/utils/layout/formatters'
 import { IProductData } from '@/pages/home/types'
 import { Product } from '../Product'
-import { CaretLeft } from 'phosphor-react'
+import { CaretLeft, Heart } from 'phosphor-react'
+import { Button } from '@/layout/components/Button'
 
 export function ProductDetail({ products }: { products: IProductData[] }) {
+  const [, setPage] = useAtom(currentPageAtom)
   const [activeProduct] = useAtom(activeProductAtom)
+  const backToHome = () => setPage('home')
+
   return (
-    <main id="product-container" className="flex flex-col grow w-full h-full">
+    <main
+      id="product-container"
+      className="flex flex-col grow w-full h-full pb-24"
+    >
       <div className="flex justify-center items-center w-full min-h-[86px] py-4 relative">
         <Image
           src={getImage(activeProduct!.image)}
@@ -19,7 +26,11 @@ export function ProductDetail({ products }: { products: IProductData[] }) {
           height={375}
           alt={activeProduct!.description}
         />
-        <CaretLeft size={28} className="absolute top-0 left-6" />
+        <CaretLeft
+          size={28}
+          className="absolute top-0 left-6"
+          onClick={backToHome}
+        />
       </div>
       <div className="bg-white grow py-6 px-5">
         <div className="flex justify-between items-start">
@@ -57,6 +68,17 @@ export function ProductDetail({ products }: { products: IProductData[] }) {
           {products.map((product) => (
             <Product key={product.id} product={product} variant="secondary" />
           ))}
+        </div>
+      </div>
+      <div className="fixed bottom-0 w-full block pb-5 pt-3 px-6 bg-white">
+        <div className="flex gap-x-8 items-center">
+          <Button
+            className="w-full custom-length py-5 text-base font-medium lh-22"
+            variant="primary"
+          >
+            Comprar
+          </Button>
+          <Heart size={32} />
         </div>
       </div>
     </main>
