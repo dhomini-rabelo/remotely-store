@@ -24,7 +24,10 @@ export function Product({
   }
 
   return variant === 'primary' ? (
-    <div onClick={showProductPage} className="bg-white p-3 flex gap-x-2.5 border border-Gray-300 rounded-lg col-span-1">
+    <div
+      onClick={showProductPage}
+      className="bg-white p-3 flex gap-x-2.5 border border-Gray-300 rounded-lg col-span-1"
+    >
       <div className="flex justify-center items-center bg-Gray-200 p-2.5 min-w-[105px] min-h-[86px]">
         <Image
           src={getImage(product.image)}
@@ -59,7 +62,10 @@ export function Product({
       </div>
     </div>
   ) : (
-    <div onClick={showProductPage} className="bg-Gray-250 p-3 flex flex-col gap-x-2.5 border border-Gray-300 rounded-lg col-span-1">
+    <div
+      onClick={showProductPage}
+      className="bg-Gray-250 p-3 flex flex-col gap-x-2.5 border border-Gray-300 rounded-lg col-span-1"
+    >
       <div className="flex justify-center items-center bg-transparent p-2.5 min-w-[105px] min-h-[86px]">
         <Image
           src={getImage(product.image)}
