@@ -6,8 +6,9 @@ import StarIcon from '../../../../../../assets/icons/star.svg'
 import { priceFormatter } from '@/code/utils/layout/formatters'
 import { IProductData } from '@/pages/home/types'
 import { Product } from '../Product'
-import { CaretLeft, Heart } from 'phosphor-react'
+import { CaretLeft, CaretRight, Heart } from 'phosphor-react'
 import { Button } from '@/layout/components/Button'
+import { SimpleModal } from '@/layout/components/Modals/Simple'
 
 export function ProductDetail({ products }: { products: IProductData[] }) {
   const [, setPage] = useAtom(currentPageAtom)
@@ -19,6 +20,25 @@ export function ProductDetail({ products }: { products: IProductData[] }) {
       id="product-container"
       className="flex sm:flex-col sm:grow w-full h-full pb-24"
     >
+      <SimpleModal title="Escolha a quantidade" controlIsOpen={true}>
+        <div className="mt-2">
+          <div className="flex justify-around items-center py-6 px-8">
+            <span>
+              <CaretLeft size={24} />
+            </span>
+            <strong className="text-4xl">1</strong>
+            <span>
+              <CaretRight size={24} />
+            </span>
+          </div>
+          <Button
+            className="w-full custom-length py-4 font-medium lh-22 text-lg"
+            variant="primary"
+          >
+            Confirmar
+          </Button>
+        </div>
+      </SimpleModal>
       <div className="flex justify-center items-center w-full min-h-[86px] py-4 relative">
         <Image
           src={getImage(activeProduct!.image)}
