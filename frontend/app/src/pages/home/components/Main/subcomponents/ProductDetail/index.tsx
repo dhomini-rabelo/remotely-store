@@ -67,9 +67,15 @@ export function ProductDetail({ products }: { products: IProductData[] }) {
         <p className="mt-4 lh-22 mb-8">{activeProduct!.description}</p>
         <h2 className="text-1xl font-bold">Relacionados</h2>
         <div className="grid grid-cols-2 md:grid-cols-2 gap-x-5 sm:flex-col mt-3 gap-y-3">
-          {products.map((product) => (
-            <Product key={product.id} product={product} variant="secondary" />
-          ))}
+          {products
+            .filter(
+              (product) =>
+                product.department.id === activeProduct!.department.id &&
+                product.id !== activeProduct!.id,
+            )
+            .map((product) => (
+              <Product key={product.id} product={product} variant="secondary" />
+            ))}
         </div>
         <div className="sm:hidden block pb-0 pt-8 px-0 bg-white">
           <div className="flex gap-x-8 items-center justify-end">
