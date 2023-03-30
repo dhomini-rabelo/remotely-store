@@ -1,8 +1,10 @@
+export interface IProductCart {
+  id: string
+  quantity: number
+}
+
 export interface ICart {
-  products: {
-    id: string
-    quantity: number
-  }[]
+  products: IProductCart[]
 }
 
 export interface CartContextType extends ICart {
