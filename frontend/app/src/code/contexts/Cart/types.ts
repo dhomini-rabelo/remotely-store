@@ -8,5 +8,7 @@ export interface ICart {
 }
 
 export interface CartContextType extends ICart {
-  actions: {}
+  actions: {
+    addProduct: (product: IProductCart) => void
+  }
 }
