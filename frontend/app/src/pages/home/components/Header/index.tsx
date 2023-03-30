@@ -39,7 +39,10 @@ export function Header() {
   }
 
   return (
-    <header className={`flex justify-between items-center ${!['home', 'search'].includes(page) && 'hidden'}`}>
+    <header
+      className={`flex justify-between items-center ${!['home', 'search'].includes(page) && 'hidden'
+        }`}
+    >
       <div className="logo px-3.5 py-2 rounded-full bg-Black-500 border-Green-300 border flex justify-center">
         <Image
           src={CartIcon}

@@ -45,6 +45,10 @@ body {
     background-color: var(--Gray-100);
 }
 
+#main-container:not(:has(#product-container)) {
+    flex-grow: 1;
+}
+
 img {
     display: block;
 }

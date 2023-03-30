@@ -19,7 +19,10 @@ export function Home(props: HomeProps) {
       className="mt-8 grow max-w-[1148px] mx-auto flex flex-col"
     >
       <Header />
-      <div className="max-w-[1024px] mx-auto grow flex flex-col w-full">
+      <div
+        id="main-container"
+        className="max-w-[1024px] mx-auto flex flex-col w-full"
+      >
         <Main {...props} />
         {page !== 'product' && <Bag inHeader={false} />}
       </div>

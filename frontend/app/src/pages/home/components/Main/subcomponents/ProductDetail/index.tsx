@@ -17,7 +17,7 @@ export function ProductDetail({ products }: { products: IProductData[] }) {
   return (
     <main
       id="product-container"
-      className="flex flex-col grow w-full h-full pb-24"
+      className="flex sm:flex-col sm:grow w-full h-full pb-24"
     >
       <div className="flex justify-center items-center w-full min-h-[86px] py-4 relative">
         <Image
@@ -32,10 +32,12 @@ export function ProductDetail({ products }: { products: IProductData[] }) {
           onClick={backToHome}
         />
       </div>
-      <div className="bg-white grow py-6 px-5">
-        <div className="flex justify-between items-start">
-          <div className="flex flex-col bg-white truncate">
-            <h2 className="text-1xl font-bold lh-29">{activeProduct!.name}</h2>
+      <div className="bg-white py-6 px-5 tmd:min-w-[400px]">
+        <div className="flex justify-between items-start gap-x-6 esm:gap-x-3">
+          <div className="flex flex-col bg-white">
+            <h2 className="text-1xl font-bold lh-29 truncate whitespace-normal">
+              {activeProduct!.name}
+            </h2>
             <div className="mt-1 mb-3 text-xs flex gap-x-2">
               <span className="text-Gray-500 font-medium">
                 {activeProduct!.provider.name}
@@ -64,13 +66,24 @@ export function ProductDetail({ products }: { products: IProductData[] }) {
         </div>
         <p className="mt-4 lh-22 mb-8">{activeProduct!.description}</p>
         <h2 className="text-1xl font-bold">Relacionados</h2>
-        <div className="grid grid-cols-5 md:grid-cols-2 gap-x-5 sm:flex-col mt-3 gap-y-3">
+        <div className="grid grid-cols-2 md:grid-cols-2 gap-x-5 sm:flex-col mt-3 gap-y-3">
           {products.map((product) => (
             <Product key={product.id} product={product} variant="secondary" />
           ))}
         </div>
+        <div className="sm:hidden block pb-0 pt-8 px-0 bg-white">
+          <div className="flex gap-x-8 items-center justify-end">
+            <Button
+              className="custom-length py-5 w-full text-base font-medium lh-22"
+              variant="primary"
+            >
+              Comprar
+            </Button>
+            <Heart size={32} />
+          </div>
+        </div>
       </div>
-      <div className="fixed bottom-0 w-full block pb-5 pt-3 px-6 bg-white">
+      <div className="fixed bottom-0 w-full hidden sm:block pb-5 pt-3 px-6 bg-white">
         <div className="flex gap-x-8 items-center">
           <Button
             className="w-full custom-length py-5 text-base font-medium lh-22"
