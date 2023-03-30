@@ -1,3 +1,5 @@
+import { DepartmentModel } from '@/code/models/products'
+
 export interface IProductData {
   id: string
   name: string
@@ -12,4 +14,5 @@ export interface IProductData {
     id: string
     name: string
   }
+  department: DepartmentModel
 }

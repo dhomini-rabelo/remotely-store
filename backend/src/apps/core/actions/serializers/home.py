@@ -19,6 +19,7 @@ class ProviderHomeSerializer(serializers.ModelSerializer):
 
 class ProductHomeSerializer(serializers.ModelSerializer):
     provider = ProviderHomeSerializer()
+    department = DepartmentHomeSerializer()
 
     def to_representation(self, product: Product):
         print(product.price)
@@ -30,4 +31,4 @@ class ProductHomeSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Product
-        fields = ('id', 'name', 'image', 'description', 'provider')
+        fields = ('id', 'name', 'image', 'description', 'provider', 'department')
