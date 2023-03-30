@@ -17,7 +17,11 @@ export function CartProvider({ children }: { children: ReactNode }) {
   /* eslint-enable */
 
   function addProduct(product: IProductCart) {
-    cartDispatch(CartConsumer.addProduct(product))
+    if (product.quantity > 0) {
+      cartDispatch(CartConsumer.addProduct(product))
+    } else {
+      throw new Error('Quantidade inválida para produto')
+    }
   }
 
   return (

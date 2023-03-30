@@ -9,10 +9,24 @@ import { Product } from '../Product'
 import { CaretLeft, CaretRight, Heart } from 'phosphor-react'
 import { Button } from '@/layout/components/Button'
 import { SimpleModal } from '@/layout/components/Modals/Simple'
+import { useState } from 'react'
 
 export function ProductDetail({ products }: { products: IProductData[] }) {
   const [, setPage] = useAtom(currentPageAtom)
   const [activeProduct] = useAtom(activeProductAtom)
+  const [modalIsOpen, setModalIsOpen] = useState(false)
+  const [productQuantity, setProductQuantity] = useState(1)
+  const productQuantityState = {
+    add() {
+      setProductQuantity((quantity) => quantity + 1)
+    },
+    remove() {
+      if (productQuantity > 1) {
+        setProductQuantity((quantity) => quantity - 1)
+      }
+    },
+  }
+  const openModal = () => setModalIsOpen(true)
   const backToHome = () => setPage('home')
 
   return (
@@ -20,15 +34,15 @@ export function ProductDetail({ products }: { products: IProductData[] }) {
       id="product-container"
       className="flex sm:flex-col sm:grow w-full h-full pb-24"
     >
-      <SimpleModal title="Escolha a quantidade" controlIsOpen={true}>
+      <SimpleModal title="Escolha a quantidade" controlIsOpen={modalIsOpen}>
         <div className="mt-2">
           <div className="flex justify-around items-center py-6 px-8">
             <span>
-              <CaretLeft size={24} />
+              <CaretLeft size={24} onClick={productQuantityState.remove} />
             </span>
-            <strong className="text-4xl">1</strong>
+            <strong className="text-4xl">{productQuantity}</strong>
             <span>
-              <CaretRight size={24} />
+              <CaretRight size={24} onClick={productQuantityState.add} />
             </span>
           </div>
           <Button
@@ -114,6 +128,7 @@ export function ProductDetail({ products }: { products: IProductData[] }) {
           <Button
             className="w-full custom-length py-5 text-base font-medium lh-22"
             variant="primary"
+            onClick={openModal}
           >
             Comprar
           </Button>
