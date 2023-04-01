@@ -7,8 +7,14 @@ import { Department } from './subcomponents/Department'
 import { Product } from './subcomponents/Product'
 import { ProductDetail } from './subcomponents/ProductDetail'
 import { Search } from './subcomponents/Search'
+import { Cart } from './subcomponents/Cart'
+import { IProductData } from '../../types'
 
-export function Main({ departments, products }: HomeProps) {
+interface Props extends HomeProps {
+  productsForBuy: IProductData[]
+}
+
+export function Main({ departments, products, productsForBuy }: Props) {
   const [page] = useAtom(currentPageAtom)
   const [search] = useAtom(searchTextAtom)
 
@@ -48,7 +54,7 @@ export function Main({ departments, products }: HomeProps) {
           </div>
         </div>
         <div className="grid grid-cols-3 md:grid-cols-2 gap-x-5 sm:flex sm:flex-col mt-3 gap-y-3">
-          {products.map((product) => (
+          {productsForBuy.map((product) => (
             <Product key={product.id} product={product} />
           ))}
         </div>
@@ -57,7 +63,9 @@ export function Main({ departments, products }: HomeProps) {
   } else if (page === 'search') {
     return <Search search={search} products={products} />
   } else if (page === 'product') {
-    return <ProductDetail products={products} />
+    return <ProductDetail products={products} productsForBuy={productsForBuy} />
+  } else if (page === 'cart') {
+    return <Cart products={products} />
   } else {
     throw new Error('Invalid page')
   }

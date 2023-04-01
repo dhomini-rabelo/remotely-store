@@ -4,11 +4,12 @@ import SearchIcon from '../../../../assets/icons/search.svg'
 import Image from 'next/image'
 import { useAtom } from 'jotai'
 import { User } from 'phosphor-react'
-import { Bag } from '../Main/subcomponents/Bag'
 import { currentPageAtom, searchTextAtom } from '../../code/states'
-import { ChangeEvent, useEffect, useRef, useState } from 'react'
+import { ChangeEvent, Fragment, useEffect, useRef, useState } from 'react'
+import { IProductData } from '../../types'
+import { BagPopover } from './subcomponents/BagPopover'
 
-export function Header() {
+export function Header({ products }: { products: IProductData[] }) {
   const [page, setPage] = useAtom(currentPageAtom)
   const [search, setSearch] = useAtom(searchTextAtom)
   const [showSearch, setShowSearch] = useState(false)
@@ -90,7 +91,7 @@ export function Header() {
               <User className="w-[1.5rem] h-[1.5rem] sm:w-[1.375rem] sm:h-[1.375rem] text-Black-500" />
               <span className="text-lg sm:hidden">Conta</span>
             </a>
-            <Bag inHeader={true} />
+            <BagPopover products={products} />
           </>
         )}
       </nav>

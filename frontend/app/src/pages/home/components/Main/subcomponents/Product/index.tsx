@@ -26,7 +26,7 @@ export function Product({
   return variant === 'primary' ? (
     <div
       onClick={showProductPage}
-      className="bg-white p-3 flex gap-x-2.5 border border-Gray-300 rounded-lg col-span-1"
+      className="bg-white p-3 flex gap-x-2.5 border border-Gray-300 rounded-lg col-span-1 cursor-pointer"
     >
       <div className="flex justify-center items-center bg-Gray-200 p-2.5 min-w-[105px] min-h-[86px]">
         <Image
@@ -57,14 +57,14 @@ export function Product({
           </span>
         </div>
         <strong className="text-Orange-500">
-          {priceFormatter.format(product.price.value)}
+          {priceFormatter.format(product.price.currentValue)}
         </strong>
       </div>
     </div>
   ) : (
     <div
       onClick={showProductPage}
-      className="bg-Gray-250 p-3 flex flex-col gap-x-2.5 border border-Gray-300 rounded-lg col-span-1"
+      className="bg-Gray-250 p-3 flex flex-col gap-x-2.5 border border-Gray-300 rounded-lg col-span-1 cursor-pointer"
     >
       <div className="flex justify-center items-center bg-transparent p-2.5 min-w-[105px] min-h-[86px]">
         <Image
@@ -97,7 +97,7 @@ export function Product({
           </span>
         </div>
         <strong className="text-Orange-500">
-          {priceFormatter.format(product.price.value)}
+          {priceFormatter.format(product.price.currentValue)}
         </strong>
       </div>
     </div>

@@ -1,9 +1,14 @@
 import { Home, HomeProps } from './home'
 import { GetStaticProps } from 'next'
 import { simpleClient } from '@/code/settings/main'
+import { CartProvider } from '@/code/contexts/Cart'
 
 export default function HomePage(props: HomeProps) {
-  return <Home {...props} />
+  return (
+    <CartProvider>
+      <Home {...props} />
+    </CartProvider>
+  )
 }
 
 export const getStaticProps: GetStaticProps = async () => {
@@ -22,6 +27,9 @@ export const getStaticProps: GetStaticProps = async () => {
             promotional_value: product.price.promotional_value
               ? product.price.promotional_value / 100
               : null,
+            currentValue: product.price.promotional_value
+              ? product.price.promotional_value / 100
+              : product.price.value / 100,
           },
         })),
       },

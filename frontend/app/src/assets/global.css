@@ -32,7 +32,7 @@ body {
     min-height: 100vh;
     width: 100%;
     display: flex;
-    background-color: var(--Gray-150);
+    background-color: var(--Gray-100);
 }
 
 #container:not(:has(#product-container)) {
@@ -41,8 +41,14 @@ body {
     padding-bottom: 2rem;
 }
 
-#__next:not(:has(#product-container)) {
-    background-color: var(--Gray-100);
+#__next:has(#product-container) {
+    background-color: var(--Gray-150);
+}
+
+@media(max-width:640px) {
+    #__next:has(#cart-container) {
+        background-color: #fff;
+    }
 }
 
 #main-container:not(:has(#product-container)) {

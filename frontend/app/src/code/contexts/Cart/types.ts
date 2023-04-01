@@ -10,5 +10,7 @@ export interface ICart {
 export interface CartContextType extends ICart {
   actions: {
     addProduct: (product: IProductCart) => void
+    removeProduct: (productId: string) => void
+    updateProductQuantity: (product: IProductCart) => void
   }
 }

@@ -7,6 +7,7 @@ export interface IProductData {
   description: string
   rating: number
   price: {
+    currentValue: number
     value: number
     promotional_value: number | null
   }
