@@ -72,7 +72,7 @@ export function ProductCart({ product }: { product: IProductCartData }) {
         <Trash
           onClick={() => removeProductCart(product.id)}
           size={20}
-          className="absolute bottom-2 right-2 text-Orange-500"
+          className="absolute bottom-2 right-2 text-Orange-500 cursor-pointer"
         />
       </div>
     </div>
