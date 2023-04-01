@@ -54,7 +54,10 @@ export default function RegisterPage() {
         <div className="w-full max-w-esm px-6 mt-28">
           <header>
             <h1 className="font-bold text-1xl">
-              Cadastre-se no <span className="text-Green-300">Remotely.io</span>
+              Cadastre-se no{' '}
+              <Link href="/" className="text-Green-300">
+                Remotely.io
+              </Link>
             </h1>
           </header>
           <IndexForm.container>

@@ -17,7 +17,10 @@ export default function LoginPage() {
             alt="ícone de mão acenando"
           />
           <h1 className="font-bold">
-            Bem vindo ao <span className="text-Green-300">Remotely.io</span>
+            Bem vindo ao{' '}
+            <Link href="/" className="text-Green-300">
+              Remotely.io
+            </Link>
           </h1>
         </header>
         <IndexForm.container>
