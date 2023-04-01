@@ -1,0 +1,109 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+:root {
+    --Gray-100: #FCFCFC;
+    --Gray-150: #F4F5F7;
+    --Gray-200: #F6F6F5;
+    --Gray-250: #ededed;
+    --Gray-300: #DDDDDB;
+    --Gray-500: #A6A798;
+    --Green-300: #DCE362;
+    --Green-500: #CED55B;
+    --Black-500: #040B14;
+    --Orange-500: #BA5C3D;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', Arial, sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    width: 100%;
+}
+
+#__next {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    background-color: var(--Gray-100);
+}
+
+#container:not(:has(#product-container)) {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    padding-bottom: 2rem;
+}
+
+#__next:has(#product-container) {
+    background-color: var(--Gray-150);
+}
+
+@media(max-width:640px) {
+    #__next:has(#cart-container) {
+        background-color: #fff;
+    }
+}
+
+#main-container:not(:has(#product-container)) {
+    flex-grow: 1;
+}
+
+img {
+    display: block;
+}
+
+button {
+    cursor: pointer;
+}
+
+a {
+    text-decoration: none;
+}
+
+:focus {
+    outline: transparent;
+    box-shadow: none;
+}
+
+body {
+    color: var(--Black-500);
+}
+
+.roboto, .roboto > * {
+    font-family: 'Roboto', Arial, sans-serif;
+}
+
+.inter, .inter > * {
+    font-family: 'Inter', Arial, sans-serif;
+}
+
+.nunito-sans, .nunito-sans > * {
+    font-family: 'Nunito Sans', Arial, sans-serif;
+}
+
+.poppins, .poppins > * {
+    font-family: 'Poppins', Arial, sans-serif;
+}
+
+.lh-125 {
+    line-height: 125%;
+}
+
+.lh-22 {
+    line-height: 22px;
+}
+
+.lh-29 {
+    line-height: 29px;
+}
+
+.max-w-esm {
+    max-width: 414px;
+}
