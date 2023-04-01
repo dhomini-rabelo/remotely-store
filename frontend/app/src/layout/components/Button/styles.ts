@@ -25,6 +25,12 @@ export const ButtonStyles = styled.button((props: ButtonStylesProps) => `
     }
   `}
 
+  &:disabled {
+    opacity: 0.7;
+    background: var(--Gray-500);;
+    cursor: not-allowed;
+  }
+
 
 
   /* &.md {

@@ -71,6 +71,7 @@ export function Cart({ products }: { products: IProductData[] }) {
             <Button
               className="custom-length py-3 w-full text-sm font-medium lh-22"
               variant="primary"
+              disabled={cart.products.length < 1}
             >
               Comprar
             </Button>
@@ -87,6 +88,7 @@ export function Cart({ products }: { products: IProductData[] }) {
             <Button
               className="custom-length py-5 w-full text-base font-medium lh-22"
               variant="primary"
+              disabled={cart.products.length < 1}
             >
               Comprar
             </Button>
