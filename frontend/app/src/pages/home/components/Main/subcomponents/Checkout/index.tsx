@@ -9,6 +9,9 @@ import { priceFormatter } from '@/code/utils/layout/formatters'
 import { IProductCartData } from '../Cart'
 import { Div } from './styles'
 import { useState } from 'react'
+import CardIcon from '@/assets/icons/card.svg'
+import PIXIcon from '@/assets/icons/pix.svg'
+import Image from 'next/image'
 
 export function Checkout({ products }: { products: IProductData[] }) {
   const [, setPage] = useAtom(currentPageAtom)
@@ -60,7 +63,12 @@ export function Checkout({ products }: { products: IProductData[] }) {
             onClick={() => setPaymentMethod('CARD')}
             className="flex rounded-lg p-4 items-center gap-x-3.5"
           >
-            <CreditCard size={24} className="text-Black-500" />
+            <Image
+              src={CardIcon}
+              height={24}
+              width={24}
+              alt="Ícone de cartão mastercard"
+            />
             <strong className="inter grow text-xs lh-16 text-Black-500">
               Cartão de crédito
             </strong>
@@ -71,7 +79,12 @@ export function Checkout({ products }: { products: IProductData[] }) {
             onClick={() => setPaymentMethod('PIX')}
             className="flex rounded-lg p-4 items-center gap-x-3.5"
           >
-            <Money size={24} className="text-Black-500" />
+            <Image
+              src={PIXIcon}
+              height={24}
+              width={24}
+              alt="Ícone de cartão mastercard"
+            />
             <strong className="inter grow text-xs lh-16 text-Black-500">
               PIX
             </strong>
