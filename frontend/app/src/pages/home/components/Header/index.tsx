@@ -3,17 +3,25 @@ import SearchIcon from '../../../../assets/icons/search.svg'
 // import BagIcon from '../../../../assets/icons/bag.svg'
 import Image from 'next/image'
 import { useAtom } from 'jotai'
-import { User } from 'phosphor-react'
+import { ArrowRight, User } from 'phosphor-react'
 import { currentPageAtom, searchTextAtom } from '../../code/states'
 import { ChangeEvent, Fragment, useEffect, useRef, useState } from 'react'
 import { IProductData } from '../../types'
 import { BagPopover } from './subcomponents/BagPopover'
+import { authConsumer } from '@/code/modules/Auth'
+import Link from 'next/link'
 
 export function Header({ products }: { products: IProductData[] }) {
   const [page, setPage] = useAtom(currentPageAtom)
   const [search, setSearch] = useAtom(searchTextAtom)
   const [showSearch, setShowSearch] = useState(false)
   const searchInput = useRef<null | HTMLInputElement>(null)
+  const isAuthenticated = useRef<null | boolean>(null)
+
+  useEffect(() => {
+    const authInstance = authConsumer.getAuthInstanceInClientSide()
+    isAuthenticated.current = authInstance.isAuthenticated
+  }, [])
 
   useEffect(() => {
     if (showSearch) {
@@ -84,13 +92,24 @@ export function Header({ products }: { products: IProductData[] }) {
                 alt="ícone de uma lupa grande com cabo pequeno"
               />
             </div>
-            <a
-              href=""
-              className="rounded-full border border-Gray-300 p-2.5 flex items-end gap-x-2"
-            >
-              <User className="w-[1.5rem] h-[1.5rem] sm:w-[1.375rem] sm:h-[1.375rem] text-Black-500" />
-              <span className="text-lg sm:hidden">Conta</span>
-            </a>
+            {isAuthenticated.current === false && (
+              <Link
+                href="/login"
+                className="rounded-full border border-Gray-300 p-2.5 flex items-end gap-x-2"
+              >
+                <ArrowRight className="w-[1.5rem] h-[1.5rem] sm:w-[1.375rem] sm:h-[1.375rem] text-Black-500 tsm:relative tsm:bottom-0.5" />
+                <span className="text-lg sm:hidden">Entrar</span>
+              </Link>
+            )}
+            {isAuthenticated.current === true && (
+              <a
+                href=""
+                className="rounded-full border border-Gray-300 p-2.5 flex items-end gap-x-2"
+              >
+                <User className="w-[1.5rem] h-[1.5rem] sm:w-[1.375rem] sm:h-[1.375rem] text-Black-500" />
+                <span className="text-lg sm:hidden">Conta</span>
+              </a>
+            )}
             <BagPopover products={products} />
           </>
         )}
