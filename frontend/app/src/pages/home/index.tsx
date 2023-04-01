@@ -34,7 +34,7 @@ export function Home(props: HomeProps) {
         className="max-w-[1024px] mx-auto flex flex-col w-full"
       >
         <Main {...props} productsForBuy={productsForBuy} />
-        {!['cart', 'product'].includes(page) && (
+        {!['cart', 'product', 'checkout'].includes(page) && (
           <Bag inHeader={false} onClick={openCart} />
         )}
       </div>
