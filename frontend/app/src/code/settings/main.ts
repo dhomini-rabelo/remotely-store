@@ -13,4 +13,4 @@ export const simpleClient = axios.create({
 
 export const applicationName = 'REMOTELY'
 
-export const refreshTokenTimeoutInSeconds = 60 * 60 * 23 // 23 hours
+export const refreshTokenTimeoutInSeconds = 60 * 60 * 22 // 22 hours
