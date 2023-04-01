@@ -7,6 +7,8 @@ import { IProductData } from '@/pages/home/types'
 import { Button } from '@/layout/components/Button'
 import { priceFormatter } from '@/code/utils/layout/formatters'
 import { IProductCartData } from '../Cart'
+import { Div } from './styles'
+import { useState } from 'react'
 
 export function Checkout({ products }: { products: IProductData[] }) {
   const [, setPage] = useAtom(currentPageAtom)
@@ -34,6 +36,10 @@ export function Checkout({ products }: { products: IProductData[] }) {
       0,
     ),
   }
+  const [paymentMethod, setPaymentMethod] = useState<null | 'CARD' | 'PIX'>(
+    null,
+  )
+
   return (
     <>
       <main id="cart-container" className="relative bg-white">
@@ -49,36 +55,59 @@ export function Checkout({ products }: { products: IProductData[] }) {
           PAGAMENTO
         </h3>
         <div className="flex flex-col mt-3 gap-y-4">
-          <div
+          <Div.paymentType
+            active={paymentMethod === 'CARD'}
+            onClick={() => setPaymentMethod('CARD')}
             className="flex rounded-lg p-4 items-center gap-x-3.5"
-            style={{ border: '0.6px solid #8ADD4B' }}
           >
-            <CreditCard size={24} />
-            <strong className="inter grow text-xs lh-16">
+            <CreditCard size={24} className="text-Black-500" />
+            <strong className="inter grow text-xs lh-16 text-Black-500">
               Cartão de crédito
             </strong>
-            <Circle size={14} weight="fill" className="text-[#8ADD4B]" />
-          </div>
-          <div
+            <Circle size={14} weight="fill" />
+          </Div.paymentType>
+          <Div.paymentType
+            active={paymentMethod === 'PIX'}
+            onClick={() => setPaymentMethod('PIX')}
             className="flex rounded-lg p-4 items-center gap-x-3.5"
-            style={{ border: '0.6px solid #DDDDDB' }}
           >
-            <Money size={24} />
-            <strong className="inter grow text-xs lh-16">PIX</strong>
-            <Circle size={14} weight="fill" className="text-[#DDDDDB]" />
-          </div>
+            <Money size={24} className="text-Black-500" />
+            <strong className="inter grow text-xs lh-16 text-Black-500">
+              PIX
+            </strong>
+            <Circle size={14} weight="fill" />
+          </Div.paymentType>
         </div>
         <div className="block sm:hidden w-full pt-10 pb-4 bg-white">
           <div className="flex flex-col gap-y-2">
-            <div className="flex justify-between items-center">
-              <span className="text-base font-bold lh-22 inter">Total</span>
-              <strong className="text-Orange-500 text-1xl lh-29">
-                {priceFormatter.format(financialReport.totalValue)}
-              </strong>
+            <div className="flex flex-col gap-y-2">
+              <div className="flex justify-between items-center">
+                <span className="text-Gray-500 text-xs font-medium lh-16 inter">
+                  Subtotal
+                </span>
+                <strong className="text-Gray-600 text-base lh-22">
+                  {priceFormatter.format(financialReport.totalValue)}
+                </strong>
+              </div>
+              <div className="flex justify-between items-center">
+                <span className="text-Gray-500 text-xs font-medium lh-16 inter">
+                  Frete
+                </span>
+                <strong className="text-Gray-600 text-base lh-22">
+                  R$ 0,00
+                </strong>
+              </div>
+              <div className="flex justify-between items-center">
+                <span className="text-base font-bold lh-22 inter">Total</span>
+                <strong className="text-Orange-500 text-1xl lh-29">
+                  {priceFormatter.format(financialReport.totalValue)}
+                </strong>
+              </div>
             </div>
             <Button
               className="custom-length py-3 w-full text-sm font-medium lh-22"
               variant="primary"
+              disabled={paymentMethod === null}
             >
               Comprar
             </Button>
@@ -113,6 +142,7 @@ export function Checkout({ products }: { products: IProductData[] }) {
             <Button
               className="custom-length py-5 w-full text-base font-medium lh-22"
               variant="primary"
+              disabled={paymentMethod === null}
             >
               Comprar
             </Button>
