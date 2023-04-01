@@ -1,7 +1,7 @@
 import { CartContext } from '@/code/contexts/Cart'
 import { currentPageAtom } from '@/pages/home/code/states'
 import { useAtom } from 'jotai'
-import { CaretLeft } from 'phosphor-react'
+import { ArrowRight, CaretLeft } from 'phosphor-react'
 import { useContextSelector } from 'use-context-selector'
 import { ProductCart } from './components/ProductCart'
 import { IProductData } from '@/pages/home/types'
@@ -69,11 +69,12 @@ export function Cart({ products }: { products: IProductData[] }) {
               </strong>
             </div>
             <Button
-              className="custom-length py-3 w-full text-sm font-medium lh-22"
+              className="custom-length py-3 w-full text-sm font-medium lh-22 flex justify-center items-center gap-x-1"
               variant="primary"
               disabled={cart.products.length < 1}
             >
-              Comprar
+              Checkout
+              <ArrowRight size={16} />
             </Button>
           </div>
         </div>
@@ -86,11 +87,12 @@ export function Cart({ products }: { products: IProductData[] }) {
               </strong>
             </div>
             <Button
-              className="custom-length py-5 w-full text-base font-medium lh-22"
+              className="custom-length py-5 w-full text-base font-medium lh-22 flex justify-center items-center gap-x-1"
               variant="primary"
               disabled={cart.products.length < 1}
             >
-              Comprar
+              Checkout
+              <ArrowRight size={16} />
             </Button>
           </div>
         </div>
