@@ -100,6 +100,10 @@ body {
     line-height: 22px;
 }
 
+.lh-22 {
+    line-height: 16px;
+}
+
 .lh-29 {
     line-height: 29px;
 }

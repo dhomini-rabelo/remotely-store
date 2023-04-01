@@ -9,6 +9,7 @@ import { ProductDetail } from './subcomponents/ProductDetail'
 import { Search } from './subcomponents/Search'
 import { Cart } from './subcomponents/Cart'
 import { IProductData } from '../../types'
+import { Checkout } from './subcomponents/Checkout'
 
 interface Props extends HomeProps {
   productsForBuy: IProductData[]
@@ -66,6 +67,8 @@ export function Main({ departments, products, productsForBuy }: Props) {
     return <ProductDetail products={products} productsForBuy={productsForBuy} />
   } else if (page === 'cart') {
     return <Cart products={products} />
+  } else if (page === 'checkout') {
+    return <Checkout products={products} />
   } else {
     throw new Error('Invalid page')
   }
