@@ -10,9 +10,11 @@ import Image from 'next/image'
 export function Checkout({
   totalValue,
   backToCart,
+  goToSuccessStep,
 }: {
   totalValue: number
   backToCart: () => void
+  goToSuccessStep: () => void
 }) {
   const [paymentMethod, setPaymentMethod] = useState<null | 'CARD' | 'PIX'>(
     null,
@@ -101,6 +103,7 @@ export function Checkout({
               className="custom-length py-3 w-full text-sm font-medium lh-22"
               variant="primary"
               disabled={paymentMethod === null}
+              onClick={goToSuccessStep}
             >
               Comprar
             </Button>
@@ -136,6 +139,7 @@ export function Checkout({
               className="custom-length py-5 w-full text-base font-medium lh-22"
               variant="primary"
               disabled={paymentMethod === null}
+              onClick={goToSuccessStep}
             >
               Comprar
             </Button>

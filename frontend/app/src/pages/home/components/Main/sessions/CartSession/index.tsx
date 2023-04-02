@@ -4,6 +4,7 @@ import { IProductData } from '@/pages/home/types'
 import { useContextSelector } from 'use-context-selector'
 import { CartContext } from '@/code/contexts/Cart'
 import { Checkout } from './components/Checkout'
+import { SuccessStep } from './components/SuccessStep'
 
 export interface IProductCartData extends IProductData {
   quantity: number
@@ -38,6 +39,7 @@ export function CartSession({ products }: { products: IProductData[] }) {
   }
   const goToCheckout = () => setCartPage('checkout')
   const backToCart = () => setCartPage('cart')
+  const goToSuccessStep = () => setCartPage('success')
 
   switch (cartPage) {
     case 'cart':
@@ -51,11 +53,12 @@ export function CartSession({ products }: { products: IProductData[] }) {
     case 'checkout':
       return (
         <Checkout
+          goToSuccessStep={goToSuccessStep}
           totalValue={financialReport.totalValue}
           backToCart={backToCart}
         />
       )
     case 'success':
-      return <div></div>
+      return <SuccessStep />
   }
 }
