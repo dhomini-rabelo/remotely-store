@@ -17,13 +17,11 @@ export function Checkout({
   totalValue,
   backToCart,
   goToSuccessStep,
-  saveCart,
 }: {
   productsCart: IProductCartData[]
   totalValue: number
   backToCart: () => void
   goToSuccessStep: () => void
-  saveCart: () => void
 }) {
   const { FeedbackElement, renderFeedback } = useFeedback()
   const router = useRouter()
