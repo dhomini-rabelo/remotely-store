@@ -3,7 +3,6 @@ import { CartActions } from './actions'
 import { CartReducerAction } from './types'
 
 export function CartReducer(state: ICart, action: CartReducerAction): ICart {
-  console.log(action)
   switch (action.type) {
     case CartActions.ADD_PRODUCT:
       return {

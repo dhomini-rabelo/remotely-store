@@ -17,11 +17,13 @@ export function Checkout({
   totalValue,
   backToCart,
   goToSuccessStep,
+  saveCart,
 }: {
   productsCart: IProductCartData[]
   totalValue: number
   backToCart: () => void
   goToSuccessStep: () => void
+  saveCart: () => void
 }) {
   const { FeedbackElement, renderFeedback } = useFeedback()
   const router = useRouter()
@@ -61,9 +63,12 @@ export function Checkout({
         })
       }
     } else {
+      saveCart()
       renderFeedback('error', {
         message: 'Você não está logado',
-        onClose: () => router.push('/login'),
+        onClose: () => {
+          router.push('/login')
+        },
       })
     }
   }

@@ -1,12 +1,14 @@
-import { ReactNode, useReducer } from 'react'
+import { ReactNode, useEffect, useReducer } from 'react'
 import { createContext } from 'use-context-selector'
-import { CartContextType, IProductCart } from './types'
+import { CartContextType, IProductCart, ICart } from './types'
 import { CartReducer } from './reducer'
 import { CartConsumer } from './reducer/actions'
+import { applicationName } from '@/code/settings/main'
 
 export const CartContext = createContext<CartContextType>({} as CartContextType)
 
 export function CartProvider({ children }: { children: ReactNode }) {
+  const SAVE_KEY = `@${applicationName}-CART-KEY`
   /* eslint-disable */
   const [cart, cartDispatch] = useReducer(
     CartReducer,
@@ -14,6 +16,22 @@ export function CartProvider({ children }: { children: ReactNode }) {
       products: []
     },
   )
+
+  useEffect(() => {
+    const localStorageSavedCart = localStorage.getItem(SAVE_KEY)
+    if (localStorageSavedCart) {
+      const localStorageCart = JSON.parse(localStorageSavedCart) as ICart
+      const isValidStorageCart = localStorageCart.products && localStorageCart.products.every(product => product.id && product.quantity)
+      if (isValidStorageCart) {
+        localStorageCart.products.map(product => addProduct(product))
+      }
+    }
+  }, [])
+
+  useEffect(() => {
+    saveCart()
+  }, [cart])
+
   /* eslint-enable */
 
   function addProduct(product: IProductCart) {
@@ -48,11 +66,15 @@ export function CartProvider({ children }: { children: ReactNode }) {
     }
   }
 
+  function saveCart() {
+    localStorage.setItem(SAVE_KEY, JSON.stringify(cart))
+  }
+
   return (
     <CartContext.Provider
       value={{
         ...cart,
-        actions: { addProduct, removeProduct, updateProductQuantity },
+        actions: { addProduct, removeProduct, updateProductQuantity, saveCart },
       }}
     >
       {children}
