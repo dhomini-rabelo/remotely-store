@@ -5,21 +5,47 @@ import { ProductCart } from './subcomponents/ProductCart'
 import { Button } from '@/layout/components/Button'
 import { priceFormatter } from '@/code/utils/layout/formatters'
 import { IProductCartData } from '../..'
+import { authConsumer } from '@/code/modules/Auth'
+import { useRouter } from 'next/router'
+import { useFeedback } from '@/layout/hooks/useFeedback'
 
 export function Cart({
   productsCart,
   totalValue,
   goToCheckout,
+  goToLoginStep,
+  inPopover,
 }: {
   productsCart: IProductCartData[]
   totalValue: number
   goToCheckout: () => void
+  goToLoginStep: () => void
+  inPopover: boolean
 }) {
   const [, setPage] = useAtom(currentPageAtom)
   const backToHome = () => setPage('home')
+  const { FeedbackElement, renderFeedback } = useFeedback()
+  const router = useRouter()
+
+  function handleGoToCheckout() {
+    const authInstance = authConsumer.getAuthInstanceInClientSide()
+    if (authInstance.isAuthenticated) {
+      goToCheckout()
+    } else if (inPopover) {
+      goToLoginStep()
+    } else {
+      renderFeedback('error', {
+        message: 'Você precisa estar logado para continuar',
+        onClose: () => {
+          router.push('/login')
+        },
+      })
+    }
+  }
 
   return (
     <>
+      {FeedbackElement}
       <main id="cart-container" className="relative bg-white">
         <CaretLeft
           size={28}
@@ -51,7 +77,7 @@ export function Cart({
               className="custom-length py-3 w-full text-sm font-medium lh-22 flex justify-center items-center gap-x-1"
               variant="primary"
               disabled={productsCart.length < 1}
-              onClick={goToCheckout}
+              onClick={handleGoToCheckout}
             >
               Checkout
               <ArrowRight size={16} />
@@ -70,7 +96,7 @@ export function Cart({
               className="custom-length py-5 w-full text-base font-medium lh-22 flex justify-center items-center gap-x-1"
               variant="primary"
               disabled={productsCart.length < 1}
-              onClick={goToCheckout}
+              onClick={handleGoToCheckout}
             >
               Checkout
               <ArrowRight size={16} />

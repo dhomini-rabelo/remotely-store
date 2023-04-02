@@ -61,7 +61,6 @@ export function Checkout({
         })
       }
     } else {
-      saveCart()
       renderFeedback('error', {
         message: 'Você não está logado',
         onClose: () => {

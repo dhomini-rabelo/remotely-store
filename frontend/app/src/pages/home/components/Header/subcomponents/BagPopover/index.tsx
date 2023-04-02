@@ -23,7 +23,7 @@ export function BagPopover({ products }: { products: IProductData[] }) {
           >
             <Popover.Panel className="absolute right-1 mt-4 min-w-[400px] border rounded-lg border-Gray-600 z-20 bg-white">
               <div className="px-4">
-                <CartSession products={products} />
+                <CartSession products={products} inPopover={true} />
               </div>
             </Popover.Panel>
           </Transition>

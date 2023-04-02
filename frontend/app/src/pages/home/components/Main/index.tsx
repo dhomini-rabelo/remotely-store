@@ -65,7 +65,7 @@ export function Main({ departments, products, productsForBuy }: Props) {
   } else if (page === 'product') {
     return <ProductDetail products={products} productsForBuy={productsForBuy} />
   } else if (page === 'cart') {
-    return <CartSession products={products} />
+    return <CartSession products={products} inPopover={false} />
   } else {
     throw new Error('Invalid page')
   }
