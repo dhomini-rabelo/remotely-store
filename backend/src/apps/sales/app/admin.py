@@ -14,7 +14,7 @@ class SaleAdmin(admin.ModelAdmin):
     exclude = 'report', 'created_at', 'updated_at'
     list_per_page = 50
     list_select_related = ('client',)  # use tuple, default is False
-    ordering = ('client__name',)
+    ordering = ('client__username',)
     # actions = None
     # prepopulated_fields = {'slug': 'title',}
     search_fields = ('client',)  # ^ -> startswith, = -> iexact, @ ->	search, None -> icontains
