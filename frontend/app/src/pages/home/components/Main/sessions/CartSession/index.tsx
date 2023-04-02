@@ -63,7 +63,9 @@ export function CartSession({
     case 'checkout':
       return (
         <Checkout
+          inPopover={inPopover}
           productsCart={productsCart}
+          goToLoginStep={goToLoginStep}
           goToSuccessStep={goToSuccessStep}
           totalValue={financialReport.totalValue}
           backToCart={backToCart}

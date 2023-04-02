@@ -16,12 +16,16 @@ export function Checkout({
   productsCart,
   totalValue,
   backToCart,
+  goToLoginStep,
   goToSuccessStep,
+  inPopover,
 }: {
   productsCart: IProductCartData[]
   totalValue: number
   backToCart: () => void
+  goToLoginStep: () => void
   goToSuccessStep: () => void
+  inPopover: boolean
 }) {
   const { FeedbackElement, renderFeedback } = useFeedback()
   const router = useRouter()
@@ -30,7 +34,7 @@ export function Checkout({
   )
   const buying = useRef<boolean>(false)
 
-  async function buy() {
+  async function handleBuy() {
     const authInstance = authConsumer.getAuthInstanceInClientSide()
     if (authInstance.isAuthenticated) {
       try {
@@ -60,9 +64,11 @@ export function Checkout({
           message: 'Não foi possível efetuar a compra',
         })
       }
+    } else if (inPopover) {
+      goToLoginStep()
     } else {
       renderFeedback('error', {
-        message: 'Você não está logado',
+        message: 'Você precisa estar logado para continuar',
         onClose: () => {
           router.push('/login')
         },
@@ -154,7 +160,7 @@ export function Checkout({
               className="custom-length py-3 w-full text-sm font-medium lh-22"
               variant="primary"
               disabled={paymentMethod === null}
-              onClick={buy}
+              onClick={handleBuy}
               isSubmitting={buying.current}
             >
               Comprar
@@ -191,7 +197,7 @@ export function Checkout({
               className="custom-length py-5 w-full text-base font-medium lh-22"
               variant="primary"
               disabled={paymentMethod === null}
-              onClick={buy}
+              onClick={handleBuy}
               isSubmitting={buying.current}
             >
               Comprar
