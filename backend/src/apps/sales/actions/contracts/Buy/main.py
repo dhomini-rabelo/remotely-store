@@ -1,8 +1,8 @@
 from typing import Any
 from apps.accounts.app.models import User
-from apps.sales.actions.managers.Buy.serializers import ProductCartSerializer
+from apps.sales.actions.contracts.Buy.serializers import ProductCartSerializer
 
-from apps.sales.actions.managers.Buy.typings import ISaleBody
+from apps.sales.actions.contracts.Buy.typings import ISaleBody
 
 from rest_framework.serializers import ValidationError
 
