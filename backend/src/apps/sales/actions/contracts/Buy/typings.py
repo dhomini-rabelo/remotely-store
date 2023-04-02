@@ -1,11 +1,12 @@
 from typing import Literal, TypedDict
+import uuid
 
 
 class IProductCart(TypedDict):
-    id: str
+    id: str | uuid.UUID
     quantity: int
 
 
-class ISaleBody(TypedDict):
+class ICart(TypedDict):
     products: list[IProductCart]
-    payment_type: Literal['pix', 'card']
+    payment_method: Literal['pix', 'card']
