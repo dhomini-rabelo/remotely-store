@@ -1,7 +1,7 @@
 from django.contrib import admin
 from apps.sales.app.models.products import Department, Price, Product, Provider
 
-from apps.sales.app.models.sales import Sale, Rating
+from apps.sales.app.models.sales import ProductSold, Sale, Rating
 
 admin.site.empty_value_display = 'NULL'
 
@@ -44,6 +44,20 @@ class DepartmentAdmin(admin.ModelAdmin):
     # actions = None
     # prepopulated_fields = {'slug': 'title',}
     search_fields = ('name',)  # ^ -> startswith, = -> iexact, @ ->	search, None -> icontains
+
+
+@admin.register(ProductSold)
+class ProductSoldAdmin(admin.ModelAdmin):
+    list_display = ('id',)
+    list_display_links = ('id',)
+    # list_filter = '',
+    exclude = 'options', 'created_at', 'updated_at'
+    list_per_page = 50
+    list_select_related = False  # use tuple, default is False
+    ordering = ('id',)
+    # actions = None
+    # prepopulated_fields = {'slug': 'title',}
+    search_fields = ('id',)  # ^ -> startswith, = -> iexact, @ ->	search, None -> icontains
 
 
 @admin.register(Provider)
