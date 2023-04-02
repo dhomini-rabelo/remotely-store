@@ -26,12 +26,12 @@ class Sale(BaseModel):
     )
     status = models.CharField(max_length=64, choices=SaleStatusChoices.choices, default=SaleStatusChoices.IN_ANALYSIS)
     total_value = models.IntegerField(verbose_name='Valor total (em centavos)')
-    payment_type = models.CharField(
+    payment_method = models.CharField(
         max_length=64, choices=SalePaymentTypeChoices.choices, verbose_name='Meio de pagamento'
     )
     delivery_fee = models.IntegerField(blank=True, null=True, verbose_name='Taxa de entrega (em centavos)')
-    report = models.JSONField(default=dict)
     products_sold: RelatedManager['ProductSold']
+    report = models.JSONField(default=dict)
 
     def __str__(self):
         return 'Venda'
