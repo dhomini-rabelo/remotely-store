@@ -22,5 +22,9 @@ export function CartReducer(state: ICart, action: CartReducerAction): ICart {
             : action.payload.product,
         ),
       }
+    case CartActions.CLEAR_CART:
+      return {
+        products: [],
+      }
   }
 }

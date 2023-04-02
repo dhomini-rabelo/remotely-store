@@ -6,6 +6,7 @@ export enum CartActions {
   ADD_PRODUCT = 'ADD_PRODUCT',
   REMOVE_PRODUCT = 'REMOVE_PRODUCT',
   UPDATE_PRODUCT_QUANTITY = 'UPDATE_PRODUCT_QUANTITY',
+  CLEAR_CART = 'CLEAR_CART',
 }
 /* eslint-enable */
 
@@ -32,6 +33,12 @@ export const CartConsumer = {
       payload: {
         product,
       },
+    }
+  },
+  clearCart(): CartReducerAction {
+    return {
+      type: CartActions.CLEAR_CART,
+      payload: null,
     }
   },
 }

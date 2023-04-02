@@ -66,6 +66,10 @@ export function CartProvider({ children }: { children: ReactNode }) {
     }
   }
 
+  function clearCart() {
+    cartDispatch(CartConsumer.clearCart())
+  }
+
   function saveCart() {
     localStorage.setItem(SAVE_KEY, JSON.stringify(cart))
   }
@@ -74,7 +78,12 @@ export function CartProvider({ children }: { children: ReactNode }) {
     <CartContext.Provider
       value={{
         ...cart,
-        actions: { addProduct, removeProduct, updateProductQuantity, saveCart },
+        actions: {
+          addProduct,
+          removeProduct,
+          updateProductQuantity,
+          clearCart,
+        },
       }}
     >
       {children}

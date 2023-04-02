@@ -12,6 +12,6 @@ export interface CartContextType extends ICart {
     addProduct: (product: IProductCart) => void
     removeProduct: (productId: string) => void
     updateProductQuantity: (product: IProductCart) => void
-    saveCart: () => void
+    clearCart: () => void
   }
 }
