@@ -1,4 +1,5 @@
 from apps.accounts.app.models import User
+from apps.sales.actions.models.Sale.manager.main import SaleManager
 from typings.related_manager import RelatedManager
 from apps.core.app.models.bases import BaseModel
 from django.db import models
@@ -31,6 +32,10 @@ class Sale(BaseModel):
     delivery_fee = models.IntegerField(blank=True, null=True, verbose_name='Taxa de entrega (em centavos)')
     report = models.JSONField(default=dict)
     products_sold: RelatedManager['ProductSold']
+
+    @property
+    def manager(self):
+        return SaleManager(self)
 
     def __str__(self):
         return 'Venda'
