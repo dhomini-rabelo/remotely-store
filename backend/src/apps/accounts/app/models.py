@@ -9,7 +9,6 @@ if __name__ == '__main__':
 
 class User(AbstractUser):
     # id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    name = models.CharField(max_length=256, verbose_name='Nome')
     phone = models.CharField(max_length=128, blank=True, null=True, verbose_name='Celular')
     email = models.EmailField(blank=True, null=True, verbose_name='Email')
     address = models.OneToOneField(
