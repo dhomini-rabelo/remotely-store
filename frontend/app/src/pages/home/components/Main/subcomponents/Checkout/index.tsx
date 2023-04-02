@@ -1,7 +1,7 @@
 import { CartContext } from '@/code/contexts/Cart'
-import { currentPageAtom } from '@/pages/home/code/states'
+import { cartPageAtom, currentPageAtom } from '@/pages/home/code/states'
 import { useAtom } from 'jotai'
-import { CaretLeft, Circle, CreditCard, Money } from 'phosphor-react'
+import { CaretLeft, Circle } from 'phosphor-react'
 import { useContextSelector } from 'use-context-selector'
 import { IProductData } from '@/pages/home/types'
 import { Button } from '@/layout/components/Button'
@@ -14,7 +14,9 @@ import PIXIcon from '@/assets/icons/pix.svg'
 import Image from 'next/image'
 
 export function Checkout({ products }: { products: IProductData[] }) {
+  const [, setCartPage] = useAtom(cartPageAtom)
   const [, setPage] = useAtom(currentPageAtom)
+  const backToCartPageComponent = () => setCartPage('cart')
   const backToHome = () => setPage('home')
   const cart = useContextSelector(CartContext, (state) => ({
     products: state.products,
@@ -51,8 +53,13 @@ export function Checkout({ products }: { products: IProductData[] }) {
           className="absolute top-0 left-0 sm:block hidden"
           onClick={backToHome}
         />
-        <h2 className="text-1xl font-bold inter lh-29 mt-4 sm:mt-10">
-          Checkout
+        <h2 className="text-1xl font-bold inter lh-29 mt-4 sm:mt-10 flex">
+          <CaretLeft
+            size={28}
+            className="absolute top-0 left-0 block sm:hidden cursor-pointer"
+            onClick={backToCartPageComponent}
+          />
+          <span className="tsm:grow tsm:text-center">Checkout</span>
         </h2>
         <h3 className="text-xs font-bold inter lh-29 mt-5 lh-16 text-Gray-500">
           PAGAMENTO

@@ -1,5 +1,5 @@
 import { CartContext } from '@/code/contexts/Cart'
-import { currentPageAtom } from '@/pages/home/code/states'
+import { cartPageAtom, currentPageAtom } from '@/pages/home/code/states'
 import { useAtom } from 'jotai'
 import { ArrowRight, CaretLeft } from 'phosphor-react'
 import { useContextSelector } from 'use-context-selector'
@@ -13,8 +13,10 @@ export interface IProductCartData extends IProductData {
 }
 
 export function Cart({ products }: { products: IProductData[] }) {
+  const [, setCartPage] = useAtom(cartPageAtom)
   const [, setPage] = useAtom(currentPageAtom)
   const backToHome = () => setPage('home')
+  const goToCheckoutAtCartPage = () => setCartPage('checkout')
   const goToCheckout = () => setPage('checkout')
   const cart = useContextSelector(CartContext, (state) => ({
     products: state.products,
@@ -73,6 +75,7 @@ export function Cart({ products }: { products: IProductData[] }) {
               className="custom-length py-3 w-full text-sm font-medium lh-22 flex justify-center items-center gap-x-1"
               variant="primary"
               disabled={cart.products.length < 1}
+              onClick={goToCheckoutAtCartPage}
             >
               Checkout
               <ArrowRight size={16} />
