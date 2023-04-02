@@ -3,6 +3,9 @@ from apps.accounts.app.models import User
 from apps.core.app.models.bases import BaseModel
 from django.db import models
 
+if __name__ == '__main__':
+    from apps.sales.app.models.sales import ProductSold
+
 
 class Provider(BaseModel):
     name = models.CharField(max_length=256, verbose_name='Nome')
@@ -41,6 +44,7 @@ class Product(BaseModel):
     )
     options = models.JSONField(default=dict)
     prices: RelatedManager['Price']
+    products_sold: RelatedManager['ProductSold']
 
     def get_price(self) -> int | None:
         current_price = self.prices.filter(disabled_at=None).first()

@@ -2,10 +2,6 @@ from apps.accounts.app.models import User
 from typings.related_manager import RelatedManager
 from apps.core.app.models.bases import BaseModel
 from django.db import models
-
-from apps.core.app.models.complements import Address
-import uuid
-
 from apps.sales.app.models.products import Product
 from apps.sales.app.models.support.choices import SalePaymentTypeChoices, SaleStatusChoices
 
@@ -23,22 +19,7 @@ class Rating(BaseModel):
         verbose_name_plural = 'Avaliações'
 
 
-class ProductSold(BaseModel):
-    product = models.ForeignKey(Product, on_delete=models.CASCADE, verbose_name='Produto')
-    quantity = models.PositiveIntegerField(verbose_name='Quantidade')
-    data = models.JSONField(default=dict)
-    options = models.JSONField(default=dict)
-
-    def __str__(self):
-        return 'Produto vendido'
-
-    class Meta:
-        verbose_name = 'Produto vendido'
-        verbose_name_plural = 'Produtos vendidos'
-
-
 class Sale(BaseModel):
-    products = models.ManyToManyField(ProductSold, related_name='sales', verbose_name='Produtos')
     client = models.ForeignKey(
         User, on_delete=models.SET_NULL, null=True, related_name='business', verbose_name='Cliente'
     )
@@ -49,6 +30,7 @@ class Sale(BaseModel):
     )
     delivery_fee = models.IntegerField(blank=True, null=True, verbose_name='Taxa de entrega (em centavos)')
     report = models.JSONField(default=dict)
+    products_sold: RelatedManager['ProductSold']
 
     def __str__(self):
         return 'Venda'
@@ -56,3 +38,18 @@ class Sale(BaseModel):
     class Meta:
         verbose_name = 'Venda'
         verbose_name_plural = 'Vendas'
+
+
+class ProductSold(BaseModel):
+    sale = models.ForeignKey(Sale, on_delete=models.CASCADE, verbose_name='Produto', related_name='products_sold')
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, verbose_name='Produto', related_name='products_sold')
+    quantity = models.PositiveIntegerField(verbose_name='Quantidade')
+    price = models.IntegerField(verbose_name='Valor (em centavos)')
+    options = models.JSONField(default=dict)
+
+    def __str__(self):
+        return 'Produto vendido'
+
+    class Meta:
+        verbose_name = 'Produto vendido'
+        verbose_name_plural = 'Produtos vendidos'
