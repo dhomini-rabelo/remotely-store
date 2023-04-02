@@ -18,6 +18,7 @@ export function Checkout({
   backToCart,
   goToLoginStep,
   goToSuccessStep,
+  clearCart,
   inPopover,
 }: {
   productsCart: IProductCartData[]
@@ -25,6 +26,7 @@ export function Checkout({
   backToCart: () => void
   goToLoginStep: () => void
   goToSuccessStep: () => void
+  clearCart: () => void
   inPopover: boolean
 }) {
   const { FeedbackElement, renderFeedback } = useFeedback()
@@ -57,6 +59,7 @@ export function Checkout({
           },
         )
         buying.current = false
+        clearCart()
         goToSuccessStep()
       } catch {
         buying.current = false

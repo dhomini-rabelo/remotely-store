@@ -21,8 +21,9 @@ export function CartSession({
   const [cartPage, setCartPage] = useState<
     'cart' | 'checkout' | 'success' | 'login'
   >('cart')
-  const cart = useContextSelector(CartContext, (state) => ({
-    products: state.products,
+  const { cart, clearCart } = useContextSelector(CartContext, (state) => ({
+    cart: { products: state.products },
+    clearCart: state.actions.clearCart,
   }))
   const productsCart = cart.products
     .map((productCart) => {
@@ -63,6 +64,7 @@ export function CartSession({
     case 'checkout':
       return (
         <Checkout
+          clearCart={clearCart}
           inPopover={inPopover}
           productsCart={productsCart}
           goToLoginStep={goToLoginStep}
