@@ -8,9 +8,10 @@ admin.site.empty_value_display = 'NULL'
 
 @admin.register(Sale)
 class SaleAdmin(admin.ModelAdmin):
-    list_display = 'client', 'payment_type', 'total_value'
+    list_display = 'client', 'payment_method', 'total_value'
     list_display_links = ('client',)
     list_filter = ('client',)
+    exclude = 'report', 'created_at', 'updated_at'
     list_per_page = 50
     list_select_related = ('client',)  # use tuple, default is False
     ordering = ('client__name',)
