@@ -1,3 +1,4 @@
+from Core.forms.validators import validate_positive_number
 from apps.accounts.app.models import User
 from typings.related_manager import RelatedManager
 from apps.core.app.models.bases import BaseModel
@@ -43,7 +44,7 @@ class Sale(BaseModel):
 class ProductSold(BaseModel):
     sale = models.ForeignKey(Sale, on_delete=models.CASCADE, verbose_name='Produto', related_name='products_sold')
     product = models.ForeignKey(Product, on_delete=models.CASCADE, verbose_name='Produto', related_name='products_sold')
-    quantity = models.PositiveIntegerField(verbose_name='Quantidade')
+    quantity = models.PositiveIntegerField(verbose_name='Quantidade', validators=[validate_positive_number])
     price = models.IntegerField(verbose_name='Valor (em centavos)')
     options = models.JSONField(default=dict)
 

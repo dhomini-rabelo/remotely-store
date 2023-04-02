@@ -1,3 +1,4 @@
+from typing import Any
 from django.core.exceptions import ValidationError
 import re
 
@@ -12,4 +13,10 @@ def is_valid_cep(field: str):
 def validate_cep_field(value: str):
     if not is_valid_cep(value):
         raise ValidationError('Formato inválido')
+    return value
+
+
+def validate_positive_number(value: int):
+    if value <= 0:
+        raise ValidationError('Informe um número positivo')
     return value
