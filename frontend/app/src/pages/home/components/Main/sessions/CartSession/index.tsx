@@ -53,6 +53,7 @@ export function CartSession({ products }: { products: IProductData[] }) {
     case 'checkout':
       return (
         <Checkout
+          productsCart={productsCart}
           goToSuccessStep={goToSuccessStep}
           totalValue={financialReport.totalValue}
           backToCart={backToCart}

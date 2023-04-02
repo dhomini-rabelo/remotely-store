@@ -2,26 +2,75 @@ import { CaretLeft, Circle } from 'phosphor-react'
 import { Button } from '@/layout/components/Button'
 import { priceFormatter } from '@/code/utils/layout/formatters'
 import { Div } from './styles'
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import CardIcon from '@/assets/icons/card.svg'
 import PIXIcon from '@/assets/icons/pix.svg'
 import Image from 'next/image'
+import { useFeedback } from '@/layout/hooks/useFeedback'
+import { client } from '@/code/settings/main'
+import { IProductCartData } from '../..'
+import { authConsumer } from '@/code/modules/Auth'
+import { useRouter } from 'next/router'
 
 export function Checkout({
+  productsCart,
   totalValue,
   backToCart,
   goToSuccessStep,
 }: {
+  productsCart: IProductCartData[]
   totalValue: number
   backToCart: () => void
   goToSuccessStep: () => void
 }) {
-  const [paymentMethod, setPaymentMethod] = useState<null | 'CARD' | 'PIX'>(
+  const { FeedbackElement, renderFeedback } = useFeedback()
+  const router = useRouter()
+  const [paymentMethod, setPaymentMethod] = useState<null | 'card' | 'pix'>(
     null,
   )
+  const buying = useRef<boolean>(false)
+
+  async function buy() {
+    const authInstance = authConsumer.getAuthInstanceInClientSide()
+    if (authInstance.isAuthenticated) {
+      try {
+        buying.current = true
+        await client.post(
+          'buy',
+          {
+            products: productsCart.map((product) => ({
+              id: product.id,
+              quantity: product.quantity,
+            })),
+            payment_method: paymentMethod,
+          },
+          {
+            headers: {
+              Authorization: authConsumer.getAuthorizationHeaderFromAccessToken(
+                authInstance.accessToken!,
+              ),
+            },
+          },
+        )
+        buying.current = false
+        goToSuccessStep()
+      } catch {
+        buying.current = false
+        renderFeedback('error', {
+          message: 'Não foi possível efetuar a compra',
+        })
+      }
+    } else {
+      renderFeedback('error', {
+        message: 'Você não está logado',
+        onClose: () => router.push('/login'),
+      })
+    }
+  }
 
   return (
     <>
+      {FeedbackElement}
       <main id="cart-container" className="relative bg-white">
         <CaretLeft
           size={28}
@@ -41,8 +90,8 @@ export function Checkout({
         </h3>
         <div className="flex flex-col mt-3 gap-y-4">
           <Div.paymentType
-            active={paymentMethod === 'CARD'}
-            onClick={() => setPaymentMethod('CARD')}
+            active={paymentMethod === 'card'}
+            onClick={() => setPaymentMethod('card')}
             className="flex rounded-lg p-4 items-center gap-x-3.5"
           >
             <Image
@@ -57,8 +106,8 @@ export function Checkout({
             <Circle size={14} weight="fill" />
           </Div.paymentType>
           <Div.paymentType
-            active={paymentMethod === 'PIX'}
-            onClick={() => setPaymentMethod('PIX')}
+            active={paymentMethod === 'pix'}
+            onClick={() => setPaymentMethod('pix')}
             className="flex rounded-lg p-4 items-center gap-x-3.5"
           >
             <Image
@@ -103,7 +152,8 @@ export function Checkout({
               className="custom-length py-3 w-full text-sm font-medium lh-22"
               variant="primary"
               disabled={paymentMethod === null}
-              onClick={goToSuccessStep}
+              onClick={buy}
+              isSubmitting={buying.current}
             >
               Comprar
             </Button>
@@ -139,7 +189,8 @@ export function Checkout({
               className="custom-length py-5 w-full text-base font-medium lh-22"
               variant="primary"
               disabled={paymentMethod === null}
-              onClick={goToSuccessStep}
+              onClick={buy}
+              isSubmitting={buying.current}
             >
               Comprar
             </Button>

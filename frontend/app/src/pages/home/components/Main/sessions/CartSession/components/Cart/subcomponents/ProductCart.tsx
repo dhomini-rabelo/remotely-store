@@ -2,9 +2,9 @@ import { getImage } from '@/code/utils/layout'
 import { priceFormatter } from '@/code/utils/layout/formatters'
 import Image from 'next/image'
 import { MinusCircle, PlusCircle, Trash } from 'phosphor-react'
-import { IProductCartData } from '..'
 import { useContextSelector } from 'use-context-selector'
 import { CartContext } from '@/code/contexts/Cart'
+import { IProductCartData } from '../../..'
 
 export function ProductCart({ product }: { product: IProductCartData }) {
   const { removeProductCart, updateProductCart } = useContextSelector(

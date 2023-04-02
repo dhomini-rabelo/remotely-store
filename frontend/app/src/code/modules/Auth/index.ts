@@ -94,7 +94,7 @@ class AuthManager {
     }
   }
 
-  private getAuthorizationHeaderFromAccessToken(accessToken: string) {
+  getAuthorizationHeaderFromAccessToken(accessToken: string) {
     return `Bearer ${accessToken}`
   }
 
