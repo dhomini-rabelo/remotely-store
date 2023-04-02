@@ -6,7 +6,7 @@ import StarIcon from '../../../../../../assets/icons/star.svg'
 import { priceFormatter } from '@/code/utils/layout/formatters'
 import { IProductData } from '@/pages/home/types'
 import { Product } from '../Product'
-import { CaretLeft, CaretRight, Heart } from 'phosphor-react'
+import { CaretLeft, CaretRight } from 'phosphor-react'
 import { Button } from '@/layout/components/Button'
 import { SimpleModal } from '@/layout/components/Modals/Simple'
 import { useState } from 'react'
@@ -14,10 +14,8 @@ import { useContextSelector } from 'use-context-selector'
 import { CartContext } from '@/code/contexts/Cart'
 
 export function ProductDetail({
-  products,
   productsForBuy,
 }: {
-  products: IProductData[]
   productsForBuy: IProductData[]
 }) {
   const addProductToCart = useContextSelector(
@@ -164,7 +162,6 @@ export function ProductDetail({
               >
                 Comprar
               </Button>
-              <Heart size={32} />
             </div>
           </div>
         </div>
@@ -177,7 +174,6 @@ export function ProductDetail({
             >
               Comprar
             </Button>
-            <Heart size={32} />
           </div>
         </div>
       </main>

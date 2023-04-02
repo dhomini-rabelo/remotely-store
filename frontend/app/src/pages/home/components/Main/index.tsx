@@ -63,7 +63,7 @@ export function Main({ departments, products, productsForBuy }: Props) {
   } else if (page === 'search') {
     return <Search search={search} products={products} />
   } else if (page === 'product') {
-    return <ProductDetail products={products} productsForBuy={productsForBuy} />
+    return <ProductDetail productsForBuy={productsForBuy} />
   } else if (page === 'cart') {
     return <CartSession products={products} inPopover={false} />
   } else {
