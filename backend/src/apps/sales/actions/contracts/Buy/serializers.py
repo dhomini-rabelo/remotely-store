@@ -2,6 +2,7 @@ from rest_framework import serializers
 
 from apps.sales.app.models.products import Product
 from apps.sales.app.models.sales import ProductSold, Sale
+from apps.sales.app.models.support.choices import SalePaymentTypeChoices
 
 
 class ProductCartSerializer(serializers.ModelSerializer):
@@ -15,13 +16,18 @@ class ProductCartSerializer(serializers.ModelSerializer):
         )
 
 
+class BodyBuySerializer(serializers.Serializer):
+    products = ProductCartSerializer(many=True)
+    payment_method = serializers.ChoiceField(choices=SalePaymentTypeChoices.choices)
+
+
 class ProductSoldBuySerializer(serializers.ModelSerializer):
     class Meta:
         model = ProductSold
-        fields = 'id', 'sale', 'product', 'quantity', 'price'
+        fields = 'id', 'product', 'quantity', 'price', 'sale'
 
 
-class ProductSoldBuySerializer(serializers.ModelSerializer):
+class SaleBuySerializer(serializers.ModelSerializer):
     class Meta:
         model = Sale
         fields = (
@@ -29,7 +35,6 @@ class ProductSoldBuySerializer(serializers.ModelSerializer):
             'client',
             'status',
             'delivery_fee',
-            'payment_type',
+            'payment_method',
             'total_value',
-            'products_sold',
         )
