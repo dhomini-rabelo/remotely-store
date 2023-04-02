@@ -55,5 +55,7 @@ export function CartSession({ products }: { products: IProductData[] }) {
           backToCart={backToCart}
         />
       )
+    case 'success':
+      return <div></div>
   }
 }

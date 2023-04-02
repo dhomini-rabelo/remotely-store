@@ -1,14 +1,10 @@
 import { Popover, Transition } from '@headlessui/react'
-import { Cart } from '../../../Main/subcomponents/Cart'
 import { Fragment } from 'react'
 import { IProductData } from '@/pages/home/types'
 import { Bag } from '../../../Main/subcomponents/Bag'
-import { useAtom } from 'jotai'
-import { cartPageAtom } from '@/pages/home/code/states'
-import { Checkout } from '../../../Main/subcomponents/Checkout'
+import { CartSession } from '../../../Main/sessions/CartSession'
 
 export function BagPopover({ products }: { products: IProductData[] }) {
-  const [cartPage] = useAtom(cartPageAtom)
   return (
     <Popover className="relative">
       {({ open }: { open: boolean }) => (
@@ -27,8 +23,7 @@ export function BagPopover({ products }: { products: IProductData[] }) {
           >
             <Popover.Panel className="absolute right-1 mt-4 min-w-[400px] border rounded-lg border-Gray-600 z-20 bg-white">
               <div className="px-4">
-                {cartPage === 'cart' && <Cart products={products} />}
-                {cartPage === 'checkout' && <Checkout products={products} />}
+                <CartSession products={products} />
               </div>
             </Popover.Panel>
           </Transition>
