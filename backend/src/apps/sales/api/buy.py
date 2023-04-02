@@ -11,5 +11,5 @@ class BuyAPI(APIView):
 
     def post(self, request: Request):
         buy_action = BuyAction()
-        buy_action.run(request.data, request.user)
-        return Response(data={}, status=status.HTTP_200_OK)
+        buy_code = buy_action.run(request.data, request.user)
+        return Response(data={'code': buy_code}, status=status.HTTP_200_OK)

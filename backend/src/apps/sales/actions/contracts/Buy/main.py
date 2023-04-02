@@ -29,7 +29,7 @@ class BuyAction:
             raise serializers.ValidationError(serializer.errors)
         return serializer.data
 
-    def run(self, body: Any | ICart, auth_user: User):
+    def run(self, body: Any | ICart, auth_user: User) -> str:
         cart_body = self.__clean(body, auth_user)
         products_sold_data = [
             {
@@ -65,3 +65,4 @@ class BuyAction:
                 raise serializers.ValidationError(products_sold_serializer.errors)
             else:
                 products_sold_serializer.save()
+            return str(sale_serializer.data['id']).split('-')[-1]
