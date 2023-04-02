@@ -14,11 +14,8 @@ export function CartSession({ products }: { products: IProductData[] }) {
   const [cartPage, setCartPage] = useState<'cart' | 'checkout' | 'success'>(
     'cart',
   )
-  const { cart, saveCart } = useContextSelector(CartContext, (state) => ({
-    cart: {
-      products: state.products,
-    },
-    saveCart: state.actions.saveCart,
+  const cart = useContextSelector(CartContext, (state) => ({
+    products: state.products,
   }))
   const productsCart = cart.products
     .map((productCart) => {
@@ -56,7 +53,6 @@ export function CartSession({ products }: { products: IProductData[] }) {
     case 'checkout':
       return (
         <Checkout
-          saveCart={saveCart}
           productsCart={productsCart}
           goToSuccessStep={goToSuccessStep}
           totalValue={financialReport.totalValue}
