@@ -34,7 +34,7 @@ class Sale(BaseModel):
     report = models.JSONField(default=dict)
 
     def __str__(self):
-        return 'Venda'
+        return f"Venda#{str(self.id).split('-')[-1]}"
 
     class Meta:
         verbose_name = 'Venda'
@@ -42,7 +42,7 @@ class Sale(BaseModel):
 
 
 class ProductSold(BaseModel):
-    sale = models.ForeignKey(Sale, on_delete=models.CASCADE, verbose_name='Produto', related_name='products_sold')
+    sale = models.ForeignKey(Sale, on_delete=models.CASCADE, verbose_name='Venda', related_name='products_sold')
     product = models.ForeignKey(Product, on_delete=models.CASCADE, verbose_name='Produto', related_name='products_sold')
     quantity = models.PositiveIntegerField(verbose_name='Quantidade', validators=[validate_positive_number])
     price = models.IntegerField(verbose_name='Valor (em centavos)')
