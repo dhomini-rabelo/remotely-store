@@ -59,8 +59,10 @@ class Product(BaseModel):
 
 
 class Price(BaseModel):
-    value = models.IntegerField(verbose_name='Valor (em centavos)')
-    promotional_value = models.IntegerField(blank=True, null=True, verbose_name='Valor promocional (em centavos)')
+    value = models.PositiveIntegerField(verbose_name='Valor (em centavos)')
+    promotional_value = models.PositiveIntegerField(
+        blank=True, null=True, verbose_name='Valor promocional (em centavos)'
+    )
     disabled_at = models.DateTimeField(default=None, blank=True, null=True, verbose_name='Desabilitado em')
     disabled_from = models.ForeignKey(
         User,
