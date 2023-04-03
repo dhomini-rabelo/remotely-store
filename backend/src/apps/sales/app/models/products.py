@@ -1,3 +1,4 @@
+from Core.forms.validators import validate_positive_number
 from typings.related_manager import ManyToOneField
 from apps.accounts.app.models import User
 from apps.core.app.models.bases import BaseModel
@@ -59,9 +60,9 @@ class Product(BaseModel):
 
 
 class Price(BaseModel):
-    value = models.PositiveIntegerField(verbose_name='Valor (em centavos)')
+    value = models.PositiveIntegerField(verbose_name='Valor (em centavos)', validators=[validate_positive_number])
     promotional_value = models.PositiveIntegerField(
-        blank=True, null=True, verbose_name='Valor promocional (em centavos)'
+        blank=True, null=True, verbose_name='Valor promocional (em centavos)', validators=[validate_positive_number]
     )
     disabled_at = models.DateTimeField(default=None, blank=True, null=True, verbose_name='Desabilitado em')
     disabled_from = models.ForeignKey(

@@ -25,7 +25,9 @@ class Sale(BaseModel):
         User, on_delete=models.SET_NULL, null=True, related_name='business', verbose_name='Cliente'
     )
     status = models.CharField(max_length=64, choices=SaleStatusChoices.choices, default=SaleStatusChoices.IN_ANALYSIS)
-    total_value = models.PositiveIntegerField(verbose_name='Valor total (em centavos)')
+    total_value = models.PositiveIntegerField(
+        verbose_name='Valor total (em centavos)', validators=[validate_positive_number]
+    )
     payment_method = models.CharField(
         max_length=64, choices=SalePaymentTypeChoices.choices, verbose_name='Meio de pagamento'
     )
@@ -45,7 +47,7 @@ class ProductSold(BaseModel):
     sale = models.ForeignKey(Sale, on_delete=models.CASCADE, verbose_name='Venda', related_name='products_sold')
     product = models.ForeignKey(Product, on_delete=models.CASCADE, verbose_name='Produto', related_name='products_sold')
     quantity = models.PositiveIntegerField(verbose_name='Quantidade', validators=[validate_positive_number])
-    price = models.PositiveIntegerField(verbose_name='Valor (em centavos)')
+    price = models.PositiveIntegerField(verbose_name='Valor (em centavos)', validators=[validate_positive_number])
     options = models.JSONField(default=dict)
 
     def __str__(self):
