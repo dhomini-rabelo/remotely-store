@@ -5,7 +5,7 @@ from typing import Generic, TypeVar, Callable
 _T = TypeVar("_T")
 
 
-class RelatedManager(Manager[_T], Generic[_T]):
+class ManyToOneField(Manager[_T], Generic[_T]):
     # Related Manager for many to one relationship
 
     def add(self, *objs: _T):

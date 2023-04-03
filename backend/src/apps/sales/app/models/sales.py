@@ -1,6 +1,6 @@
 from Core.forms.validators import validate_positive_number
 from apps.accounts.app.models import User
-from typings.related_manager import RelatedManager
+from typings.related_manager import ManyToOneField
 from apps.core.app.models.bases import BaseModel
 from django.db import models
 from apps.sales.app.models.products import Product
@@ -30,7 +30,7 @@ class Sale(BaseModel):
         max_length=64, choices=SalePaymentTypeChoices.choices, verbose_name='Meio de pagamento'
     )
     delivery_fee = models.IntegerField(blank=True, null=True, verbose_name='Taxa de entrega (em centavos)')
-    products_sold: RelatedManager['ProductSold']
+    products_sold: ManyToOneField['ProductSold']
     report = models.JSONField(default=dict)
 
     def __str__(self):

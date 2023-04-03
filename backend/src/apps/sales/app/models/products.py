@@ -1,4 +1,4 @@
-from typings.related_manager import RelatedManager
+from typings.related_manager import ManyToOneField
 from apps.accounts.app.models import User
 from apps.core.app.models.bases import BaseModel
 from django.db import models
@@ -9,7 +9,7 @@ if __name__ == '__main__':
 
 class Provider(BaseModel):
     name = models.CharField(max_length=256, verbose_name='Nome')
-    products: RelatedManager['Product']
+    products: ManyToOneField['Product']
 
     def __str__(self):
         return self.name
@@ -22,7 +22,7 @@ class Provider(BaseModel):
 class Department(BaseModel):
     name = models.CharField(max_length=256, verbose_name='Nome')
     image = models.ImageField(blank=True, null=True, upload_to='departments/%Y/%m', verbose_name='Imagem')
-    products: RelatedManager['Product']
+    products: ManyToOneField['Product']
 
     def __str__(self):
         return self.name
@@ -43,8 +43,8 @@ class Product(BaseModel):
         Provider, on_delete=models.SET_NULL, null=True, related_name='products', verbose_name='fornecedor'
     )
     options = models.JSONField(default=dict)
-    prices: RelatedManager['Price']
-    products_sold: RelatedManager['ProductSold']
+    prices: ManyToOneField['Price']
+    products_sold: ManyToOneField['ProductSold']
 
     def get_price(self) -> int | None:
         current_price = self.prices.filter(disabled_at=None).first()
