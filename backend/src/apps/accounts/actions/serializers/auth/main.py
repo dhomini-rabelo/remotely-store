@@ -57,6 +57,7 @@ class SaleLoginSerializer(serializers.ModelSerializer):
     class Meta:
         model = Sale
         fields = (
+            'id',
             'status',
             'payment_method',
             'total_value',
