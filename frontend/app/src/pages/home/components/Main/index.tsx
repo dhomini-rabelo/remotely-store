@@ -61,7 +61,7 @@ export function Main({ departments, products, productsForBuy }: Props) {
       </main>
     )
   } else if (page === 'search') {
-    return <Search search={search} products={products} />
+    return <Search search={search} productsForBuy={productsForBuy} />
   } else if (page === 'product') {
     return <ProductDetail productsForBuy={productsForBuy} />
   } else if (page === 'cart') {
