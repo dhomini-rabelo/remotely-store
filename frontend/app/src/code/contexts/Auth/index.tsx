@@ -28,14 +28,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       authConsumer.configureAuthClient(client, {
         accessToken: authInstance.accessToken,
       })
-      client.get('/me').then((res) => {
-        const user = res.data
-        authDispatch(
-          AuthConsumer.login({
-            id: user.id,
-            email: user.email,
-          }),
-        )
+      client.get('/me').then((response) => {
+        authDispatch(AuthConsumer.login(response.data))
       })
     }
   }, [auth])

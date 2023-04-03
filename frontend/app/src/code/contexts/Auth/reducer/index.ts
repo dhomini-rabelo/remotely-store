@@ -11,10 +11,7 @@ export function AuthReducer(
         auth: {
           isAuthenticated: true,
         },
-        user: {
-          id: action.payload.user.id,
-          email: action.payload.user.email,
-        },
+        user: action.payload.user,
       }
     case AuthActions.LOGOUT:
       return {

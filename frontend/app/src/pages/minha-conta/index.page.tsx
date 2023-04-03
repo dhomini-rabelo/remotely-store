@@ -1,9 +1,14 @@
 import { GetServerSideProps } from 'next'
 import { authConsumer } from '@/code/modules/Auth'
 import { MyAccount } from './content'
+import { AuthProvider } from '@/code/contexts/Auth'
 
 export default function MyAccountPage() {
-  return <MyAccount />
+  return (
+    <AuthProvider>
+      <MyAccount />
+    </AuthProvider>
+  )
 }
 
 export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
