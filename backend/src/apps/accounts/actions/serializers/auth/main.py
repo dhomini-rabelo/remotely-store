@@ -7,6 +7,8 @@ from apps.accounts.app.models import User
 from rest_framework.validators import UniqueValidator
 from apps.accounts.app.models import User
 from rest_framework import serializers
+from django.db.models import Sum
+from apps.sales.app.models.sales import Sale
 
 
 class CreateUserSerializer(serializers.ModelSerializer):
@@ -44,7 +46,27 @@ class CreateUserSerializer(serializers.ModelSerializer):
         }
 
 
+class SaleLoginSerializer(serializers.ModelSerializer):
+    def to_representation(self, sale: Sale):
+        return {
+            **super().to_representation(sale),
+            'code': str(sale.id).split('-')[0],
+            'itens_quantity': sale.products_sold.aggregate(itens_quantity=Sum('quantity'))['itens_quantity'],
+        }
+
+    class Meta:
+        model = Sale
+        fields = (
+            'status',
+            'payment_method',
+            'total_value',
+            'created_at',
+        )
+
+
 class UserLoginSerializer(serializers.ModelSerializer):
+    business = SaleLoginSerializer(many=True)
+
     class Meta:
         model = User
-        fields = 'id', 'email'
+        fields = 'id', 'email', 'business'
