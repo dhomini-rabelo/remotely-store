@@ -42,7 +42,7 @@ export function ProductDetail({
   }
   const backToHome = () => setPage('home')
 
-  function confirmAddProductToCart() {
+  function handleAddProductToCart() {
     addProductToCart({
       id: activeProduct!.id,
       quantity: productQuantity,
@@ -79,7 +79,7 @@ export function ProductDetail({
           <Button
             className="w-full custom-length py-4 font-medium lh-22 text-lg"
             variant="primary"
-            onClick={confirmAddProductToCart}
+            onClick={handleAddProductToCart}
           >
             Confirmar
           </Button>

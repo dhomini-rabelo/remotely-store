@@ -28,7 +28,7 @@ export function Header({ products }: { products: IProductData[] }) {
     }
   }, [showSearch])
 
-  function doSearch(e: ChangeEvent<HTMLInputElement>) {
+  function handleDoSearch(e: ChangeEvent<HTMLInputElement>) {
     const searchText = e.currentTarget.value
     setSearch(e.currentTarget.value)
     if (searchText !== '' && page !== 'search') {
@@ -36,11 +36,11 @@ export function Header({ products }: { products: IProductData[] }) {
     }
   }
 
-  function searchInCellPhone() {
+  function handleSearchInCellPhone() {
     setShowSearch(true)
   }
 
-  function showOptionsInCellPhone() {
+  function handleShowOptionsInCellPhone() {
     if (showSearch && search === '') {
       setShowSearch(false)
     }
@@ -73,9 +73,9 @@ export function Header({ products }: { products: IProductData[] }) {
             className="bg-transparent px-1 text-base w-full"
             placeholder="Buscar..."
             value={search}
-            onBlur={showOptionsInCellPhone}
+            onBlur={handleShowOptionsInCellPhone}
             ref={searchInput}
-            onChange={doSearch}
+            onChange={handleDoSearch}
             name="s"
           />
           <Image
@@ -87,7 +87,7 @@ export function Header({ products }: { products: IProductData[] }) {
         {!showSearch && (
           <>
             <div
-              onClick={searchInCellPhone}
+              onClick={handleSearchInCellPhone}
               className="rounded-full border border-Gray-300 p-2.5 hidden sm:block"
             >
               <Image
