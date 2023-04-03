@@ -1,4 +1,4 @@
-import { ReactNode, useEffect, useReducer } from 'react'
+import { ReactNode, useCallback, useEffect, useReducer } from 'react'
 import { createContext } from 'use-context-selector'
 import { CartContextType, IProductCart, ICart } from './types'
 import { CartReducer } from './reducer'
@@ -34,41 +34,50 @@ export function CartProvider({ children }: { children: ReactNode }) {
 
   /* eslint-enable */
 
-  function addProduct(product: IProductCart) {
-    if (product.quantity <= 0) {
-      throw new Error('Quantidade inválida para produto')
-    } else if (
-      cart.products.find((productItem) => productItem.id === product.id)
-    ) {
-      throw new Error('O produto já está no carrinho')
-    } else {
-      cartDispatch(CartConsumer.addProduct(product))
-    }
-  }
+  const addProduct = useCallback(
+    (product: IProductCart) => {
+      if (product.quantity <= 0) {
+        throw new Error('Quantidade inválida para produto')
+      } else if (
+        cart.products.find((productItem) => productItem.id === product.id)
+      ) {
+        throw new Error('O produto já está no carrinho')
+      } else {
+        cartDispatch(CartConsumer.addProduct(product))
+      }
+    },
+    [cart.products],
+  )
 
-  function removeProduct(productId: string) {
-    if (cart.products.find((productItem) => productItem.id === productId)) {
-      cartDispatch(CartConsumer.removeProduct(productId))
-    } else {
-      throw new Error('O produto não está no carrinho')
-    }
-  }
+  const removeProduct = useCallback(
+    (productId: string) => {
+      if (cart.products.find((productItem) => productItem.id === productId)) {
+        cartDispatch(CartConsumer.removeProduct(productId))
+      } else {
+        throw new Error('O produto não está no carrinho')
+      }
+    },
+    [cart.products],
+  )
 
-  function updateProductQuantity(product: IProductCart) {
-    if (product.quantity <= 0) {
-      throw new Error('Quantidade inválida para produto')
-    } else if (
-      !cart.products.find((productItem) => productItem.id === product.id)
-    ) {
-      throw new Error('O produto não está no carrinho')
-    } else {
-      cartDispatch(CartConsumer.updateProductQuantity(product))
-    }
-  }
+  const updateProductQuantity = useCallback(
+    (product: IProductCart) => {
+      if (product.quantity <= 0) {
+        throw new Error('Quantidade inválida para produto')
+      } else if (
+        !cart.products.find((productItem) => productItem.id === product.id)
+      ) {
+        throw new Error('O produto não está no carrinho')
+      } else {
+        cartDispatch(CartConsumer.updateProductQuantity(product))
+      }
+    },
+    [cart.products],
+  )
 
-  function clearCart() {
+  const clearCart = useCallback(() => {
     cartDispatch(CartConsumer.clearCart())
-  }
+  }, [])
 
   function saveCart() {
     localStorage.setItem(SAVE_KEY, JSON.stringify(cart))
