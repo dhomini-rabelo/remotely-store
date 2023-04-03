@@ -65,4 +65,4 @@ class BuyAction:
                 raise serializers.ValidationError(products_sold_serializer.errors)
             else:
                 products_sold_serializer.save()
-            return str(sale_serializer.data['id']).split('-')[-1]
+            return sale_serializer.data['code']

@@ -28,6 +28,12 @@ class ProductSoldBuySerializer(serializers.ModelSerializer):
 
 
 class SaleBuySerializer(serializers.ModelSerializer):
+    def to_representation(self, sale: Sale):
+        return {
+            **super().to_representation(sale),
+            'code': sale.code,
+        }
+
     class Meta:
         model = Sale
         fields = (

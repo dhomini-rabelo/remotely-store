@@ -50,7 +50,7 @@ class SaleLoginSerializer(serializers.ModelSerializer):
     def to_representation(self, sale: Sale):
         return {
             **super().to_representation(sale),
-            'code': str(sale.id).split('-')[0],
+            'code': sale.code,
             'itens_quantity': sale.products_sold.aggregate(itens_quantity=Sum('quantity'))['itens_quantity'],
         }
 

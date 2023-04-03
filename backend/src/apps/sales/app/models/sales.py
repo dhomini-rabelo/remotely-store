@@ -35,8 +35,12 @@ class Sale(BaseModel):
     products_sold: ManyToOneField['ProductSold']
     report = models.JSONField(default=dict)
 
+    @property
+    def code(self):
+        return str(self.id).split('-')[0]
+
     def __str__(self):
-        return f"Venda#{str(self.id).split('-')[-1]}"
+        return f"Venda#{str(self.code)}"
 
     class Meta:
         verbose_name = 'Venda'
