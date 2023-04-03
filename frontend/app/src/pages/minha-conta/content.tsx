@@ -3,12 +3,13 @@ import { Header } from './components/Header'
 import { useContextSelector } from 'use-context-selector'
 import { AuthContext } from '@/code/contexts/Auth'
 import { dateFormatter, priceFormatter } from '@/code/utils/layout/formatters'
+import { PageLoading } from '@/layout/simple-components/Loading/page'
 
 export function MyAccount() {
   const user = useContextSelector(AuthContext, (state) => state.user)
 
   if (!user) {
-    return <div></div>
+    return <PageLoading />
   }
 
   return (
