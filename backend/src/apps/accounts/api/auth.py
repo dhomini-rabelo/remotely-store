@@ -4,20 +4,18 @@ from rest_framework.response import Response
 from rest_framework_simplejwt.exceptions import InvalidToken, TokenError
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework.permissions import BasePermission
+from Core.api.base import NoAuthAPI
 from apps.accounts.actions.serializers.auth.main import CreateUserSerializer, UserLoginSerializer
 
 from apps.accounts.app.models import User
 
 
-class CreateUserAPI(generics.CreateAPIView):
+class CreateUserAPI(NoAuthAPI, generics.CreateAPIView):
     serializer_class = CreateUserSerializer
     queryset = User.objects.all()
-    permission_classes: list[BasePermission] = []
 
 
-class LoginAPI(TokenObtainPairView):
-    permission_classes: list[BasePermission] = []
-
+class LoginAPI(NoAuthAPI, TokenObtainPairView):
     def post(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
 

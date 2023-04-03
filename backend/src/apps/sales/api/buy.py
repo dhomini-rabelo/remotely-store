@@ -1,14 +1,12 @@
 from rest_framework.request import Request
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from rest_framework import status, permissions
+from rest_framework import status
 
 from apps.sales.actions.contracts.Buy.main import BuyAction
 
 
 class BuyAPI(APIView):
-    permission_classes = (permissions.IsAuthenticated,)
-
     def post(self, request: Request):
         buy_action = BuyAction()
         buy_code = buy_action.run(request.data, request.user)

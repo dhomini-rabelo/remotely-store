@@ -3,14 +3,13 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.permissions import BasePermission
 from rest_framework import status, generics
+from Core.api.base import NoAuthAPI
 from apps.sales.app.models.products import Department, Price, Product
 from apps.core.actions.serializers.home import DepartmentHomeSerializer, ProductHomeSerializer
 from django.db.models import Avg, OuterRef, functions
 
 
-class HomeDataAPI(APIView):
-    permission_classes: list[BasePermission] = []
-
+class HomeDataAPI(NoAuthAPI):
     def get(self, request: Request):
         return Response(
             {
