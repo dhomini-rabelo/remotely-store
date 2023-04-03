@@ -4,6 +4,7 @@ import Image from 'next/image'
 import { useAtom } from 'jotai'
 import { currentPageAtom } from '@/pages/home/code/states'
 import { CaretLeft } from 'phosphor-react'
+import Link from 'next/link'
 
 export function SuccessStep() {
   const [, setPage] = useAtom(currentPageAtom)
@@ -27,24 +28,24 @@ export function SuccessStep() {
         />
       </div>
       <div className="block sm:hidden w-full pt-10 pb-4 bg-white">
-        <div className="flex flex-col gap-y-2">
+        <Link href="/minha-conta" className="flex flex-col gap-y-2">
           <Button
             className="custom-length py-3 w-full text-sm font-medium lh-22"
             variant="primary"
           >
             Ver pedidos
           </Button>
-        </div>
+        </Link>
       </div>
       <div className="hidden sm:block fixed bottom-0 left-0 w-full py-10 px-6 bg-white">
-        <div className="flex flex-col gap-y-8">
+        <Link href="/minha-conta" className="flex flex-col gap-y-8">
           <Button
             className="custom-length py-5 w-full text-base font-medium lh-22"
             variant="primary"
           >
             Ver pedidos
           </Button>
-        </div>
+        </Link>
       </div>
     </main>
   )

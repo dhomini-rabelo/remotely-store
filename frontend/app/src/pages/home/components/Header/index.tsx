@@ -102,13 +102,13 @@ export function Header({ products }: { products: IProductData[] }) {
               </Link>
             )}
             {isAuthenticated.current === true && (
-              <a
-                href=""
+              <Link
+                href="/minha-conta"
                 className="rounded-full border border-Gray-300 p-2.5 flex items-end gap-x-2"
               >
                 <User className="w-[1.5rem] h-[1.5rem] sm:w-[1.375rem] sm:h-[1.375rem] text-Black-500" />
                 <span className="text-lg sm:hidden">Conta</span>
-              </a>
+              </Link>
             )}
             <BagPopover products={products} />
           </>
