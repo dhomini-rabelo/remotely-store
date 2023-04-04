@@ -51,18 +51,20 @@ export function Header({ products }: { products: IProductData[] }) {
       className={`flex justify-between items-center ${!['home', 'search'].includes(page) && 'hidden'
         }`}
     >
-      <div className="flex items-center justify-center text-center gap-x-2">
-        <div className="logo px-3.5 py-2 rounded-full bg-Black-500 border-Green-300 border flex justify-center">
-          <Image
-            src={CartIcon}
-            className="w-[1.5rem] h-[1.5rem] sm:w-[1.375rem] sm:h-[1.375rem]"
-            alt="ícone de carrinho de compras personalizado"
-          />
+      <Link href="/">
+        <div className="flex items-center justify-center text-center gap-x-2">
+          <div className="logo px-3.5 py-2 rounded-full bg-Black-500 border-Green-300 border flex justify-center">
+            <Image
+              src={CartIcon}
+              className="w-[1.5rem] h-[1.5rem] sm:w-[1.375rem] sm:h-[1.375rem]"
+              alt="ícone de carrinho de compras personalizado"
+            />
+          </div>
+          <h2 className="font-bold text-xl text-Green-300 block md:hidden">
+            Remotely.io
+          </h2>
         </div>
-        <h2 className="font-bold text-xl text-Green-300 block md:hidden">
-          Remotely.io
-        </h2>
-      </div>
+      </Link>
       <nav className="flex gap-x-3">
         <div
           className={`${!showSearch && 'sm:hidden'
