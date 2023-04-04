@@ -47,9 +47,9 @@ class Product(BaseModel):
     prices: ManyToOneField['Price']
     products_sold: ManyToOneField['ProductSold']
 
-    def get_price(self) -> int | None:
+    def get_price(self) -> int:
         current_price = self.prices.filter(disabled_at=None).first()
-        return current_price.value if current_price else None
+        return current_price.value if current_price else 0
 
     def __str__(self):
         return self.name
