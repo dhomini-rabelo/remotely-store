@@ -65,7 +65,7 @@ export function Cart({
             <ProductCart key={productCart.id} product={productCart} />
           ))}
         </div>
-        <div className="block  tsm:pt-10 tsm:pb-4 sm:fixed sm:bottom-0 sm:left-0 w-full sm:py-10 sm:px-6 bg-white">
+        <div className="block tsm:pt-10 tsm:pb-4 sm:fixed sm:bottom-0 sm:left-0 w-full sm:py-10 sm:px-6 bg-white">
           <div className="flex flex-col gap-y-2 sm:gap-y-8">
             <div className="flex justify-between items-center">
               <span className="text-base font-bold lh-22 inter">Total</span>

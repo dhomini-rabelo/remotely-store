@@ -133,8 +133,8 @@ export function Checkout({
             <Circle size={14} weight="fill" />
           </Div.paymentType>
         </div>
-        <div className="block sm:hidden w-full pt-10 pb-4 bg-white">
-          <div className="flex flex-col gap-y-2">
+        <div className="block tsm:pt-10 tsm:pb-4 sm:fixed sm:bottom-0 sm:left-0 w-full sm:py-10 sm:px-6 bg-white">
+          <div className="flex flex-col gap-y-2 sm:gap-y-8">
             <div className="flex flex-col gap-y-2">
               <div className="flex justify-between items-center">
                 <span className="text-Gray-500 text-xs font-medium lh-16 inter">
@@ -160,44 +160,7 @@ export function Checkout({
               </div>
             </div>
             <Button
-              className="custom-length py-3 w-full text-sm font-medium lh-22"
-              variant="primary"
-              disabled={paymentMethod === null}
-              onClick={handleBuy}
-              isSubmitting={buying.current}
-            >
-              Comprar
-            </Button>
-          </div>
-        </div>
-        <div className="hidden sm:block fixed bottom-0 left-0 w-full py-10 px-6 bg-white">
-          <div className="flex flex-col gap-y-8">
-            <div className="flex flex-col gap-y-2">
-              <div className="flex justify-between items-center">
-                <span className="text-Gray-500 text-xs font-medium lh-16 inter">
-                  Subtotal
-                </span>
-                <strong className="text-Gray-600 text-base lh-22">
-                  {priceFormatter.format(totalValue)}
-                </strong>
-              </div>
-              <div className="flex justify-between items-center">
-                <span className="text-Gray-500 text-xs font-medium lh-16 inter">
-                  Frete
-                </span>
-                <strong className="text-Gray-600 text-base lh-22">
-                  R$ 0,00
-                </strong>
-              </div>
-              <div className="flex justify-between items-center">
-                <span className="text-base font-bold lh-22 inter">Total</span>
-                <strong className="text-Orange-500 text-1xl lh-29">
-                  {priceFormatter.format(totalValue)}
-                </strong>
-              </div>
-            </div>
-            <Button
-              className="custom-length py-5 w-full text-base font-medium lh-22"
+              className="custom-length py-3 sm:py-5 w-full text-sm sm:text-base font-medium lh-22"
               variant="primary"
               disabled={paymentMethod === null}
               onClick={handleBuy}
