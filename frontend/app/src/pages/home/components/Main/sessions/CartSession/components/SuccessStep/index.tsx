@@ -27,20 +27,10 @@ export function SuccessStep() {
           alt="Imagem de uma caixa de papelão com fundo de circulo bem colorida"
         />
       </div>
-      <div className="block sm:hidden w-full pt-10 pb-4 bg-white">
+      <div className="block tsm:pt-10 tsm:pb-4 sm:fixed sm:bottom-0 sm:left-0 w-full sm:py-10 sm:px-6 bg-white">
         <Link href="/minha-conta" className="flex flex-col gap-y-2">
           <Button
-            className="custom-length py-3 w-full text-sm font-medium lh-22"
-            variant="primary"
-          >
-            Ver pedidos
-          </Button>
-        </Link>
-      </div>
-      <div className="hidden sm:block fixed bottom-0 left-0 w-full py-10 px-6 bg-white">
-        <Link href="/minha-conta" className="flex flex-col gap-y-8">
-          <Button
-            className="custom-length py-5 w-full text-base font-medium lh-22"
+            className="custom-length py-3 sm:py-5 w-full text-sm sm:text-base font-medium lh-22"
             variant="primary"
           >
             Ver pedidos

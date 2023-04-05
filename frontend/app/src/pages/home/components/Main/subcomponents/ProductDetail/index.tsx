@@ -102,73 +102,62 @@ export function ProductDetail({
             onClick={backToHome}
           />
         </div>
-        <div className="bg-white py-6 px-5 tmd:min-w-[400px]">
-          <div className="flex justify-between items-start gap-x-6 esm:gap-x-3">
-            <div className="flex flex-col bg-white">
-              <h2 className="text-1xl font-bold lh-29 truncate whitespace-normal">
-                {activeProduct!.name}
-              </h2>
-              <div className="mt-1 mb-3 text-xs flex gap-x-2">
-                <span className="text-Gray-500 font-medium">
-                  {activeProduct!.provider.name}
-                </span>
-                <span>•</span>
-                <span className="flex items-center gap-x-0.5 text-xs">
-                  <span className="text-Gray-600">
-                    {activeProduct!.rating.toFixed(1).replace('.', ',')}
+        <div className="tsm:flex tsm:flex-col tsm:py-6 tsm:px-5 tmd:min-w-[400px] bg-white">
+          <div className="sm:py-6 sm:px-5">
+            <div className="flex justify-between items-start gap-x-6 esm:gap-x-3">
+              <div className="flex flex-col bg-white">
+                <h2 className="text-1xl font-bold lh-29 truncate whitespace-normal">
+                  {activeProduct!.name}
+                </h2>
+                <div className="mt-1 mb-3 text-xs flex gap-x-2">
+                  <span className="text-Gray-500 font-medium">
+                    {activeProduct!.provider.name}
                   </span>
-                  <Image
-                    src={StarIcon}
-                    width={12}
-                    height={12}
-                    alt="Ícone de estrela amarela"
-                    className="inline-block relative bottom-[1px]"
-                  />
+                  <span>•</span>
+                  <span className="flex items-center gap-x-0.5 text-xs">
+                    <span className="text-Gray-600">
+                      {activeProduct!.rating.toFixed(1).replace('.', ',')}
+                    </span>
+                    <Image
+                      src={StarIcon}
+                      width={12}
+                      height={12}
+                      alt="Ícone de estrela amarela"
+                      className="inline-block relative bottom-[1px]"
+                    />
+                  </span>
+                </div>
+              </div>
+              <div className="bg-Gray-150 py-[0.9375rem] px-[0.625rem] flex flex-col rounded-lg gap-y-0.5">
+                <strong className="font-bold text-1xl">
+                  {priceFormatter.format(activeProduct!.price.currentValue)}
+                </strong>
+                <span className="text-xs text-center text-Orange-500">
+                  7% off
                 </span>
               </div>
             </div>
-            <div className="bg-Gray-150 py-[0.9375rem] px-[0.625rem] flex flex-col rounded-lg gap-y-0.5">
-              <strong className="font-bold text-1xl">
-                {priceFormatter.format(activeProduct!.price.currentValue)}
-              </strong>
-              <span className="text-xs text-center text-Orange-500">
-                7% off
-              </span>
+            <p className="mt-4 lh-22 mb-8">{activeProduct!.description}</p>
+            <h2 className="text-1xl font-bold">Relacionados</h2>
+            <div className="grid grid-cols-2 md:grid-cols-2 gap-x-5 sm:flex-col mt-3 gap-y-3">
+              {productsForBuy
+                .filter(
+                  (product) =>
+                    product.department.id === activeProduct!.department.id &&
+                    product.id !== activeProduct!.id,
+                )
+                .map((product) => (
+                  <Product
+                    key={product.id}
+                    product={product}
+                    variant="secondary"
+                  />
+                ))}
             </div>
           </div>
-          <p className="mt-4 lh-22 mb-8">{activeProduct!.description}</p>
-          <h2 className="text-1xl font-bold">Relacionados</h2>
-          <div className="grid grid-cols-2 md:grid-cols-2 gap-x-5 sm:flex-col mt-3 gap-y-3">
-            {productsForBuy
-              .filter(
-                (product) =>
-                  product.department.id === activeProduct!.department.id &&
-                  product.id !== activeProduct!.id,
-              )
-              .map((product) => (
-                <Product
-                  key={product.id}
-                  product={product}
-                  variant="secondary"
-                />
-              ))}
-          </div>
-          <div className="sm:hidden block pb-0 pt-8 px-0 bg-white">
-            <div className="flex gap-x-8 items-center justify-end">
-              <Button
-                className="custom-length py-5 w-full text-base font-medium lh-22"
-                variant="primary"
-                onClick={modalIsOpenState.open}
-              >
-                Comprar
-              </Button>
-            </div>
-          </div>
-        </div>
-        <div className="fixed bottom-0 w-full hidden sm:block pb-5 pt-3 px-6 bg-white">
-          <div className="flex gap-x-8 items-center">
+          <div className="tsm:pb-0 tsm:pt-8 tsm:px-0 sm:fixed sm:bottom-0 w-full sm:pb-5 sm:pt-3 sm:px-6 bg-white">
             <Button
-              className="w-full custom-length py-5 text-base font-medium lh-22"
+              className="custom-length py-5 w-full text-base font-medium lh-22"
               variant="primary"
               onClick={modalIsOpenState.open}
             >
