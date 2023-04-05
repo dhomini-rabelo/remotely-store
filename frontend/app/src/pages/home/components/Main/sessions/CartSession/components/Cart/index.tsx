@@ -1,12 +1,13 @@
 import { currentPageAtom } from '@/pages/home/code/states'
 import { useAtom } from 'jotai'
-import { CaretLeft } from 'phosphor-react'
+import { ArrowRight, CaretLeft } from 'phosphor-react'
 import { ProductCart } from './subcomponents/ProductCart'
 import { IProductCartData } from '../..'
 import { authConsumer } from '@/code/modules/Auth'
 import { useRouter } from 'next/router'
 import { useFeedback } from '@/layout/hooks/useFeedback'
-import { CheckoutContainer } from './subcomponents/CheckoutButton'
+import { priceFormatter } from '@/code/utils/layout/formatters'
+import { Button } from '@/layout/components/Button'
 
 export function Cart({
   productsCart,
@@ -64,19 +65,24 @@ export function Cart({
             <ProductCart key={productCart.id} product={productCart} />
           ))}
         </div>
-        <div className="block sm:hidden w-full pt-10 pb-4 bg-white">
-          <CheckoutContainer
-            totalValue={totalValue}
-            disabled={productsCart.length < 1}
-            onClick={handleGoToCheckout}
-          />
-        </div>
-        <div className="hidden sm:block fixed bottom-0 left-0 w-full py-10 px-6 bg-white">
-          <CheckoutContainer
-            totalValue={totalValue}
-            disabled={productsCart.length < 1}
-            onClick={handleGoToCheckout}
-          />
+        <div className="block  tsm:pt-10 tsm:pb-4 sm:fixed sm:bottom-0 sm:left-0 w-full sm:py-10 sm:px-6 bg-white">
+          <div className="flex flex-col gap-y-2 sm:gap-y-8">
+            <div className="flex justify-between items-center">
+              <span className="text-base font-bold lh-22 inter">Total</span>
+              <strong className="text-Orange-500 text-1xl lh-29">
+                {priceFormatter.format(totalValue)}
+              </strong>
+            </div>
+            <Button
+              className="custom-length py-3 sm:py-5 w-full text-sm sm:text-base font-medium lh-22 flex justify-center items-center gap-x-1"
+              variant="primary"
+              disabled={productsCart.length < 1}
+              onClick={handleGoToCheckout}
+            >
+              Checkout
+              <ArrowRight size={16} />
+            </Button>
+          </div>
         </div>
       </main>
     </>
