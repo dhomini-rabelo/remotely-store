@@ -1,4 +1,4 @@
-import { CaretRight } from 'phosphor-react'
+import { CaretLeft, CaretRight } from 'phosphor-react'
 import { Banner } from '../Banner'
 import { Product } from '../Product'
 import { Department } from '../Department'
@@ -68,9 +68,14 @@ export function DefaultMain({ departments, productsForBuy }: MainProps) {
     return (
       <main className="mt-10">
         <div className="flex justify-between items-center mt-2">
-          <h2 className="text-1xl font-bold">{activeDepartment.name}</h2>
+          <div onClick={handleShowAllProducts} className="tsm:hidden">
+            <CaretLeft size={28} />
+          </div>
+          <h2 className="text-1xl font-bold sm:grow sm:text-center">
+            {activeDepartment.name}
+          </h2>
           <div
-            className="flex items-center gap-x-2 cursor-pointer border-b-2 border-Gray-600 pb-0.5"
+            className="flex items-center gap-x-2 cursor-pointer border-b-2 border-Gray-600 pb-0.5 sm:hidden"
             onClick={handleShowAllProducts}
           >
             <Image
@@ -79,7 +84,7 @@ export function DefaultMain({ departments, productsForBuy }: MainProps) {
               height={28}
               alt="ícone de cesta de compras"
             />
-            <span className="block sm:hidden text-lg">Ver todos</span>
+            <span className="text-lg">Ver todos</span>
           </div>
         </div>
         <div className="grid grid-cols-3 md:grid-cols-2 gap-x-5 sm:flex sm:flex-col mt-5 gap-y-3">
