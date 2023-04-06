@@ -43,6 +43,7 @@ class Product(BaseModel):
     provider = models.ForeignKey(
         Provider, on_delete=models.SET_NULL, null=True, related_name='products', verbose_name='fornecedor'
     )
+    its_in_the_banner = models.BooleanField(default=False, verbose_name='Está no Banner ?')
     options = models.JSONField(default=dict)
     prices: ManyToOneField['Price']
     products_sold: ManyToOneField['ProductSold']
