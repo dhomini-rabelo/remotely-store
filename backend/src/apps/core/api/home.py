@@ -28,6 +28,7 @@ class HomeDataAPI(NoAuthAPI):
                     .order_by('rating'),
                     many=True,
                 ).data,
+                'banner': Product.objects.filter(its_in_the_banner=True).values_list('pk', flat=True),
             },
             status=status.HTTP_200_OK,
         )
