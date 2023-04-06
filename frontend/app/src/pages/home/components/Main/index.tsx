@@ -11,13 +11,19 @@ export interface MainProps extends HomeProps {
   productsForBuy: IProductData[]
 }
 
-export function Main({ departments, products, productsForBuy }: MainProps) {
+export function Main({
+  departments,
+  products,
+  productsForBuy,
+  banner,
+}: MainProps) {
   const [page] = useAtom(currentPageAtom)
   const [search] = useAtom(searchTextAtom)
 
   if (page === 'home' || (page === 'search' && search === '')) {
     return (
       <DefaultMain
+        banner={banner}
         products={products}
         departments={departments}
         productsForBuy={productsForBuy}

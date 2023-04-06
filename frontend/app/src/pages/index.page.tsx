@@ -32,6 +32,7 @@ export const getStaticProps: GetStaticProps = async () => {
               : product.price.value / 100,
           },
         })),
+        banner: data.banner,
       },
       revalidate: 60 * 60 * 6,
     }

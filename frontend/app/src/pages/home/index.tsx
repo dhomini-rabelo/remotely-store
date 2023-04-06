@@ -11,6 +11,7 @@ import { CartContext } from '@/code/contexts/Cart'
 export interface HomeProps {
   departments: DepartmentModel[]
   products: IProductData[]
+  banner: string[]
 }
 
 export function Home(props: HomeProps) {

@@ -8,7 +8,12 @@ import { DepartmentModel } from '@/code/models/products'
 import Image from 'next/image'
 import BagIcon from '@/assets/icons/bag.svg'
 
-export function DefaultMain({ departments, productsForBuy }: MainProps) {
+export function DefaultMain({
+  departments,
+  productsForBuy,
+  products,
+  banner,
+}: MainProps) {
   const [activeDepartment, setActiveDepartment] =
     useState<null | DepartmentModel>(null)
 
@@ -25,12 +30,13 @@ export function DefaultMain({ departments, productsForBuy }: MainProps) {
       <main className="mt-10">
         <h2 className="text-1xl font-bold">Em destaque</h2>
         <div className="grid grid-cols-2 gap-x-8 md:block">
-          <div className="col-span-1">
-            <Banner />
-          </div>
-          <div className="col-span-1 md:hidden">
-            <Banner />
-          </div>
+          {products
+            .filter((product) => (banner || []).includes(product.id))
+            .map((product) => (
+              <div className="col-span-1" key={product.id}>
+                <Banner />
+              </div>
+            ))}
         </div>
         <div className="flex justify-between items-center mt-8">
           <h2 className="text-1xl font-bold">Departamentos</h2>
