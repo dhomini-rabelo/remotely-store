@@ -3,10 +3,13 @@ import { Banner } from '../Banner'
 import { Product } from '../Product'
 import { Department } from '../Department'
 import { MainProps } from '../..'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { DepartmentModel } from '@/code/models/products'
 import Image from 'next/image'
 import BagIcon from '@/assets/icons/bag.svg'
+import 'keen-slider/keen-slider.min.css'
+import { useKeenSlider } from 'keen-slider/react'
+import { Div } from './styles'
 
 export function DefaultMain({
   departments,
@@ -25,19 +28,39 @@ export function DefaultMain({
     setActiveDepartment(null)
   }
 
+  const [sliderRef, instanceRef] = useKeenSlider({
+    breakpoints: {
+      '(min-width: 640px)': {
+        slides: { perView: 2, spacing: 24 },
+      },
+    },
+    slides: { perView: 1, spacing: 24 },
+  })
+
+  useEffect(() => {
+    instanceRef.current?.update({
+      breakpoints: {
+        '(min-width: 640px)': {
+          slides: { perView: 2, spacing: 24 },
+        },
+      },
+      slides: { perView: 1, spacing: 24 },
+    })
+  }, [instanceRef])
+
   if (!activeDepartment) {
     return (
       <main className="mt-10">
         <h2 className="text-1xl font-bold">Em destaque</h2>
-        <div className="grid grid-cols-2 gap-x-8 md:block">
+        <Div.slider className="keen-slider" ref={sliderRef}>
           {products
-            .filter((product) => (banner || []).includes(product.id))
-            .map((product) => (
-              <div className="col-span-1" key={product.id}>
-                <Banner />
-              </div>
+            .filter((product) => banner.includes(product.id))
+            .map((product, index) => (
+              <Div.slideItem className="keen-slider__slide" key={product.id}>
+                <Banner product={product} index={index} />
+              </Div.slideItem>
             ))}
-        </div>
+        </Div.slider>
         <div className="flex justify-between items-center mt-8">
           <h2 className="text-1xl font-bold">Departamentos</h2>
           <div className="text-Gray-500 flex items-center gap-x-2">
