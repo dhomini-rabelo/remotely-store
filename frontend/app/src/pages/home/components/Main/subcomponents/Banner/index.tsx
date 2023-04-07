@@ -1,22 +1,37 @@
 import { Button } from '@/layout/components/Button'
 import Image from 'next/image'
-import OfficeChairIcon from '../../../../../../assets/icons/office-chair.svg'
 import StarIcon from '../../../../../../assets/icons/star.svg'
+import { IProductData } from '@/pages/home/types'
+import { priceFormatter } from '@/code/utils/layout/formatters'
+import { getImage } from '@/code/utils/layout'
 
-export function Banner() {
+export function Banner({
+  product,
+  index,
+}: {
+  product: IProductData
+  index: number
+}) {
+  const width = [110, 129][index] || 100
+  const height = [256, 246][index] || 150
+  console.log({ width, height })
   return (
-    <div className="bg-Black-500 rounded-[32px] flex text-white relative mt-1 px-6 mx-auto md:max-w-[400px] col-span-1">
+    <div className="bg-Black-500 rounded-[32px] flex text-white relative mt-1 px-6 mx-auto tmd:max-w-[400px]">
       <div className="flex flex-col grow my-6 tmd:text-1xl tsm:text-xl">
         <strong>
-          Cadeira de escritório
+          {product.name}
           <br />
-          preta
+          <>&nbsp;</>
         </strong>
         <div className="mt-2 mb-5 tmd:text-base tsm:text-sm text-xs flex gap-x-2">
-          <span className="text-Gray-500 font-medium">Hughlan</span>
+          <span className="text-Gray-500 font-medium">
+            {product.provider.name}
+          </span>
           <span>•</span>
           <span className="flex items-center gap-x-0.5">
-            <span className="text-Gray-300">4,8</span>
+            <span className="text-Gray-300">
+              {product.rating.toFixed(1).replace('.', ',')}
+            </span>
             <Image
               src={StarIcon}
               width={12}
@@ -31,19 +46,20 @@ export function Banner() {
             className="custom-length py-2.5 px-3 text-base"
             variant="primary"
           >
-            R$ 599,90
+            {priceFormatter.format(product.price.currentValue)}
           </Button>
           <strong className="rounded-full bg-red-500 text-white p-2 text-sm flex flex-col justify-center">
             45%
           </strong>
         </div>
       </div>
+      {/* eslint-disable */}
       <Image
-        src={OfficeChairIcon}
-        width={129}
-        height={246}
-        alt="Cadeira de escritório simples"
-        className="absolute right-6 -top-10 w-[12rem] h-[18rem] sm:w-[8.0625rem] sm:h-[15.375rem]"
+        src={getImage(product.image)}
+        width={width}
+        height={height}
+        alt={product.description}
+        className={`absolute right-6 -top-8`}
       />
     </div>
   )
