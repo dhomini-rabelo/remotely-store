@@ -47,6 +47,7 @@ export function Banner({
               height={12}
               alt="Ícone de estrela amarela"
               className="inline-block relative bottom-[1px]"
+              priority
             />
           </span>
         </div>

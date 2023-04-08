@@ -28,15 +28,16 @@ export function Product({
       onClick={showProductPage}
       className="bg-white p-3 flex gap-x-2.5 border border-Gray-300 rounded-lg col-span-1 cursor-pointer"
     >
-      <div className="flex justify-center items-center bg-Gray-200 p-2.5 min-w-[105px] min-h-[86px]">
+      <div className="flex justify-center items-center bg-Gray-200 p-2.5 w-[105px] h-[86px]">
         <Image
           src={getImage(product.image)}
-          width={60}
-          height={60}
+          width={64}
+          height={64}
           alt={product.description}
+          className="max-w-16 max-h-16 object-contain block"
         />
       </div>
-      <div className="flex flex-col">
+      <div className="flex flex-col ">
         <strong className="lh-22 text-base font-medium">{product.name}</strong>
         <div className="mt-1 mb-3 text-xs flex gap-x-2">
           <span className="text-Gray-500 font-medium">
