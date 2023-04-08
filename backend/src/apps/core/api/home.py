@@ -1,8 +1,6 @@
 from rest_framework.request import Request
 from rest_framework.response import Response
-from rest_framework.views import APIView
-from rest_framework.permissions import BasePermission
-from rest_framework import status, generics
+from rest_framework import status
 from Core.api.base import NoAuthAPI
 from apps.sales.app.models.products import Department, Price, Product
 from apps.core.actions.serializers.home import DepartmentHomeSerializer, ProductHomeSerializer
