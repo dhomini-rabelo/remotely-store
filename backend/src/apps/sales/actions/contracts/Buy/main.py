@@ -35,7 +35,7 @@ class BuyAction:
             {
                 'product': product['id'],
                 'quantity': product['quantity'],
-                'price': Product.objects.get(id=product['id']).get_price() * product['quantity'],
+                'price': Product.objects.get(id=product['id']).manager.get_price() * product['quantity'],
             }
             for product in cart_body['products']
         ]
