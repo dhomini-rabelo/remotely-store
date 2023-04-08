@@ -72,9 +72,10 @@ export function Product({
       <div className="flex justify-center items-center bg-transparent p-2.5 min-w-[105px] min-h-[86px]">
         <Image
           src={getImage(product.image)}
-          width={70}
-          height={70}
+          width={64}
+          height={64}
           alt={product.description}
+          className="max-w-16 max-h-16 object-contain block"
         />
       </div>
       <div className="flex flex-col bg-white p-2">
