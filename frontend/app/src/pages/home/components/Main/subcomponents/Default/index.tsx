@@ -17,6 +17,8 @@ export function DefaultMain({
   products,
   banner,
 }: MainProps) {
+  const [currentSlide, setCurrentSlide] = useState(0)
+  const [loaded, setLoaded] = useState(false)
   const [activeDepartment, setActiveDepartment] =
     useState<null | DepartmentModel>(null)
 
@@ -35,6 +37,13 @@ export function DefaultMain({
       },
     },
     slides: { perView: 1, spacing: 24 },
+    loop: true,
+    created() {
+      setLoaded(true)
+    },
+    slideChanged(slider) {
+      setCurrentSlide(slider.track.details.rel)
+    },
   })
 
   useEffect(() => {
@@ -45,6 +54,13 @@ export function DefaultMain({
         },
       },
       slides: { perView: 1, spacing: 24 },
+      loop: true,
+      created() {
+        setLoaded(true)
+      },
+      slideChanged(slider) {
+        setCurrentSlide(slider.track.details.rel)
+      },
     })
   }, [instanceRef])
 
@@ -61,6 +77,25 @@ export function DefaultMain({
               </Div.slideItem>
             ))}
         </Div.slider>
+        {loaded && instanceRef.current && (
+          <Div.dots>
+            {[
+              ...Array(
+                instanceRef.current!.track!.details!.slides!.length! as number,
+              ).keys(),
+            ].map((idx) => {
+              return (
+                <button
+                  key={idx}
+                  onClick={() => {
+                    instanceRef.current?.moveToIdx(idx)
+                  }}
+                  className={'dot' + (currentSlide === idx ? ' active' : '')}
+                ></button>
+              )
+            })}
+          </Div.dots>
+        )}
         <div className="flex justify-between items-center mt-8">
           <h2 className="text-1xl font-bold">Departamentos</h2>
           <div className="text-Gray-500 flex items-center gap-x-2">
