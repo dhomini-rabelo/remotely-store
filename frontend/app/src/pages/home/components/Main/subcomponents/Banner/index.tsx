@@ -4,6 +4,8 @@ import StarIcon from '../../../../../../assets/icons/star.svg'
 import { IProductData } from '@/pages/home/types'
 import { priceFormatter } from '@/code/utils/layout/formatters'
 import { getImage } from '@/code/utils/layout'
+import { useAtom } from 'jotai'
+import { activeProductAtom, currentPageAtom } from '@/pages/home/code/states'
 
 export function Banner({
   product,
@@ -12,9 +14,16 @@ export function Banner({
   product: IProductData
   index: number
 }) {
+  const [, setPage] = useAtom(currentPageAtom)
+  const [, setActiveProduct] = useAtom(activeProductAtom)
+
+  function handleMoveToProductPage() {
+    setPage('product')
+    setActiveProduct(product)
+  }
+
   const width = [110, 129][index] || 100
   const height = [256, 246][index] || 150
-  console.log({ width, height })
   return (
     <div className="bg-Black-500 rounded-[32px] flex text-white relative mt-1 px-6 mx-auto tmd:max-w-[400px]">
       <div className="flex flex-col grow my-6 tmd:text-1xl tsm:text-xl">
@@ -45,11 +54,12 @@ export function Banner({
           <Button
             className="custom-length py-2.5 px-3 text-base"
             variant="primary"
+            onClick={handleMoveToProductPage}
           >
             {priceFormatter.format(product.price.currentValue)}
           </Button>
           <strong className="rounded-full bg-red-500 text-white p-2 text-sm flex flex-col justify-center">
-            45%
+            {product.price.discount}%
           </strong>
         </div>
       </div>

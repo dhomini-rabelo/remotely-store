@@ -19,19 +19,28 @@ export const getStaticProps: GetStaticProps = async () => {
     return {
       props: {
         departments: data.departments,
-        products: data.products.map((product) => ({
-          ...product,
-          rating: product.rating / 10,
-          price: {
-            value: product.price.value / 100,
-            promotional_value: product.price.promotional_value
-              ? product.price.promotional_value / 100
-              : null,
-            currentValue: product.price.promotional_value
-              ? product.price.promotional_value / 100
-              : product.price.value / 100,
-          },
-        })),
+        products: data.products.map((product) => {
+          const onSale = !!product.price.promotional_value
+          const price = product.price.value / 100
+          const promotionalPrice = onSale
+            ? product.price.promotional_value! / 100
+            : null
+          const discount = onSale
+            ? parseInt((((price - promotionalPrice!) / price) * 100).toString())
+            : 0
+
+          return {
+            ...product,
+            rating: product.rating / 10,
+            price: {
+              onSale,
+              value: product.price.value / 100,
+              promotional_value: promotionalPrice,
+              currentValue: onSale ? promotionalPrice : price,
+              discount,
+            },
+          }
+        }),
         banner: data.banner,
       },
       revalidate: 60 * 60 * 6,
