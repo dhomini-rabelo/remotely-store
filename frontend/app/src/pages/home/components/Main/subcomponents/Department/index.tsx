@@ -16,7 +16,7 @@ export function Department({
         height={104}
         alt="Imagem que representa o departamento"
       />
-      <strong className="lh-22 text-xs text-center">{name}</strong>
+      <strong className="leading-[22px] text-xs text-center">{name}</strong>
     </div>
   )
 }

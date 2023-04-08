@@ -53,7 +53,7 @@ export function Cart({
           onClick={backToHome}
         />
         <div className="flex justify-between items-center mt-4 sm:mt-10">
-          <h2 className="text-1xl font-bold inter lh-29">Carrinho</h2>
+          <h2 className="text-1xl font-bold inter leading-[29px]">Carrinho</h2>
           <div className="text-Gray-500 flex items-center gap-x-2">
             <span className="text-xs">
               {productsCart.length} {productsCart.length > 1 ? 'itens' : 'item'}
@@ -68,13 +68,15 @@ export function Cart({
         <div className="block tsm:pt-10 tsm:pb-4 sm:fixed sm:bottom-0 sm:left-0 w-full sm:py-10 sm:px-6 bg-white">
           <div className="flex flex-col gap-y-2 sm:gap-y-8">
             <div className="flex justify-between items-center">
-              <span className="text-base font-bold lh-22 inter">Total</span>
-              <strong className="text-Orange-500 text-1xl lh-29">
+              <span className="text-base font-bold leading-[22px] inter">
+                Total
+              </span>
+              <strong className="text-Orange-500 text-1xl leading-[29px]">
                 {priceFormatter.format(totalValue)}
               </strong>
             </div>
             <Button
-              className="custom-length py-3 sm:py-5 w-full text-sm sm:text-base font-medium lh-22 flex justify-center items-center gap-x-1"
+              className="custom-length py-3 sm:py-5 w-full text-sm sm:text-base font-medium leading-[22px] flex justify-center items-center gap-x-1"
               variant="primary"
               disabled={productsCart.length < 1}
               onClick={handleGoToCheckout}

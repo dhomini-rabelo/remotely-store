@@ -38,7 +38,9 @@ export function Product({
         />
       </div>
       <div className="flex flex-col ">
-        <strong className="lh-22 text-base font-medium">{product.name}</strong>
+        <strong className="leading-[22px] text-base font-medium">
+          {product.name}
+        </strong>
         <div className="mt-1 mb-3 text-xs flex gap-x-2">
           <span className="text-Gray-500 font-medium">
             {product.provider.name}
@@ -76,7 +78,7 @@ export function Product({
         />
       </div>
       <div className="flex flex-col bg-white p-2">
-        <strong className="lh-22 text-base font-medium truncate">
+        <strong className="leading-[22px] text-base font-medium truncate">
           {product.name}
         </strong>
         <div className="mt-1 mb-3 text-xs flex gap-x-2">

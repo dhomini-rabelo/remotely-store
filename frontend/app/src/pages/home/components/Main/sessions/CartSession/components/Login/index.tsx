@@ -15,14 +15,14 @@ export function LoginStep() {
         className="absolute top-0 left-0 sm:block hidden"
         onClick={backToHome}
       />
-      <h2 className="text-xl font-bold inter lh-29 mt-4 sm:mt-10 text-center w-full block">
+      <h2 className="text-xl font-bold inter leading-[29px] mt-4 sm:mt-10 text-center w-full block">
         Você precisa estar logado para continuar
       </h2>
 
       <div className="block sm:hidden w-full pt-10 pb-4 bg-white">
         <Link href="/login" className="flex flex-col gap-y-2">
           <Button
-            className="custom-length py-3 w-full text-sm font-medium lh-22"
+            className="custom-length py-3 w-full text-sm font-medium leading-[22px]"
             variant="primary"
           >
             Fazer login

@@ -88,7 +88,7 @@ export function Checkout({
           className="absolute top-0 left-0 sm:block hidden"
           onClick={backToCart}
         />
-        <h2 className="text-1xl font-bold inter lh-29 mt-4 sm:mt-10 flex">
+        <h2 className="text-1xl font-bold inter leading-[29px] mt-4 sm:mt-10 flex">
           <CaretLeft
             size={28}
             className="absolute top-0 left-0 block sm:hidden cursor-pointer"
@@ -96,7 +96,7 @@ export function Checkout({
           />
           <span className="tsm:grow tsm:text-center">Checkout</span>
         </h2>
-        <h3 className="text-xs font-bold inter lh-29 mt-5 lh-16 text-Gray-500">
+        <h3 className="text-xs font-bold inter leading-[29px] mt-5 text-Gray-500">
           PAGAMENTO
         </h3>
         <div className="flex flex-col mt-3 gap-y-4">
@@ -111,7 +111,7 @@ export function Checkout({
               width={24}
               alt="Ícone de cartão mastercard"
             />
-            <strong className="inter grow text-xs lh-16 text-Black-500">
+            <strong className="inter grow text-xs leading-[16px] text-Black-500">
               Cartão de crédito
             </strong>
             <Circle size={14} weight="fill" />
@@ -127,7 +127,7 @@ export function Checkout({
               width={24}
               alt="Ícone de cartão mastercard"
             />
-            <strong className="inter grow text-xs lh-16 text-Black-500">
+            <strong className="inter grow text-xs leading-[16px] text-Black-500">
               PIX
             </strong>
             <Circle size={14} weight="fill" />
@@ -137,30 +137,32 @@ export function Checkout({
           <div className="flex flex-col gap-y-2 sm:gap-y-8">
             <div className="flex flex-col gap-y-2">
               <div className="flex justify-between items-center">
-                <span className="text-Gray-500 text-xs font-medium lh-16 inter">
+                <span className="text-Gray-500 text-xs font-medium leading-[16px] inter">
                   Subtotal
                 </span>
-                <strong className="text-Gray-600 text-base lh-22">
+                <strong className="text-Gray-600 text-base leading-[22px]">
                   {priceFormatter.format(totalValue)}
                 </strong>
               </div>
               <div className="flex justify-between items-center">
-                <span className="text-Gray-500 text-xs font-medium lh-16 inter">
+                <span className="text-Gray-500 text-xs font-medium leading-[16px] inter">
                   Frete
                 </span>
-                <strong className="text-Gray-600 text-base lh-22">
+                <strong className="text-Gray-600 text-base leading-[22px]">
                   R$ 0,00
                 </strong>
               </div>
               <div className="flex justify-between items-center">
-                <span className="text-base font-bold lh-22 inter">Total</span>
-                <strong className="text-Orange-500 text-1xl lh-29">
+                <span className="text-base font-bold leading-[22px] inter">
+                  Total
+                </span>
+                <strong className="text-Orange-500 text-1xl leading-[29px]">
                   {priceFormatter.format(totalValue)}
                 </strong>
               </div>
             </div>
             <Button
-              className="custom-length py-3 sm:py-5 w-full text-sm sm:text-base font-medium lh-22"
+              className="custom-length py-3 sm:py-5 w-full text-sm sm:text-base font-medium leading-[22px]"
               variant="primary"
               disabled={paymentMethod === null}
               onClick={handleBuy}

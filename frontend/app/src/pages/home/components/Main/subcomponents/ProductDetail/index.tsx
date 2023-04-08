@@ -77,7 +77,7 @@ export function ProductDetail({
             </span>
           </div>
           <Button
-            className="w-full custom-length py-4 font-medium lh-22 text-lg"
+            className="w-full custom-length py-4 font-medium leading-[22px] text-lg"
             variant="primary"
             onClick={handleAddProductToCart}
           >
@@ -106,7 +106,7 @@ export function ProductDetail({
           <div className="sm:py-6 sm:px-5">
             <div className="flex justify-between items-start gap-x-6 esm:gap-x-3">
               <div className="flex flex-col bg-white">
-                <h2 className="text-1xl font-bold lh-29 truncate whitespace-normal">
+                <h2 className="text-1xl font-bold leading-[29px] truncate whitespace-normal">
                   {activeProduct!.name}
                 </h2>
                 <div className="mt-1 mb-3 text-xs flex gap-x-2">
@@ -137,7 +137,9 @@ export function ProductDetail({
                 </span>
               </div>
             </div>
-            <p className="mt-4 lh-22 mb-8">{activeProduct!.description}</p>
+            <p className="mt-4 leading-[22px] mb-8">
+              {activeProduct!.description}
+            </p>
             <h2 className="text-1xl font-bold">Relacionados</h2>
             <div className="grid grid-cols-2 md:grid-cols-2 gap-x-5 sm:flex-col mt-3 gap-y-3">
               {productsForBuy
@@ -157,7 +159,7 @@ export function ProductDetail({
           </div>
           <div className="tsm:pb-0 tsm:pt-8 tsm:px-0 sm:fixed sm:bottom-0 w-full sm:pb-5 sm:pt-3 sm:px-6 bg-white">
             <Button
-              className="custom-length py-5 w-full text-base font-medium lh-22"
+              className="custom-length py-5 w-full text-base font-medium leading-[22px]"
               variant="primary"
               onClick={modalIsOpenState.open}
             >

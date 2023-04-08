@@ -16,7 +16,7 @@ export function SuccessStep() {
         className="absolute top-0 left-0 sm:block hidden"
         onClick={backToHome}
       />
-      <h2 className="text-xl font-bold inter lh-29 mt-4 sm:mt-10 text-center w-full block">
+      <h2 className="text-xl font-bold inter leading-[29px] mt-4 sm:mt-10 text-center w-full block">
         Compra Efetuada!
       </h2>
       <div className="flex flex-col items-center justify-center grow sm:mb-40 tsm:mt-6">
@@ -30,7 +30,7 @@ export function SuccessStep() {
       <div className="block tsm:pt-10 tsm:pb-4 sm:fixed sm:bottom-0 sm:left-0 w-full sm:py-10 sm:px-6 bg-white">
         <Link href="/minha-conta" className="flex flex-col gap-y-2">
           <Button
-            className="custom-length py-3 sm:py-5 w-full text-sm sm:text-base font-medium lh-22"
+            className="custom-length py-3 sm:py-5 w-full text-sm sm:text-base font-medium leading-[22px]"
             variant="primary"
           >
             Ver pedidos
