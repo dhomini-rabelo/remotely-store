@@ -1,7 +1,9 @@
 from django.contrib import admin
+from apps.sales.app.forms import PriceBaseInlineForm
 from apps.sales.app.models.products import Department, Price, Product, Provider
 
 from apps.sales.app.models.sales import ProductSold, Sale, Rating
+from django.http import HttpRequest
 
 admin.site.empty_value_display = 'NULL'
 
@@ -30,7 +32,7 @@ class RatingAdmin(admin.ModelAdmin):
     ordering = ('user', 'product')
     # actions = None
     # prepopulated_fields = {'slug': 'title',}
-    search_fields = ('user', 'product')  # ^ -> startswith, = -> iexact, @ ->	search, None -> icontains
+    search_fields = ('user__username', 'product__name')  # ^ -> startswith, = -> iexact, @ ->	search, None -> icontains
 
 
 @admin.register(Department)
@@ -73,6 +75,36 @@ class ProviderAdmin(admin.ModelAdmin):
     search_fields = ('name',)  # ^ -> startswith, = -> iexact, @ ->	search, None -> icontains
 
 
+@admin.register(Price)
+class PriceAdmin(admin.ModelAdmin):
+    list_display = (
+        'product',
+        'value',
+        'is_active',
+    )
+    list_display_links = ('value',)
+    # list_filter = '',
+    list_per_page = 50
+    list_select_related = False  # use tuple, default is False
+    ordering = ('value',)
+    # actions = None
+    # prepopulated_fields = {'slug': 'title',}
+    search_fields = ('product__name', 'value')  # ^ -> startswith, = -> iexact, @ ->	search, None -> icontains
+
+
+class InlinePriceAdmin(admin.TabularInline):
+    model = Price
+    fields = 'value', 'promotional_value'
+    extra = 0
+    min_num = 1
+    max_num = 1
+    can_delete = False
+    formset = PriceBaseInlineForm
+
+    def get_queryset(self, request: HttpRequest):
+        return super().get_queryset(request).filter(disabled_at=None)
+
+
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
     list_display = (
@@ -91,20 +123,7 @@ class ProductAdmin(admin.ModelAdmin):
         'name',
         'department',
     )  # ^ -> startswith, = -> iexact, @ ->	search, None -> icontains
+    inlines = (InlinePriceAdmin,)
 
-
-@admin.register(Price)
-class PriceAdmin(admin.ModelAdmin):
-    list_display = (
-        'product',
-        'value',
-        'is_active',
-    )
-    list_display_links = ('value',)
-    # list_filter = '',
-    list_per_page = 50
-    list_select_related = False  # use tuple, default is False
-    ordering = ('value',)
-    # actions = None
-    # prepopulated_fields = {'slug': 'title',}
-    search_fields = ('value',)  # ^ -> startswith, = -> iexact, @ ->	search, None -> icontains
+    def save_formset(self, request, form, formset, change):
+        formset.save(request, commit=True)
