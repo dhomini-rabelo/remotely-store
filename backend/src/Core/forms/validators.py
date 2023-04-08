@@ -20,3 +20,12 @@ def validate_positive_number(value: int):
     if value <= 0:
         raise ValidationError('Informe um número positivo')
     return value
+
+
+def validate_range_number(start: int, end: int):
+    def validate_function(value: int):
+        if value not in range(start, end + 1):
+            raise ValidationError(f'Informe um número entre {start} e {end}')
+        return value
+
+    return validate_function
