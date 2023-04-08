@@ -37,7 +37,7 @@ class SaleAdmin(admin.ModelAdmin):
     )
     list_display = 'code_column', 'client', 'payment_method', 'total_value', 'items_column'
     list_display_links = ('code_column',)
-    list_filter = ('client',)
+    # list_filter = ('client',)
     exclude = 'report', 'created_at', 'updated_at'
     list_per_page = 50
     ordering = ('client__username',)
@@ -136,7 +136,7 @@ class PriceAdmin(admin.ModelAdmin):
         'is_active',
     )
     list_display_links = ('value',)
-    # list_filter = '',
+    list_filter = ('is_active',)
     list_per_page = 50
     list_select_related = False  # use tuple, default is False
     ordering = ('value',)
