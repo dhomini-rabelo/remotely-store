@@ -6,6 +6,7 @@ import { Search } from './subcomponents/Search'
 import { IProductData } from '../../types'
 import { CartSession } from './sessions/CartSession'
 import { DefaultMain } from './subcomponents/Default'
+import { useEffect } from 'react'
 
 export interface MainProps extends HomeProps {
   productsForBuy: IProductData[]
@@ -17,8 +18,12 @@ export function Main({
   productsForBuy,
   banner,
 }: MainProps) {
-  const [page] = useAtom(currentPageAtom)
+  const [page, setPage] = useAtom(currentPageAtom)
   const [search] = useAtom(searchTextAtom)
+
+  useEffect(() => {
+    setPage('home')
+  }, [setPage])
 
   if (page === 'home' || (page === 'search' && search === '')) {
     return (
