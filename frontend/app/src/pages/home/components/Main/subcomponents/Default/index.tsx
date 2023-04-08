@@ -30,6 +30,16 @@ export function DefaultMain({
     setActiveDepartment(null)
   }
 
+  const [departmentRef] = useKeenSlider<HTMLDivElement>({
+    loop: true,
+    mode: 'free',
+    slides: {
+      perView: 'auto',
+      spacing: 16,
+    },
+    dragSpeed: 0.3,
+  })
+
   const [sliderRef, instanceRef] = useKeenSlider({
     breakpoints: {
       '(min-width: 640px)': {
@@ -68,15 +78,18 @@ export function DefaultMain({
     return (
       <main className="mt-10">
         <h2 className="text-1xl font-bold">Em destaque</h2>
-        <Div.slider className="keen-slider" ref={sliderRef}>
+        <Div.bannerSlider className="keen-slider" ref={sliderRef}>
           {products
             .filter((product) => banner.includes(product.id))
             .map((product, index) => (
-              <Div.slideItem className="keen-slider__slide" key={product.id}>
+              <Div.bannerSlideItem
+                className="keen-slider__slide"
+                key={product.id}
+              >
                 <Banner product={product} index={index} />
-              </Div.slideItem>
+              </Div.bannerSlideItem>
             ))}
-        </Div.slider>
+        </Div.bannerSlider>
         {loaded && instanceRef.current && (
           <Div.dots>
             {[
@@ -104,15 +117,15 @@ export function DefaultMain({
             <CaretRight size={16} />
           </div>
         </div>
-        <div className="flex mt-3 gap-x-5">
+        <div className="keen-slider mt-3" ref={departmentRef}>
           {departments.map((department) => (
-            <div
+            <Div.departmentSlideItem
               key={department.id}
               onClick={() => handleShowProductsFromDepartment(department)}
-              className="cursor-pointer"
+              className="cursor-pointer keen-slider__slide w-[136px] h-[178px]"
             >
               <Department name={department.name} imageUrl={department.image} />
-            </div>
+            </Div.departmentSlideItem>
           ))}
         </div>
         <div className="flex justify-between items-center mt-8">

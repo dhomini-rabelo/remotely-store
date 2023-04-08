@@ -9,7 +9,7 @@ export function Department({
   imageUrl: string
 }) {
   return (
-    <div className="bg-Gray-250 flex flex-col gap-y-3 p-2 pb-3 rounded-lg">
+    <div className="bg-Gray-250 flex flex-col gap-y-3 p-2 pb-3 rounded-lg w-full justify-center items-center">
       <Image
         src={getImage(imageUrl)}
         width={120}

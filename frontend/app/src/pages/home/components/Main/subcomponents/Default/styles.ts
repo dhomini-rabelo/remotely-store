@@ -1,12 +1,12 @@
 import styled from 'styled-components'
 
 export const Div = {
-  slider: styled.div`
+  bannerSlider: styled.div`
     overflow-x: clip !important;
     overflow-y: visible !important;
   `,
 
-  slideItem: styled.div`
+  bannerSlideItem: styled.div`
     overflow: visible !important;
 
     @media (max-width: 640px) {
@@ -41,5 +41,12 @@ export const Div = {
     @media (max-width: 640px) {
       display: flex;
     }
+  `,
+
+  departmentSlideItem: styled.div`
+    width: 8.5rem !important;
+    min-width: 8.5rem !important;
+    height: 11.125rem !important;
+    min-height: 11.125rem !important;
   `,
 }
