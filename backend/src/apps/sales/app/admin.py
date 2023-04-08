@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.db.models import Count
 from apps.sales.app.forms import PriceBaseInlineForm
 from apps.sales.app.models.products import Department, Price, Product, Provider
 
@@ -8,18 +9,53 @@ from django.http import HttpRequest
 admin.site.empty_value_display = 'NULL'
 
 
+class InlineProductsSoldAdmin(admin.TabularInline):
+    model = ProductSold
+    fields = 'product', 'quantity', 'price'
+    readonly_fields = 'product', 'quantity', 'price'
+    extra = 0
+    max_num = 0
+    min_num = 0
+    can_delete = False
+
+
 @admin.register(Sale)
 class SaleAdmin(admin.ModelAdmin):
-    list_display = 'client', 'payment_method', 'total_value'
-    list_display_links = ('client',)
+    fields = (
+        'client',
+        'status',
+        'payment_method',
+        'delivery_fee',
+        'total_value',
+    )
+    readonly_fields = (
+        'client',
+        'status',
+        'payment_method',
+        'delivery_fee',
+        'total_value',
+    )
+    list_display = 'code_column', 'client', 'payment_method', 'total_value', 'items_column'
+    list_display_links = ('code_column',)
     list_filter = ('client',)
     exclude = 'report', 'created_at', 'updated_at'
     list_per_page = 50
-    list_select_related = ('client',)  # use tuple, default is False
     ordering = ('client__username',)
     # actions = None
     # prepopulated_fields = {'slug': 'title',}
     search_fields = ('client',)  # ^ -> startswith, = -> iexact, @ ->	search, None -> icontains
+    inlines = (InlineProductsSoldAdmin,)
+
+    def get_queryset(self, request: HttpRequest):
+        return Sale.objects.select_related('client').annotate(products_sold_quantity=Count('products_sold'))
+
+    @admin.display(description='Código')
+    def code_column(cls, sale: Sale):
+        return sale.code
+
+    @admin.display(description='Itens')
+    def items_column(cls, sale: Sale):
+        return sale.products_sold_quantity
 
 
 @admin.register(Rating)
