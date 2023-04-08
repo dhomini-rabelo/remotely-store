@@ -80,9 +80,10 @@ export function DefaultMain({
         {loaded && instanceRef.current && (
           <Div.dots>
             {[
-              ...Array(
-                instanceRef.current!.track!.details!.slides!.length! as number,
-              ).keys(),
+              ...Array.from({
+                length: instanceRef.current!.track!.details!.slides!
+                  .length! as number,
+              }).map((_, i) => i),
             ].map((idx) => {
               return (
                 <button
