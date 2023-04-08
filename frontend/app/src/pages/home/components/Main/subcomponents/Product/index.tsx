@@ -5,6 +5,7 @@ import { getImage } from '@/code/utils/layout'
 import { priceFormatter } from '@/code/utils/layout/formatters'
 import { activeProductAtom, currentPageAtom } from '@/pages/home/code/states'
 import { useAtom } from 'jotai'
+import { ArrowDown } from 'phosphor-react'
 
 export function Product({
   product,
@@ -26,7 +27,7 @@ export function Product({
   return variant === 'primary' ? (
     <div
       onClick={showProductPage}
-      className="bg-white p-3 flex gap-x-2.5 border border-Gray-300 rounded-lg col-span-1 cursor-pointer"
+      className="bg-white p-3 flex gap-x-2.5 border border-Gray-300 rounded-lg col-span-1 cursor-pointer relative"
     >
       <div className="flex justify-center items-center bg-Gray-200 p-2.5 w-[105px] h-[86px]">
         <Image
@@ -62,6 +63,11 @@ export function Product({
         <strong className="text-Orange-500">
           {priceFormatter.format(product.price.currentValue)}
         </strong>
+        {product.price.onSale && (
+          <strong className="text-Orange-500 flex items-center absolute right-2 bottom-2">
+            <ArrowDown size={20} /> {product.price.discount}%
+          </strong>
+        )}
       </div>
     </div>
   ) : (
@@ -78,7 +84,7 @@ export function Product({
           className="max-w-16 max-h-16 object-contain block"
         />
       </div>
-      <div className="flex flex-col bg-white p-2">
+      <div className="flex flex-col bg-white p-2 relative">
         <strong className="leading-[22px] text-base font-medium truncate">
           {product.name}
         </strong>
@@ -103,6 +109,11 @@ export function Product({
         <strong className="text-Orange-500">
           {priceFormatter.format(product.price.currentValue)}
         </strong>
+        {product.price.onSale && (
+          <strong className="text-Orange-500 flex items-center absolute right-2 bottom-2 text-xs">
+            <ArrowDown size={16} /> {product.price.discount}%
+          </strong>
+        )}
       </div>
     </div>
   )

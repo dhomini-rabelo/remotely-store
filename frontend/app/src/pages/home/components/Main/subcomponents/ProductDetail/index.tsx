@@ -98,7 +98,7 @@ export function ProductDetail({
           />
           <CaretLeft
             size={28}
-            className="absolute top-0 left-6"
+            className="absolute top-0 left-6 cursor-pointer"
             onClick={backToHome}
           />
         </div>
@@ -133,7 +133,11 @@ export function ProductDetail({
                   {priceFormatter.format(activeProduct!.price.currentValue)}
                 </strong>
                 <span className="text-xs text-center text-Orange-500">
-                  7% off
+                  {activeProduct!.price.discount ? (
+                    `${activeProduct!.price.discount}% off`
+                  ) : (
+                    <>&nbsp;</>
+                  )}
                 </span>
               </div>
             </div>

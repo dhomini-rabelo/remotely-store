@@ -15,7 +15,7 @@ export const Div = {
   `,
 
   dots: styled.div`
-    display: flex;
+    display: none;
     padding: 10px 0;
     justify-content: center;
 
@@ -36,6 +36,10 @@ export const Div = {
 
     .dot.active {
       background: #000;
+    }
+
+    @media (max-width: 640px) {
+      display: flex;
     }
   `,
 }
