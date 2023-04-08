@@ -79,7 +79,7 @@ class Price(BaseModel):
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='prices', verbose_name='Produto')
 
     def clean(self):
-        return PriceManager(self).pre_save_validation()
+        return self.manager.pre_save_validation()
 
     @property
     def manager(self):
