@@ -53,7 +53,7 @@ class ProductSold(BaseModel):
     sale = models.ForeignKey(Sale, on_delete=models.CASCADE, verbose_name='Venda', related_name='products_sold')
     product = models.ForeignKey(Product, on_delete=models.CASCADE, verbose_name='Produto', related_name='products_sold')
     quantity = models.PositiveIntegerField(verbose_name='Quantidade', validators=[validate_positive_number])
-    price = models.PositiveIntegerField(verbose_name='Valor (em centavos)', validators=[validate_positive_number])
+    price = models.PositiveIntegerField(verbose_name='Valor total (em centavos)', validators=[validate_positive_number])
     options = models.JSONField(default=dict)
 
     def __str__(self):

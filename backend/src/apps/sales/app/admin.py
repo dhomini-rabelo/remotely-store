@@ -50,16 +50,17 @@ class DepartmentAdmin(admin.ModelAdmin):
 
 @admin.register(ProductSold)
 class ProductSoldAdmin(admin.ModelAdmin):
-    list_display = ('id',)
-    list_display_links = ('id',)
+    fields = 'product', 'sale', 'quantity', 'price'
+    readonly_fields = 'product', 'sale', 'quantity', 'price'
+    list_display = ('product', 'sale', 'quantity', 'price')
+    list_display_links = ('product',)
     # list_filter = '',
-    exclude = 'options', 'created_at', 'updated_at'
     list_per_page = 50
     list_select_related = False  # use tuple, default is False
-    ordering = ('id',)
+    ordering = ('product__name',)
     # actions = None
     # prepopulated_fields = {'slug': 'title',}
-    search_fields = ('id',)  # ^ -> startswith, = -> iexact, @ ->	search, None -> icontains
+    search_fields = ('product__name', 'sale__id')  # ^ -> startswith, = -> iexact, @ ->	search, None -> icontains
 
 
 @admin.register(Provider)
@@ -77,6 +78,22 @@ class ProviderAdmin(admin.ModelAdmin):
 
 @admin.register(Price)
 class PriceAdmin(admin.ModelAdmin):
+    fields = (
+        'value',
+        'promotional_value',
+        'disabled_at',
+        'disabled_from',
+        'product',
+        'is_active',
+    )
+    readonly_fields = (
+        'value',
+        'promotional_value',
+        'disabled_at',
+        'disabled_from',
+        'product',
+        'is_active',
+    )
     list_display = (
         'product',
         'value',
