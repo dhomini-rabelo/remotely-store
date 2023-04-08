@@ -22,8 +22,8 @@ export function Banner({
     setActiveProduct(product)
   }
 
-  const width = [110, 129][index] || 100
-  const height = [256, 246][index] || 150
+  const width = [110, 129].reverse()[index] || 100
+  const height = [256, 246].reverse()[index] || 150
   return (
     <div className="bg-Black-500 rounded-[32px] flex text-white relative mt-1 px-6 mx-auto tmd:max-w-[400px]">
       <div className="flex flex-col grow my-6 tmd:text-1xl tsm:text-xl">
