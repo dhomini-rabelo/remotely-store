@@ -9,24 +9,27 @@ from django.db.models import Avg, OuterRef, functions
 
 class HomeDataAPI(NoAuthAPI):
     def get(self, request: Request):
+        products = (
+            Product.objects.annotate(
+                rating=Avg('ratings__rate'),
+                price=Price.objects.filter(product__id=OuterRef("id"), disabled_at=None).values(
+                    data=functions.JSONObject(
+                        value="value",
+                        promotional_value="promotional_value",
+                    )
+                )[:1],
+            )
+            .all()
+            .order_by('rating')
+        )
         return Response(
             {
                 'departments': DepartmentHomeSerializer(Department.objects.all(), many=True).data,
                 'products': ProductHomeSerializer(
-                    Product.objects.annotate(
-                        rating=Avg('ratings__rate'),
-                        price=Price.objects.filter(product__id=OuterRef("id"), disabled_at=None).values(
-                            data=functions.JSONObject(
-                                value="value",
-                                promotional_value="promotional_value",
-                            )
-                        )[:1],
-                    )
-                    .all()
-                    .order_by('rating'),
+                    products,
                     many=True,
                 ).data,
-                'banner': Product.objects.filter(its_in_the_banner=True).values_list('pk', flat=True),
+                'banner': Product.objects.filter(its_in_the_banner=True).values_list('pk', flat=True).order_by('name'),
             },
             status=status.HTTP_200_OK,
         )

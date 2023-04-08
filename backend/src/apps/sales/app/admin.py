@@ -35,7 +35,7 @@ class SaleAdmin(admin.ModelAdmin):
         'delivery_fee',
         'total_value',
     )
-    list_display = 'code_column', 'client', 'payment_method', 'total_value', 'items_column'
+    list_display = 'code_column', 'status', 'client', 'payment_method', 'total_value', 'items_column'
     list_display_links = ('code_column',)
     # list_filter = ('client',)
     exclude = 'report', 'created_at', 'updated_at'
@@ -61,7 +61,7 @@ class SaleAdmin(admin.ModelAdmin):
 @admin.register(Rating)
 class RatingAdmin(admin.ModelAdmin):
     list_display = ('user', 'product', 'rate')
-    list_display_links = ('rate',)
+    list_display_links = ('user',)
     # list_filter = '',
     list_per_page = 50
     list_select_related = False  # use tuple, default is False
