@@ -1,4 +1,6 @@
 from Core.forms.validators import validate_positive_number
+from apps.sales.actions.managers.price import PriceManager
+from apps.sales.actions.managers.product import ProductManager
 from typings.related_manager import ManyToOneField
 from apps.accounts.app.models import User
 from apps.core.app.models.bases import BaseModel
@@ -48,6 +50,10 @@ class Product(BaseModel):
     prices: ManyToOneField['Price']
     products_sold: ManyToOneField['ProductSold']
 
+    @property
+    def manager(self):
+        return ProductManager(self)
+
     def get_price(self) -> int:
         current_price = self.prices.filter(disabled_at=None).first()
         return current_price.value if current_price else 0
@@ -75,6 +81,10 @@ class Price(BaseModel):
         verbose_name='Desabilitado por',
     )
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='prices', verbose_name='Produto')
+
+    @property
+    def manager(self):
+        return PriceManager(self)
 
     def __str__(self):
         return 'Preço'
