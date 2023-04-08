@@ -6,6 +6,7 @@ import { priceFormatter } from '@/code/utils/layout/formatters'
 import { activeProductAtom, currentPageAtom } from '@/pages/home/code/states'
 import { useAtom } from 'jotai'
 import { ArrowDown } from 'phosphor-react'
+import 'keen-slider/keen-slider.min.css'
 
 export function Product({
   product,
@@ -43,7 +44,7 @@ export function Product({
           {product.name}
         </strong>
         <div className="mt-1 mb-3 text-xs flex gap-x-2">
-          <span className="text-Gray-500 font-medium">
+          <span className="text-Gray-500 font-medium truncate">
             {product.provider.name}
           </span>
           <span>•</span>
@@ -89,7 +90,7 @@ export function Product({
           {product.name}
         </strong>
         <div className="mt-1 mb-3 text-xs flex gap-x-2">
-          <span className="text-Gray-500 font-medium">
+          <span className="text-Gray-500 font-medium truncate">
             {product.provider.name}
           </span>
           <span>•</span>

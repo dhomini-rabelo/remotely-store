@@ -9,9 +9,12 @@ import { Product } from '../Product'
 import { CaretLeft, CaretRight } from 'phosphor-react'
 import { Button } from '@/layout/components/Button'
 import { SimpleModal } from '@/layout/components/Modals/Simple'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useContextSelector } from 'use-context-selector'
 import { CartContext } from '@/code/contexts/Cart'
+import { useKeenSlider } from 'keen-slider/react'
+import 'keen-slider/keen-slider.min.css'
+import { Div } from './styles'
 
 export function ProductDetail({
   productsForBuy,
@@ -51,6 +54,35 @@ export function ProductDetail({
     backToHome()
   }
 
+  const [relatedProductsSliderRef, relatedProductsInstanceSliderRef] =
+    useKeenSlider<HTMLDivElement>({
+      loop: true,
+      mode: 'free',
+      slides: {
+        perView: 'auto',
+        spacing: 16,
+      },
+      dragSpeed: 0.3,
+    })
+
+  const relatedProducts = productsForBuy.filter(
+    (product) =>
+      product.department.id === activeProduct!.department.id &&
+      product.id !== activeProduct!.id,
+  )
+
+  useEffect(() => {
+    relatedProductsInstanceSliderRef.current?.update({
+      loop: true,
+      mode: 'free',
+      slides: {
+        perView: 'auto',
+        spacing: 16,
+      },
+      dragSpeed: 0.3,
+    })
+  }, [activeProduct, relatedProductsInstanceSliderRef])
+
   return (
     <>
       <SimpleModal
@@ -87,7 +119,7 @@ export function ProductDetail({
       </SimpleModal>
       <main
         id="product-container"
-        className="flex sm:flex-col sm:grow w-full h-full pb-24"
+        className="flex md:flex-col sm:grow w-full h-full pb-24"
       >
         <div className="flex justify-center items-center w-full min-h-[86px] py-4 relative">
           <Image
@@ -145,20 +177,18 @@ export function ProductDetail({
               {activeProduct!.description}
             </p>
             <h2 className="text-1xl font-bold">Relacionados</h2>
-            <div className="grid grid-cols-2 md:grid-cols-2 gap-x-5 sm:flex-col mt-3 gap-y-3">
-              {productsForBuy
-                .filter(
-                  (product) =>
-                    product.department.id === activeProduct!.department.id &&
-                    product.id !== activeProduct!.id,
-                )
-                .map((product) => (
-                  <Product
-                    key={product.id}
-                    product={product}
-                    variant="secondary"
-                  />
-                ))}
+            <div
+              className="mt-3 keen-slider max-w-full"
+              ref={relatedProductsSliderRef}
+            >
+              {relatedProducts.map((product) => (
+                <Div.productSlideItem
+                  className="keen-slider__slide"
+                  key={product.id}
+                >
+                  <Product product={product} variant="secondary" />
+                </Div.productSlideItem>
+              ))}
             </div>
           </div>
           <div className="tsm:pb-0 tsm:pt-8 tsm:px-0 sm:fixed sm:bottom-0 w-full sm:pb-5 sm:pt-3 sm:px-6 bg-white">

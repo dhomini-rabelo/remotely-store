@@ -27,7 +27,7 @@ export function Home(props: HomeProps) {
   return (
     <div
       id="container"
-      className="mt-8 grow max-w-[1148px] mx-auto flex flex-col"
+      className="pt-8 grow max-w-[1148px] mx-auto flex flex-col"
     >
       <Header products={props.products} />
       <div

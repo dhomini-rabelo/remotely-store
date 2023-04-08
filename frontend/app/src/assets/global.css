@@ -32,7 +32,6 @@ body {
 #__next {
     min-height: 100vh;
     width: 100%;
-    display: flex;
     background-color: var(--Gray-100);
 }
 
@@ -41,9 +40,11 @@ body {
     padding-right: 1.5rem;
     padding-bottom: 2rem;
     width: 100%;
+    display: flex;
 }
 
 #__next:has(#product-container) {
+    display: block;
     background-color: var(--Gray-150);
 }
 
