@@ -71,4 +71,8 @@ def test_update_price(product_and_price: tuple[Product, Price], auth_user):
     product.manager.update_price(new_price, None, auth_user)
     current_initial_price = Price.objects.get(id=initial_price.id)
     current_active_price = product.manager.get_active_price()
-    assert (current_initial_price.is_active is False) and (current_initial_price != current_active_price)
+    assert (
+        (current_initial_price.is_active is False)
+        and (current_initial_price != current_active_price)
+        and (current_active_price.is_active is True)
+    )
