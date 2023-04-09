@@ -14,8 +14,6 @@ DEBUG = config('DEBUG', default=False, cast=bool)
 
 ALLOWED_HOSTS: list[str] = []
 
-ALLOWED_HOSTS = []
-
 PROJECT_NAME = 'REMOTELY'
 
 CORS_ALLOWED_ORIGINS = [
@@ -41,7 +39,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
+    # 'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.locale.LocaleMiddleware',
     "corsheaders.middleware.CorsMiddleware",
