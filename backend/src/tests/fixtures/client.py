@@ -10,7 +10,7 @@ AUTH_USER_PASSWORD = 'TEST123'
 
 
 @fixture
-def create_auth_user():
+def auth_user():
     user = User(username=AUTH_USER_EMAIL, email=AUTH_USER_EMAIL)
     user.set_password(AUTH_USER_PASSWORD)
     user.save()
@@ -23,7 +23,7 @@ def simple_client():
 
 
 @fixture
-def auth_client(create_auth_user):
+def auth_client(auth_user):
     client = APIClient()
-    client.credentials(HTTP_AUTHORIZATION=f'Bearer {str(RefreshToken.for_user(create_auth_user).access_token)}')
+    client.credentials(HTTP_AUTHORIZATION=f'Bearer {str(RefreshToken.for_user(auth_user).access_token)}')
     return client

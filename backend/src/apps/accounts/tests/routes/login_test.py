@@ -6,7 +6,7 @@ from tests.fixtures.client import AUTH_USER_EMAIL, AUTH_USER_PASSWORD
 
 
 @mark.django_db
-@mark.usefixtures("create_auth_user")
+@mark.usefixtures("auth_user")
 class TestLoginAPI:
     EMAIL = AUTH_USER_EMAIL
     PASSWORD = AUTH_USER_PASSWORD
