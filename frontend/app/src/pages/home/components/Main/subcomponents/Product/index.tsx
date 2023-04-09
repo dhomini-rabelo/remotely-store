@@ -7,8 +7,9 @@ import { activeProductAtom, currentPageAtom } from '@/pages/home/code/states'
 import { useAtom } from 'jotai'
 import { ArrowDown } from 'phosphor-react'
 import 'keen-slider/keen-slider.min.css'
+import { memo } from 'react'
 
-export function Product({
+function ProductComponent({
   product,
   variant = 'primary',
 }: {
@@ -119,3 +120,10 @@ export function Product({
     </div>
   )
 }
+
+export const Product = memo(
+  ProductComponent,
+  (oldProps, newProps) =>
+    oldProps.product.id === newProps.product.id &&
+    oldProps.variant === newProps.variant,
+)
