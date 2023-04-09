@@ -1,17 +1,18 @@
-from Core.forms.validators import validate_positive_number, validate_range_number
+from Core.forms.validators import validate_positive_number
 from apps.accounts.app.models import User
 from typings.related_manager import ManyToOneField
 from apps.core.app.models.bases import BaseModel
 from django.db import models
 from apps.sales.app.models.products import Product
 from apps.sales.app.models.support.choices import SalePaymentTypeChoices, SaleStatusChoices
+from apps.sales.app.models.support.validators import validate_between_0_and_50
 
 
 class Rating(BaseModel):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='ratings', verbose_name='Usuário')
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='ratings', verbose_name='Produto')
     rate = models.PositiveIntegerField(
-        blank=True, null=True, verbose_name='Taxa de avaliação', validators=[validate_range_number(0, 50)]
+        blank=True, null=True, verbose_name='Taxa de avaliação', validators=[validate_between_0_and_50]
     )
 
     def __str__(self):
