@@ -1,4 +1,4 @@
-import { ReactNode, useEffect, useReducer } from 'react'
+import { ReactNode, useCallback, useEffect, useReducer } from 'react'
 import { AuthReducer } from './reducer'
 import { AuthConsumer } from './reducer/actions'
 import { AuthContextType } from './types'
@@ -34,17 +34,17 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
   }, [auth])
 
-  function login(accessToken: string, user: AuthUser) {
+  const login = useCallback((accessToken: string, user: AuthUser) => {
     authDispatch(AuthConsumer.login(user))
     authConsumer.configureAuthClient(client, {
       accessToken,
     })
-  }
+  }, [])
 
-  function logout() {
+  const logout = useCallback(() => {
     authConsumer.killAuthInstanceInClientSide()
     authDispatch(AuthConsumer.logout())
-  }
+  }, [])
 
   return (
     <AuthContext.Provider value={{ ...auth, actions: { login, logout } }}>
