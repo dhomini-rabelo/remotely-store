@@ -1,23 +1,15 @@
 from django.test import Client
-from pytest import fixture, mark
+from pytest import mark
 
-from apps.accounts.app.models import User
 from django.urls import reverse
-
-
-@fixture
-@mark.django_db
-def create_auth_user():
-    user = User(username=TestLoginAPI.EMAIL, email=TestLoginAPI.EMAIL)
-    user.set_password(TestLoginAPI.PASSWORD)
-    user.save()
+from tests.fixtures.client import AUTH_USER_EMAIL, AUTH_USER_PASSWORD
 
 
 @mark.django_db
 @mark.usefixtures("create_auth_user")
 class TestLoginAPI:
-    EMAIL = 'test@test.com'
-    PASSWORD = 'TEST123'
+    EMAIL = AUTH_USER_EMAIL
+    PASSWORD = AUTH_USER_PASSWORD
     ROUTE = reverse('accounts:login')
 
     def test_login_with_empty_body(self, simple_client: Client):
