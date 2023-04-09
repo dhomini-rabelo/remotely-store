@@ -3,7 +3,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import status
 
-from apps.sales.actions.contracts.Buy.main import BuyAction
+from apps.sales.actions.services.Buy.main import BuyAction
 
 
 class BuyAPI(APIView):

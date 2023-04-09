@@ -3,13 +3,13 @@ from typing import Any
 from apps.accounts.app.models import User
 from rest_framework import serializers
 
-from apps.sales.actions.contracts.Buy.serializers import (
+from apps.sales.actions.services.Buy.serializers import (
     BodyBuySerializer,
     ProductSoldBuySerializer,
     SaleBuySerializer,
 )
 
-from apps.sales.actions.contracts.Buy.typings import ICart
+from apps.sales.actions.services.Buy.typings import ICart
 
 from rest_framework.serializers import ValidationError
 from apps.sales.app.models.products import Product
