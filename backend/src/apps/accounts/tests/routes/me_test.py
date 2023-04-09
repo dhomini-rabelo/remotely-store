@@ -11,15 +11,14 @@ class TestMeAPI:
     PASSWORD = AUTH_USER_PASSWORD
     ROUTE = reverse('accounts:me')
 
-    def test_login_with_simple_user(self, simple_client: Client):
+    def test_api_with_simple_user(self, simple_client: Client):
         response = simple_client.get(
             self.ROUTE,
         )
         assert response.status_code == 401
 
-    def test_login_with_auth_user(self, simple_client: Client, auth_token: str):
-        response = simple_client.get(
+    def test_api_with_auth_user(self, auth_client: Client):
+        response = auth_client.get(
             self.ROUTE,
-            HTTP_AUTHORIZATION=auth_token,
         )
         assert response.status_code == 200

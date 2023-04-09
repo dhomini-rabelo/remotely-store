@@ -3,6 +3,7 @@ from django.test import Client
 
 from apps.accounts.app.models import User
 from rest_framework_simplejwt.tokens import RefreshToken
+from rest_framework.test import APIClient
 
 AUTH_USER_EMAIL = 'test@test.com'
 AUTH_USER_PASSWORD = 'TEST123'
@@ -22,5 +23,7 @@ def simple_client():
 
 
 @fixture
-def auth_token(create_auth_user):
-    return f'Bearer {str(RefreshToken.for_user(create_auth_user).access_token)}'
+def auth_client(create_auth_user):
+    client = APIClient()
+    client.credentials(HTTP_AUTHORIZATION=f'Bearer {str(RefreshToken.for_user(create_auth_user).access_token)}')
+    return client
