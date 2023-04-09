@@ -76,22 +76,12 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'REMOTELY.wsgi.application'
 
-DATABASES = (
-    {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
-        }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
-    if DEBUG
-    else {
-        'default': dj_database_url.config(
-            # Feel free to alter this value to suit your needs.
-            default='postgresql://postgres:postgres@localhost:5432/REMOTELY',
-            conn_max_age=600,
-        )
-    }
-)
+}
 
 
 AUTH_PASSWORD_VALIDATORS = [
