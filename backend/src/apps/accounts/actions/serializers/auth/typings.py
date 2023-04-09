@@ -8,5 +8,5 @@ class CreateUserRequestBodyType(TypedDict):
 
 
 class CreateUserValidatedDataType(TypedDict):
-    username: str
+    email: str
     password: str
