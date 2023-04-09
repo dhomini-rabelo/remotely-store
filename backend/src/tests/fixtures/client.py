@@ -19,7 +19,7 @@ def auth_user():
 
 @fixture(scope='session')
 def simple_client():
-    return Client()
+    return APIClient()
 
 
 @fixture
