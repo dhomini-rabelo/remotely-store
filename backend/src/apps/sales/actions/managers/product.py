@@ -19,7 +19,7 @@ class ProductManager:
         active_price = self.get_active_price()
         return active_price.value if active_price else 0
 
-    def update_price(self, price: Decimal, promocional_price: Decimal, user: User):
+    def update_price(self, price: Decimal, promocional_price: Decimal | None, user: User):
         active_price = self.get_active_price()
         if active_price:
             active_price.manager.disable(user)
