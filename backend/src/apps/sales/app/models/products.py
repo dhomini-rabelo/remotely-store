@@ -24,7 +24,7 @@ class Provider(BaseModel):
 
 class Department(BaseModel):
     name = models.CharField(max_length=256, verbose_name='Nome')
-    image = models.ImageField(blank=True, null=True, upload_to='departments/%Y/%m', verbose_name='Imagem')
+    image = models.ImageField(upload_to='departments/%Y/%m', verbose_name='Imagem')
     products: ManyToOneField['Product']
 
     def __str__(self):
@@ -37,7 +37,7 @@ class Department(BaseModel):
 
 class Product(BaseModel):
     name = models.CharField(max_length=256, verbose_name='Nome')
-    image = models.ImageField(blank=True, null=True, upload_to='products/%Y/%m', verbose_name='Imagem')
+    image = models.ImageField(upload_to='products/%Y/%m', verbose_name='Imagem')
     description = models.TextField(blank=True, null=True, verbose_name='Descrição')
     department = models.ForeignKey(
         Department, on_delete=models.SET_NULL, null=True, related_name='products', verbose_name='departamento'
