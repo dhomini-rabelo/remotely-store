@@ -2,12 +2,18 @@ import { Home, HomeProps } from './home'
 import { GetStaticProps } from 'next'
 import { simpleClient } from '@/code/settings/main'
 import { CartProvider } from '@/code/contexts/Cart'
+import Head from 'next/head'
 
 export default function HomePage(props: HomeProps) {
   return (
-    <CartProvider>
-      <Home {...props} />
-    </CartProvider>
+    <>
+      <Head>
+        <title>Remotely.io</title>
+      </Head>
+      <CartProvider>
+        <Home {...props} />
+      </CartProvider>
+    </>
   )
 }
 

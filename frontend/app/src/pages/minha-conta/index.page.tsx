@@ -2,12 +2,18 @@ import { GetServerSideProps } from 'next'
 import { authConsumer } from '@/code/modules/Auth'
 import { MyAccount } from './content'
 import { AuthProvider } from '@/code/contexts/Auth'
+import Head from 'next/head'
 
 export default function MyAccountPage() {
   return (
-    <AuthProvider>
-      <MyAccount />
-    </AuthProvider>
+    <>
+      <Head>
+        <title>Remotely | Conta</title>
+      </Head>
+      <AuthProvider>
+        <MyAccount />
+      </AuthProvider>
+    </>
   )
 }
 

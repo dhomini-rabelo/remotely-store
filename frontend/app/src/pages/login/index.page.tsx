@@ -12,6 +12,7 @@ import { useFeedback } from '@/layout/hooks/useFeedback'
 import { simpleClient } from '@/code/settings/main'
 import { Error } from '@/layout/themes/Form/Index/Error'
 import { authConsumer } from '@/code/modules/Auth'
+import Head from 'next/head'
 
 export default function LoginPage() {
   const LoginForm = useForm<ILoginSchema>({
@@ -44,6 +45,9 @@ export default function LoginPage() {
 
   return (
     <>
+      <Head>
+        <title>Login</title>
+      </Head>
       {FeedbackElement}
       <main className="grow flex justify-center">
         <div className="w-full max-w-esm px-6 mt-40">

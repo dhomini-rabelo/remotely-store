@@ -11,6 +11,7 @@ import { useRouter } from 'next/router'
 import { AxiosError } from 'axios'
 import { Error } from '@/layout/themes/Form/Index/Error'
 import { GetStaticProps } from 'next'
+import Head from 'next/head'
 
 export default function RegisterPage() {
   const { FeedbackElement, renderFeedback } = useFeedback()
@@ -49,6 +50,9 @@ export default function RegisterPage() {
 
   return (
     <>
+      <Head>
+        <title>Cadastro</title>
+      </Head>
       {FeedbackElement}
       <main className="grow flex justify-center">
         <div className="w-full max-w-esm px-6 mt-28">
