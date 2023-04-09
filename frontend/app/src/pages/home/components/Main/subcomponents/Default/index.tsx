@@ -145,8 +145,11 @@ export function DefaultMain({
   } else {
     return (
       <main className="mt-10">
-        <div className="flex justify-between items-center mt-2">
-          <div onClick={handleShowAllProducts} className="tsm:hidden">
+        <div className="flex justify-between items-center mt-2 relative">
+          <div
+            onClick={handleShowAllProducts}
+            className="tsm:hidden absolute left-2"
+          >
             <CaretLeft size={28} />
           </div>
           <h2 className="text-1xl font-bold sm:grow sm:text-center">
