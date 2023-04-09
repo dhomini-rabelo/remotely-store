@@ -15,7 +15,6 @@ class CreateUserSerializer(serializers.ModelSerializer):
     def to_representation(self, user: User):
         return {
             "email": user.email,
-            "name": user.name,
         }
 
     def validate(self, validated_data: CreateUserValidatedDataType):
@@ -23,7 +22,7 @@ class CreateUserSerializer(serializers.ModelSerializer):
         if not initial_data.get('confirm_password'):
             raise serializers.ValidationError({'confirm_password': [ErrorMessages.REQUIRED]})
         elif initial_data['confirm_password'] != validated_data['password']:
-            raise serializers.ValidationError({'confirm_password': ['As senhas são diferentes']})
+            raise serializers.ValidationError({'confirm_password': [ErrorMessages.DIFFERENT_PASSWORDS]})
         return validated_data
 
     def create(self, validated_data: CreateUserValidatedDataType):
@@ -41,7 +40,7 @@ class CreateUserSerializer(serializers.ModelSerializer):
         extra_kwargs = {
             'email': {
                 'required': True,
-                'validators': [UniqueValidator(queryset=User.objects.all(), message='Este email já foi cadastrado')],
+                'validators': [UniqueValidator(queryset=User.objects.all(), message=ErrorMessages.UNIQUE_EMAIL)],
             },
         }
 
