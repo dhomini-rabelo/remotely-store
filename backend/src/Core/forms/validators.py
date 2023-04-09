@@ -23,6 +23,9 @@ def validate_positive_number(value: int):
 
 
 def validate_range_number(start: int, end: int):
+    if start >= end:
+        raise ValueError('The {start} value must be less then {end}')
+
     def validate_function(value: int):
         if value not in range(start, end + 1):
             raise ValidationError(f'Informe um número entre {start} e {end}')
