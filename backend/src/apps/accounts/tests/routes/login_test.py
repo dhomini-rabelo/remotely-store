@@ -1,4 +1,4 @@
-from django.test import Client
+from rest_framework.test import APIClient
 from pytest import mark
 
 from django.urls import reverse
@@ -12,14 +12,14 @@ class TestLoginAPI:
     PASSWORD = AUTH_USER_PASSWORD
     ROUTE = reverse('accounts:login')
 
-    def test_login_with_empty_body(self, simple_client: Client):
+    def test_login_with_empty_body(self, simple_client: APIClient):
         response = simple_client.post(
             self.ROUTE,
             {},
         )
         assert response.status_code == 400
 
-    def test_login_without_password(self, simple_client: Client):
+    def test_login_without_password(self, simple_client: APIClient):
         response = simple_client.post(
             self.ROUTE,
             {
@@ -28,7 +28,7 @@ class TestLoginAPI:
         )
         assert response.status_code == 400
 
-    def test_login_without_username(self, simple_client: Client):
+    def test_login_without_username(self, simple_client: APIClient):
         response = simple_client.post(
             self.ROUTE,
             {
@@ -37,7 +37,7 @@ class TestLoginAPI:
         )
         assert response.status_code == 400
 
-    def test_login_with_invalid_password(self, simple_client: Client):
+    def test_login_with_invalid_password(self, simple_client: APIClient):
         response = simple_client.post(
             self.ROUTE,
             {
@@ -47,7 +47,7 @@ class TestLoginAPI:
         )
         assert response.status_code == 401
 
-    def test_login_with_invalid_email(self, simple_client: Client):
+    def test_login_with_invalid_email(self, simple_client: APIClient):
         response = simple_client.post(
             self.ROUTE,
             {
@@ -57,7 +57,7 @@ class TestLoginAPI:
         )
         assert response.status_code == 401
 
-    def test_login_when_success(self, simple_client: Client):
+    def test_login_when_success(self, simple_client: APIClient):
         response = simple_client.post(
             self.ROUTE,
             {

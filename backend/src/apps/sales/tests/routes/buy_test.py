@@ -1,5 +1,5 @@
 import json
-from django.test import Client
+from rest_framework.test import APIClient
 from pytest import fixture, mark
 
 from django.urls import reverse
@@ -28,19 +28,19 @@ def products():
 class TestBuyAPI:
     ROUTE = reverse('sales:buy')
 
-    def test_api_with_simple_user(self, simple_client: Client):
+    def test_api_with_simple_user(self, simple_client: APIClient):
         response = simple_client.post(self.ROUTE, {})
         assert response.status_code == 401
 
-    def test_api_with_empty_cart(self, auth_client: Client):
+    def test_api_with_empty_cart(self, auth_client: APIClient):
         response = auth_client.post(self.ROUTE, {'products': [], 'payment_method': 'pix'})
         assert response.data['products'][0].code == 'required'
 
-    def test_api_with_invalid_payment_method(self, auth_client: Client):
+    def test_api_with_invalid_payment_method(self, auth_client: APIClient):
         response = auth_client.post(self.ROUTE, {'products': [], 'payment_method': 'INVALID'})
         assert response.data['payment_method'][0].code == 'invalid_choice'
 
-    def test_api_with_invalid_products_field(self, auth_client: Client, products: list[Product]):
+    def test_api_with_invalid_products_field(self, auth_client: APIClient, products: list[Product]):
         data = {
             'products': [{} for index in range(5)],
             'payment_method': 'pix',
@@ -53,7 +53,7 @@ class TestBuyAPI:
             ]
         )
 
-    def test_api_with_invalid_product_id(self, auth_client: Client, products: list[Product]):
+    def test_api_with_invalid_product_id(self, auth_client: APIClient, products: list[Product]):
         data = {
             'products': [
                 {
@@ -67,7 +67,7 @@ class TestBuyAPI:
         response = auth_client.post(self.ROUTE, data=json.dumps(data), content_type='application/json')
         assert all([(product['id'][0].code == 'invalid') for product in response.data['products']])
 
-    def test_api_with_invalid_product_quantity(self, auth_client: Client, products: list[Product]):
+    def test_api_with_invalid_product_quantity(self, auth_client: APIClient, products: list[Product]):
         data = {
             'products': [
                 {
@@ -81,7 +81,7 @@ class TestBuyAPI:
         response = auth_client.post(self.ROUTE, data=json.dumps(data), content_type='application/json')
         assert all([(product['quantity'][0].code == 'invalid') for product in response.data['products']])
 
-    def test_api_with_empty_product_quantity(self, auth_client: Client, products: list[Product]):
+    def test_api_with_empty_product_quantity(self, auth_client: APIClient, products: list[Product]):
         data = {
             'products': [
                 {
@@ -97,7 +97,7 @@ class TestBuyAPI:
             [(str(product['quantity'][0]) == 'Informe um número positivo') for product in response.data['products']]
         )
 
-    def test_api_success_case(self, auth_client: Client, products: list[Product]):
+    def test_api_success_case(self, auth_client: APIClient, products: list[Product]):
         data = {
             'products': [
                 {

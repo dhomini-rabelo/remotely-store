@@ -1,6 +1,4 @@
 from pytest import fixture
-from django.test import Client
-
 from apps.accounts.app.models import User
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework.test import APIClient
