@@ -27,6 +27,8 @@ class BuyAction:
         serializer = BodyBuySerializer(data=body)
         if not serializer.is_valid():
             raise serializers.ValidationError(serializer.errors)
+        elif len(serializer.data['products']) == 0:
+            raise serializers.ValidationError({'message': 'Carrinho vazio'})
         return serializer.data
 
     def run(self, body: Any | ICart, auth_user: User) -> str:
