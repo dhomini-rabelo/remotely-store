@@ -12,12 +12,13 @@ SECRET_KEY = config('SECRET_KEY')
 
 DEBUG = config('DEBUG', default=False, cast=bool)
 
-ALLOWED_HOSTS: list[str] = []
+ALLOWED_HOSTS: list[str] = ['*']
 
 PROJECT_NAME = 'REMOTELY'
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
+    '*',
 ]
 
 INSTALLED_APPS = [
