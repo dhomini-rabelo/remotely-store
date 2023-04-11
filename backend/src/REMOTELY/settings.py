@@ -18,7 +18,6 @@ PROJECT_NAME = 'REMOTELY'
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
-    '159.89.229.10',
 ]
 
 INSTALLED_APPS = [
