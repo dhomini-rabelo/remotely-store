@@ -12,7 +12,7 @@ SECRET_KEY = config('SECRET_KEY')
 
 DEBUG = config('DEBUG', default=False, cast=bool)
 
-ALLOWED_HOSTS: list[str] = ['159.89.229.10']
+ALLOWED_HOSTS: list[str] = ['159.89.229.10', 'localhost']
 
 PROJECT_NAME = 'REMOTELY'
 
