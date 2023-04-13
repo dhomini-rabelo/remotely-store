@@ -14,6 +14,10 @@ Um E-commerce desenvolvido com Next (Typescript) no front-end, e Django (Python)
 
 <br>
 
+<h2>💻 Projeto</h2>
+
+<br>
+
 <img src="./readme/home-page.gif" />
 
 
