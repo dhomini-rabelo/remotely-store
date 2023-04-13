@@ -8,8 +8,8 @@ Um E-commerce desenvolvido com Next (Typescript) no front-end, e Django (Python)
 
 <h2>📖 Documentações</h2>
 <ul>
-<li><a href="">Front-end, com Next e Typescript</a></li>
-<li><a href="">Back-end, com Django e Python</a></li>
+<li><a href="https://github.com/dhomini-rabelo/remotely-store/tree/main/frontend">Front-end, com Next e Typescript</a></li>
+<li><a href="https://github.com/dhomini-rabelo/remotely-store/tree/main/backend">Back-end, com Django e Python</a></li>
 </ul>
 
 <br>
