@@ -55,13 +55,52 @@ ele não nos obriga a usar rotas dentro do app, podemos configurar isto no arqui
 
 <p>
 Este projeto utiliza gerenciadores de Model, que tem a função de realizar as ações correspondentes
-a cada Model, facilitando a testagem e a utilização. Além de desacoplar o esse tipo de código da classe de um Model, 
-localizados em remotely-store/backend/src/apps/sales/actions/managers/.
+a cada Model, facilitando a testagem e a utilização, além de desacoplar o esse tipo de código da classe de um Model. 
+Localizados em remotely-store/backend/src/apps/sales/actions/managers/.
 </p>
 
 <h3>Rotas</h3>
 
 <p>
 Quando a rota não faz parte de um CRUD simples, eu utilizo classes para executar as ações, caso necessário faço 
-implementações de contratos e interfaces, sempre buscando utilizar os princípios SOLID e outros padrões.
+implementações de contratos e interfaces, sempre buscando utilizar os princípios SOLID e outros padrões. Exemplo na rota do arquivo remotely-store/backend/src/apps/sales/api/buy.py.
 </p>
+
+
+<br>
+<h2 id="tools">🛠️ Ferramentas</h2>
+
+
+<ul>
+<li>Django => Framework principal do projeto</li>
+<li>Django Rest Framework => gerenciamento de APIs</li>
+<li>django-cors-headers => consumo do front-end</li>
+<li>simplejwt => autenticação</li>
+<li>Fast => comandos</li>
+<li>Postgres => banco de dados</li>
+<li>python-decouple => variáveis de ambiente</li>
+<li>pytest => testes</li>
+<li>Mypy => linting</li>
+<li>Black => formatação</li>
+</ul>
+
+<br>
+<h2 id="db">🏷️ Modelagem do banco de dados (Simplificado)</h2>
+<p>Este projeto utiliza Postgres</p>
+
+<ul>
+<li>Usuário => email, username, senha</li>
+<li>Fornecedor => nome</li>
+<li>Departamento => nome, imagem</li>
+<li>Produto => nome, imagem, descrição, departamento, fornecedor, preços</li>
+<li>Preço => produto, valor, valor promocional, desabilitado por</li>
+<li>Venda => cliente, status, valor total, método de pagamento</li>
+<li>Produto vendido => venda, produto, quantidade, preço</li>
+</ul>
+
+<h3>Sobre a modelagem</h3>
+
+<ul>
+<li>Preços são em centavos para evitar algum erro de cálculo computacional</li>
+<li>Um produto pode ter vários preços, para controle do histórico do preço de um produto, controle de quanto um produto vendeu com determinado preço, e permissões no sistema administrativo</li>
+</ul>
