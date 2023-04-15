@@ -14,7 +14,6 @@
 <ul>
 <li><a href="#organization">Organização</a></li>
 <li><a href="#tools">Ferramentas</a></li>
-<li><a href="#features">Features</a></li>
 <li><a href="#db">Banco de dados</a></li>
 <li><a href="#admin">Django Admin</a></li>
 <li><a href="#routes">Rotas</a></li>
