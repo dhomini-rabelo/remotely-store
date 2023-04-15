@@ -3,6 +3,7 @@ from rest_framework.test import APIClient
 from pytest import fixture, mark
 
 from django.urls import reverse
+from Core.forms.errors import ErrorMessages
 from apps.sales.app.models.products import Product, Price
 
 
@@ -96,6 +97,26 @@ class TestBuyAPI:
         assert all(
             [(str(product['quantity'][0]) == 'Informe um número positivo') for product in response.data['products']]
         )
+
+    def test_duplicated_product_in_the_cart(self, auth_client: APIClient, products: list[Product]):
+        data = {
+            'products': [
+                *[
+                    {
+                        'id': str(product.id),
+                        'quantity': index + 2,
+                    }
+                    for index, product in enumerate(products)
+                ],
+                {
+                    'id': str(products[0].id),
+                    'quantity': 1,
+                },
+            ],
+            'payment_method': 'pix',
+        }
+        response = auth_client.post(self.ROUTE, data=json.dumps(data), content_type='application/json')
+        assert response.data['products'][0].code == ErrorMessages.DUPLICATED_PRODUCT_IN_THE_CART.code
 
     def test_api_success_case(self, auth_client: APIClient, products: list[Product]):
         data = {
