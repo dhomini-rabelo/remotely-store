@@ -102,5 +102,26 @@ implementações de contratos e interfaces, sempre buscando utilizar os princíp
 
 <ul>
 <li>Preços são em centavos para evitar algum erro de cálculo computacional</li>
-<li>Um produto pode ter vários preços, para controle do histórico do preço de um produto, controle de quanto um produto vendeu com determinado preço, e permissões no sistema administrativo</li>
+<li>Um produto pode ter vários preços, para controle de histórico, vendas e permissões no sistema administrativo</li>
 </ul>
+
+<br>
+<h2 id="admin">🗝️ Django admin</h2>
+<p>Neste projeto o Django Admin tem a importante função de cadastro e visualização de dados, conforme permissões e tabelas.</p>
+<img src="./readme/admin.gif" />
+<br>
+
+<h3>Otimização no formulário de produto</h3>
+<p>
+Mesmo um produto podendo ter vários preços, neste formulário mostra apenas o preço atual, caso você o edite ele
+gera e exibe um novo preço, além de desabilitar o anterior.
+</p>
+<img src="./readme/admin-product.gif" />
+<br>
+
+<h3>Visualização de venda</h3>
+<p>
+Trás os produtos vendidos também e este formulário é somente visualização.
+</p>
+
+<img src="./readme/admin-venda.png" />
