@@ -160,5 +160,4 @@ Utilizei insomnia para consumir as rotas durante o desenvolvimento.
 
 <br>
 <h2 id="tests">🧪 Testes</h2>
-<br>
 <img src="./readme/pytest.png" />
