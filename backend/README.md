@@ -148,11 +148,13 @@ Utilizei insomnia para consumir as rotas durante o desenvolvimento.
 
 <h3>• Dados necessários para home page</h3>
 <div><span>Trás dados de departamentos e produtos. Utiliza uma query personalizada</span></div>
+<br>
 <img src="./readme/home.gif" />
 <br>
 
 <h3>• API de comprar</h3>
 <div><span>utiliza uma classe externa que fica responsável pelas ações, como validação e criação de Models.</span></div>
+<br>
 <img src="./readme/buy.gif" />
 <br>
 
