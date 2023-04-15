@@ -125,3 +125,34 @@ Trás os produtos vendidos também e este formulário é somente visualização.
 </p>
 
 <img src="./readme/admin-venda.png" />
+
+
+<br>
+<h2 id="routes">🌐 Rotas</h2>
+<p>
+Utilizei insomnia para consumir as rotas durante o desenvolvimento.
+</p>
+<br>
+
+<h3>• Cadastro</h3>
+<img src="./readme/register.gif" />
+<br>
+
+<h3>• Login</h3>
+<img src="./readme/login.gif" />
+<br>
+
+<h3>• Dados pessoais</h3>
+<img src="./readme/me.gif" />
+<br>
+
+<h3>• Dados necessários para home page</h3>
+<div><span>Trás dados de departamentos e produtos. Utiliza uma query personalizada</span></div>
+<img src="./readme/home.gif" />
+<br>
+
+<h3>• API de comprar</h3>
+<div><span>utiliza uma classe externa que fica responsável pelas ações, como validação e criação de Models.</span></div>
+<img src="./readme/buy.gif" />
+<br>
+
