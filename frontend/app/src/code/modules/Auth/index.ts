@@ -1,4 +1,4 @@
-import { applicationName, REFRESH_TOKEN_TIMEOUT } from '../../settings/main'
+import { APPLICATION_NAME, REFRESH_TOKEN_TIMEOUT } from '../../settings/main'
 import {
   SavedAuthStructureType,
   AuthStructureType,
@@ -125,5 +125,5 @@ class AuthManager {
 export const authConsumer = new AuthManager(
   new CookiesNext(),
   REFRESH_TOKEN_TIMEOUT,
-  `@${applicationName}-AUTH_TOKEN`,
+  `@${APPLICATION_NAME}-AUTH_TOKEN`,
 )

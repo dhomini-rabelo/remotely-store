@@ -3,12 +3,12 @@ import { createContext } from 'use-context-selector'
 import { CartContextType, IProductCart, ICart } from './types'
 import { CartReducer } from './reducer'
 import { CartConsumer } from './reducer/actions'
-import { applicationName } from '@/code/settings/main'
+import { APPLICATION_NAME } from '@/code/settings/main'
 
 export const CartContext = createContext<CartContextType>({} as CartContextType)
 
 export function CartProvider({ children }: { children: ReactNode }) {
-  const SAVE_KEY = `@${applicationName}-CART-KEY`
+  const SAVE_KEY = `@${APPLICATION_NAME}-CART-KEY`
   /* eslint-disable */
   const [cart, cartDispatch] = useReducer(
     CartReducer,
