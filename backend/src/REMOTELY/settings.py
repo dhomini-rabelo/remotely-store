@@ -106,8 +106,8 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 
-if not DEBUG:
-    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# if not DEBUG:
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
@@ -116,6 +116,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 STATICFILES_DIRS = [Path(BASE_DIR, 'frontend/static')]
 STATIC_ROOT = Path('static') if DEBUG else Path(BASE_DIR, 'staticfiles')
+# STATIC_ROOT = Path('static') if DEBUG else Path(BASE_DIR, 'staticfiles')
 MEDIA_ROOT = Path(BASE_DIR, 'frontend/media')
 MEDIA_URL = '/media/'
 ACCOUNT_SESSION_REMEMBER = True
