@@ -14,7 +14,7 @@ import {
 import { CookiesNext } from './dependencies/services/cookiesManager/cookiesNext'
 
 class AuthManager {
-  private TOKEN_KEY: string
+  private readonly TOKEN_KEY: string
 
   constructor(
     private cookiesManager: CookiesManagerContract,
@@ -22,6 +22,21 @@ class AuthManager {
     TOKEN_KEY: string,
   ) {
     this.TOKEN_KEY = TOKEN_KEY
+  }
+
+  getAuthorizationHeaderFromAccessToken(accessToken: string) {
+    return `Bearer ${accessToken}`
+  }
+
+  private setAuthHeader(
+    client: AxiosInstance,
+    authInstance: AuthStructureType,
+  ) {
+    client.defaults.headers.common.Authorization =
+      this.getAuthorizationHeaderFromAccessToken(authInstance.accessToken!)
+    this.saveAuthInstance({
+      accessToken: authInstance.accessToken,
+    })
   }
 
   configureAuthClient(client: AxiosInstance, authInstance: AuthStructureType) {
@@ -96,21 +111,6 @@ class AuthManager {
         accessToken: null,
       }
     }
-  }
-
-  getAuthorizationHeaderFromAccessToken(accessToken: string) {
-    return `Bearer ${accessToken}`
-  }
-
-  private setAuthHeader(
-    client: AxiosInstance,
-    authInstance: AuthStructureType,
-  ) {
-    client.defaults.headers.common.Authorization =
-      this.getAuthorizationHeaderFromAccessToken(authInstance.accessToken!)
-    this.saveAuthInstance({
-      accessToken: authInstance.accessToken,
-    })
   }
 
   private tokenWasExpired(savedAtIsoDate: string) {
