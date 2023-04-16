@@ -77,3 +77,16 @@ Componentes que se ocupam o mesmo espaço no mesmo contexto, ficam dentro de pas
 <li>Eslint => formatação e linting</li>
 <li>jest => testes</li>
 </ul>
+
+
+<br>
+<h2 id="auth">🗝️ Autenticação</h2>
+<p>Este projeto utiliza um módulo personalizado para autenticação JWT, em remotely-store/frontend/app/src/code/
+modules/Auth. Onde temos uma classe para armazenar, verificar, obter e deletar as "instâncias" de autenticação,
+e outra classe para configurar uma cliente axios.</p>
+
+
+<br>
+<h2 id="auth">🗝️ Contextos</h2>
+<p>Este projeto utiliza um módulo personalizado para autenticação JWT, em remotely-store/frontend/app/src/code/modules/Auth.</p>
+
