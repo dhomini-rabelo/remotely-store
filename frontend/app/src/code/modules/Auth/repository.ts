@@ -9,12 +9,13 @@ import {
   ResponseAuthStructureType,
   ITokenSettings,
 } from './types'
-import { differenceInSeconds } from 'date-fns'
+import { DateManagerContract } from './dependencies/contracts/dateManager'
 
 export class AuthRepository {
   /* eslint-disable */
   constructor(
     private cookiesManager: CookiesManagerContract,
+    private dateManager: DateManagerContract,
     private readonly tokenSettings: ITokenSettings,
   ) { }
   /* eslint-enable */
@@ -94,7 +95,10 @@ export class AuthRepository {
   private tokenWasExpired(savedAtIsoDate: string) {
     const savedAuthInstanceDate = new Date(savedAtIsoDate)
     return (
-      differenceInSeconds(new Date(), savedAuthInstanceDate) >=
+      this.dateManager.getDifferenceInSeconds(
+        new Date(),
+        savedAuthInstanceDate,
+      ) >=
       this.tokenSettings.REFRESH_TOKEN_TIMEOUT - 10
     )
   }
