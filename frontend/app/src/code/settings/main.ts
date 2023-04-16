@@ -15,3 +15,9 @@ export const simpleClient = axios.create({
 export const APPLICATION_NAME = 'REMOTELY'
 
 export const REFRESH_TOKEN_TIMEOUT = 60 * 60 * 20 // 20 hours
+
+export const authConsumer = axiosAuthConsumerFactory({
+  TOKEN_KEY: `@${APPLICATION_NAME}-TOKEN_KEY`,
+  REFRESH_TOKEN_TIMEOUT,
+  TOKEN_PREFIX: 'Bearer',
+})
