@@ -3,11 +3,11 @@ import { useAtom } from 'jotai'
 import { ArrowRight, CaretLeft } from 'phosphor-react'
 import { ProductCart } from './subcomponents/ProductCart'
 import { IProductCartData } from '../..'
-import { authConsumer } from '@/code/modules/Auth'
 import { useRouter } from 'next/router'
 import { useFeedback } from '@/layout/hooks/useFeedback'
 import { priceFormatter } from '@/code/utils/layout/formatters'
 import { Button } from '@/layout/components/Button'
+import { authConsumer } from '@/code/settings/main'
 
 export function Cart({
   productsCart,
@@ -28,7 +28,7 @@ export function Cart({
   const router = useRouter()
 
   function handleGoToCheckout() {
-    const authInstance = authConsumer.getAuthInstanceInClientSide()
+    const authInstance = authConsumer.repository.getAuthInstanceInClientSide()
     if (authInstance.isAuthenticated) {
       goToCheckout()
     } else if (inPopover) {

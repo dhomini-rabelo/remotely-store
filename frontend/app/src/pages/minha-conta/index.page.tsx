@@ -1,8 +1,8 @@
 import { GetServerSideProps } from 'next'
-import { authConsumer } from '@/code/modules/Auth'
 import { MyAccount } from './content'
 import { AuthProvider } from '@/code/contexts/Auth'
 import Head from 'next/head'
+import { authConsumer } from '@/code/settings/main'
 
 export default function MyAccountPage() {
   return (
@@ -18,9 +18,12 @@ export default function MyAccountPage() {
 }
 
 export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
-  const authInstance = authConsumer.getAuthInstanceInServerSide(req, res)
+  const authInstance = authConsumer.repository.getAuthInstanceInServerSide(
+    req,
+    res,
+  )
   if (!authInstance.isAuthenticated) {
-    authConsumer.killAuthInstanceInServerSide(req, res)
+    authConsumer.repository.killAuthInstanceInServerSide(req, res)
     return {
       redirect: {
         permanent: false,

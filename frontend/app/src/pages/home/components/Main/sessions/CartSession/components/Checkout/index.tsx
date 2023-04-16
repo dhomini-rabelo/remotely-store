@@ -7,9 +7,8 @@ import CardIcon from '@/assets/icons/card.svg'
 import PIXIcon from '@/assets/icons/pix.svg'
 import Image from 'next/image'
 import { useFeedback } from '@/layout/hooks/useFeedback'
-import { client } from '@/code/settings/main'
+import { authConsumer, client } from '@/code/settings/main'
 import { IProductCartData } from '../..'
-import { authConsumer } from '@/code/modules/Auth'
 import { useRouter } from 'next/router'
 
 export function Checkout({
@@ -37,7 +36,7 @@ export function Checkout({
   const buying = useRef<boolean>(false)
 
   async function handleBuy() {
-    const authInstance = authConsumer.getAuthInstanceInClientSide()
+    const authInstance = authConsumer.repository.getAuthInstanceInClientSide()
     if (authInstance.isAuthenticated) {
       try {
         buying.current = true
@@ -52,9 +51,10 @@ export function Checkout({
           },
           {
             headers: {
-              Authorization: authConsumer.getAuthorizationHeaderFromAccessToken(
-                authInstance.accessToken!,
-              ),
+              Authorization:
+                authConsumer.clientManager.getAuthorizationHeaderFromAccessToken(
+                  authInstance.accessToken!,
+                ),
             },
           },
         )

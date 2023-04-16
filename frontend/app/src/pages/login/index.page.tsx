@@ -9,9 +9,8 @@ import { ILoginSchema, LoginSchema } from './schema'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useRouter } from 'next/router'
 import { useFeedback } from '@/layout/hooks/useFeedback'
-import { simpleClient } from '@/code/settings/main'
+import { authConsumer, simpleClient } from '@/code/settings/main'
 import { Error } from '@/layout/themes/Form/Index/Error'
-import { authConsumer } from '@/code/modules/Auth'
 import Head from 'next/head'
 
 export default function LoginPage() {
@@ -33,7 +32,7 @@ export default function LoginPage() {
         username: data.email,
         password: data.password,
       })
-      authConsumer.saveAuthInstance({
+      authConsumer.repository.saveAuthInstance({
         accessToken: response.data.access_token,
       })
       router.push('/')

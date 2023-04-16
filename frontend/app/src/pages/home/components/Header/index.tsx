@@ -7,8 +7,8 @@ import { currentPageAtom, searchTextAtom } from '../../code/states'
 import { ChangeEvent, useEffect, useRef, useState } from 'react'
 import { IProductData } from '../../types'
 import { BagPopover } from './subcomponents/BagPopover'
-import { authConsumer } from '@/code/modules/Auth'
 import Link from 'next/link'
+import { authConsumer } from '@/code/settings/main'
 
 export function Header({ products }: { products: IProductData[] }) {
   const [page, setPage] = useAtom(currentPageAtom)
@@ -18,7 +18,7 @@ export function Header({ products }: { products: IProductData[] }) {
   const isAuthenticated = useRef<null | boolean>(null)
 
   useEffect(() => {
-    const authInstance = authConsumer.getAuthInstanceInClientSide()
+    const authInstance = authConsumer.repository.getAuthInstanceInClientSide()
     isAuthenticated.current = authInstance.isAuthenticated
   }, [])
 
