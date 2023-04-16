@@ -9,18 +9,19 @@ import {
 } from './types'
 import { differenceInSeconds } from 'date-fns'
 import { AxiosInstance } from 'axios'
-import { deleteCookie, getCookie, hasCookie, setCookie } from 'cookies-next'
-import { NextApiRequestCookies } from 'next/dist/server/api-utils'
-import { IncomingMessage, ServerResponse } from 'http'
-type ClientResponse = IncomingMessage & {
-  cookies: NextApiRequestCookies
-}
+import { ServerResponse } from 'http'
+import {
+  ClientResponse,
+  CookiesManagerContract,
+} from './dependencies/contracts/cookiesManager'
+import { CookiesNext } from './dependencies/services/cookiesManager/cookiesNext'
 
 class AuthManager {
   private tokenSaveKey: string
   private refreshTokenTimeoutInSeconds: number
 
   constructor(
+    private cookiesManager: CookiesManagerContract,
     refreshTokenTimeoutInSeconds: number,
     applicationName: string,
     authSaveKeyName: string = 'auth',
@@ -38,23 +39,28 @@ class AuthManager {
       ...authInstance,
       savedAt: new Date().toISOString(),
     }
-    setCookie(this.tokenSaveKey, JSON.stringify(authInstanceForSave))
+    this.cookiesManager.setCookieInClient(
+      this.tokenSaveKey,
+      JSON.stringify(authInstanceForSave),
+    )
   }
 
   killAuthInstanceInClientSide() {
-    deleteCookie(this.tokenSaveKey)
+    this.cookiesManager.deleteCookieInClient(this.tokenSaveKey)
   }
 
   killAuthInstanceInServerSide(req: ClientResponse, res: ServerResponse) {
-    deleteCookie('test', { req, res })
+    this.cookiesManager.deleteCookieInServer('test', { req, res })
   }
 
   getAuthInstanceInClientSide(): ResponseAuthStructureType {
-    const instanceIsSaved = hasCookie(this.tokenSaveKey)
+    const instanceIsSaved = this.cookiesManager.hasCookieInClient(
+      this.tokenSaveKey,
+    )
     const authInstance = (instanceIsSaved &&
-      JSON.parse(String(getCookie(this.tokenSaveKey)))) as
-      | SavedAuthStructureType
-      | false
+      JSON.parse(
+        String(this.cookiesManager.getCookieInClient(this.tokenSaveKey)),
+      )) as SavedAuthStructureType | false
 
     if (!!authInstance && !this.tokenWasExpired(authInstance.savedAt)) {
       return {
@@ -74,11 +80,15 @@ class AuthManager {
     req: ClientResponse,
     res: ServerResponse,
   ): ResponseAuthStructureType {
-    const instanceIsSaved = hasCookie(this.tokenSaveKey, { req, res })
+    const instanceIsSaved = this.cookiesManager.hasCookieInServer(
+      this.tokenSaveKey,
+      { req, res },
+    )
     const authInstance = (instanceIsSaved &&
-      getCookie(this.tokenSaveKey, { req, res })) as
-      | SavedAuthStructureType
-      | false
+      this.cookiesManager.getCookieInServer(this.tokenSaveKey, {
+        req,
+        res,
+      })) as SavedAuthStructureType | false
 
     if (!!authInstance && !this.tokenWasExpired(authInstance.savedAt)) {
       return {
@@ -119,6 +129,7 @@ class AuthManager {
 }
 
 export const authConsumer = new AuthManager(
+  new CookiesNext(),
   settingsRefreshTokenTimeoutInSeconds,
   applicationName,
 )

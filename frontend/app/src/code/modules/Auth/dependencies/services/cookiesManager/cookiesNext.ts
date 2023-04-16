@@ -4,7 +4,7 @@ import {
 } from '../../contracts/cookiesManager'
 import { deleteCookie, getCookie, hasCookie, setCookie } from 'cookies-next'
 
-export class cookiesNext implements CookiesManagerContract {
+export class CookiesNext implements CookiesManagerContract {
   getCookieInClient(key: string) {
     return getCookie(key)
   }
