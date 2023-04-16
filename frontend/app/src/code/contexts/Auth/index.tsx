@@ -2,9 +2,8 @@ import { ReactNode, useCallback, useEffect, useReducer } from 'react'
 import { AuthReducer } from './reducer'
 import { AuthConsumer } from './reducer/actions'
 import { AuthContextType } from './types'
-import { authConsumer } from '../../modules/Auth'
 import { AuthUser } from './reducer/types'
-import { client } from '@/code/settings/main'
+import { authConsumer, client } from '@/code/settings/main'
 import { createContext } from 'use-context-selector'
 
 export const AuthContext = createContext<AuthContextType>({} as AuthContextType)
@@ -23,9 +22,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   /* eslint-enable */
 
   useEffect(() => {
-    const authInstance = authConsumer.getAuthInstanceInClientSide()
+    const authInstance = authConsumer.repository.getAuthInstanceInClientSide()
     if (authInstance.isAuthenticated && auth.user === null) {
-      authConsumer.configureAuthClient(client, {
+      authConsumer.clientManager.configureAuthClient(client, {
         accessToken: authInstance.accessToken,
       })
       client.get('/me').then((response) => {
@@ -36,13 +35,16 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const login = useCallback((accessToken: string, user: AuthUser) => {
     authDispatch(AuthConsumer.login(user))
-    authConsumer.configureAuthClient(client, {
+    authConsumer.clientManager.configureAuthClient(client, {
+      accessToken,
+    })
+    authConsumer.repository.saveAuthInstance({
       accessToken,
     })
   }, [])
 
   const logout = useCallback(() => {
-    authConsumer.killAuthInstanceInClientSide()
+    authConsumer.repository.killAuthInstanceInClientSide()
     authDispatch(AuthConsumer.logout())
   }, [])
 
