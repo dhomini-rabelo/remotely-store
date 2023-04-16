@@ -1,8 +1,9 @@
 import axios from 'axios'
 import { axiosAuthConsumerFactory } from '../modules/Auth/consumers'
 
-export const BASE_URL = 'http://localhost:8000/api'
-export const MEDIA_BASE_URL = 'http://localhost:8000'
+export const BASE_HOST = String(process.env.NEXT_PUBLIC_BACKEND_HOST)
+export const BASE_URL = `${BASE_HOST}/api`
+export const MEDIA_BASE_URL = String(process.env.NEXT_PUBLIC_BACKEND_HOST)
 
 export const client = axios.create({
   baseURL: BASE_URL,
