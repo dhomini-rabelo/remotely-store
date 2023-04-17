@@ -110,3 +110,15 @@ Faz o controle dos produtos e de suas quantidades que estão no carrinho, além 
 Usado para exibir mensagens de sucesso e erro em todo o sistema, utilizando o componente modal do headlessui.
 </p>
 
+<br>
+<h2 id="routes">🌐 Rotas</h2>
+
+<h3>• Cadastro</h3>
+<div><span>Realiza a validação do formulário usando zod no react-hook-form</span></div><br>
+<img src="./readme/register.gif" />
+<br>
+
+<h3>• Login</h3>
+<img src="./readme/login.gif" />
+<br>
+
