@@ -88,7 +88,6 @@ e outra classe para configurar uma cliente axios.</p>
 
 <br>
 <h2 id="contexts">🪢 Contextos</h2>
-<br>
 
 <h3>Autenticação</h3>
 <p>
@@ -105,7 +104,6 @@ Faz o controle dos produtos e de suas quantidades que estão no carrinho, além 
 
 <br>
 <h2 id="hooks">🪝 Hooks</h2>
-<br>
 
 <h3>useFeedback</h3>
 <p>
