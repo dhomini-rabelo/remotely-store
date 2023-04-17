@@ -87,6 +87,28 @@ e outra classe para configurar uma cliente axios.</p>
 
 
 <br>
-<h2 id="auth">🗝️ Contextos</h2>
-<p>Este projeto utiliza um módulo personalizado para autenticação JWT, em remotely-store/frontend/app/src/code/modules/Auth.</p>
+<h2 id="contexts">🪢 Contextos</h2>
+<br>
+
+<h3>Autenticação</h3>
+<p>
+Faz login, logout, carrega dados do usuário dentro de uma página, e também utiliza o módulo de autenticação
+para lidar com token e configurar cliente.
+</p>
+
+<h3>Carrinho</h3>
+<p>
+Faz o controle dos produtos e de suas quantidades que estão no carrinho, além de salvar estes dados no localStorage.
+</p>
+
+
+
+<br>
+<h2 id="hooks">🪝 Hooks</h2>
+<br>
+
+<h3>useFeedback</h3>
+<p>
+Usado para exibir mensagens de sucesso e erro em todo o sistema, utilizando o componente modal do headlessui.
+</p>
 
