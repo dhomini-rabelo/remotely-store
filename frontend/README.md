@@ -138,3 +138,11 @@ Usado para exibir mensagens de sucesso e erro em todo o sistema, utilizando o co
 <img src="./readme/product.gif" />
 <br>
 
+<h3>- Carrinho</h3>
+<img src="./readme/cart.gif" />
+<br>
+
+<h3>• Minha conta</h3>
+<img src="./readme/my-account-page.gif" />
+<br>
+
