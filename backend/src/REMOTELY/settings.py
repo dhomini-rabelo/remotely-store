@@ -12,7 +12,7 @@ SECRET_KEY = config('SECRET_KEY')
 
 DEBUG = config('DEBUG', default=False, cast=bool)
 
-ALLOWED_HOSTS: list[str] = ['159.89.229.10', 'localhost']
+ALLOWED_HOSTS: list[str] = ['159.89.229.10', 'localhost', 'remotely-store.vercel.app']
 
 PROJECT_NAME = 'REMOTELY'
 
