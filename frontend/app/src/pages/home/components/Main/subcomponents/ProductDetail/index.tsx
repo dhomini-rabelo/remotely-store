@@ -139,7 +139,7 @@ export function ProductDetail({
             onClick={backToHome}
           />
         </div>
-        <div className="tsm:flex tsm:flex-col tsm:py-6 tsm:px-5 tmd:min-w-[400px] bg-white">
+        <div className="tsm:flex tsm:flex-col tsm:py-6 tsm:px-5 tmd:min-w-[400px] tmd:max-w-[500px] bg-white">
           <div className="sm:py-6 sm:px-5">
             <div className="flex justify-between items-start gap-x-6 esm:gap-x-3">
               <div className="flex flex-col bg-white">
@@ -178,7 +178,7 @@ export function ProductDetail({
                 </span>
               </div>
             </div>
-            <p className="mt-4 leading-[22px] mb-8">
+            <p className="mt-4 leading-[22px] mb-8 max-h-[300px] overflow-auto">
               {activeProduct!.description}
             </p>
             <h2 className="text-1xl font-bold">Relacionados</h2>
