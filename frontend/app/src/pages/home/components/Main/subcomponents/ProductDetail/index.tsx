@@ -29,6 +29,11 @@ export function ProductDetail({
   const [activeProduct] = useAtom(activeProductAtom)
   const [modalIsOpen, setModalIsOpen] = useState(false)
   const [productQuantity, setProductQuantity] = useState(1)
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }, [activeProduct?.id])
+
   const productQuantityState = {
     add() {
       setProductQuantity((quantity) => quantity + 1)

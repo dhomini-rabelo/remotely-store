@@ -122,3 +122,19 @@ Usado para exibir mensagens de sucesso e erro em todo o sistema, utilizando o co
 <img src="./readme/login.gif" />
 <br>
 
+<h3>• Home page</h3>
+<img src="./readme/home-page.gif" />
+<br>
+
+<h3>- Buscar</h3>
+<img src="./readme/search.gif" />
+<br>
+
+<h3>- Listagem de produtos a partir do departamento</h3>
+<img src="./readme/departments.gif" />
+<br>
+
+<h3>- Página de produto</h3>
+<img src="./readme/product.gif" />
+<br>
+
