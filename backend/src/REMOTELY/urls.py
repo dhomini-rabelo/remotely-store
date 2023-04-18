@@ -4,9 +4,9 @@ from django.conf.urls.static import static
 from django.urls import path, include
 
 urlpatterns = [
-    path('administracao/', admin.site.urls),
+    path('admin/', admin.site.urls),
     path('api/', include('apps.accounts.urls')),
-    path('api/', include('apps.core.urls')),
+    path('', include('apps.core.urls')),
     path('api/', include('apps.sales.urls')),
 ]
 

@@ -80,11 +80,9 @@ DATABASES = {
         "HOST": config("DB_HOST"),
         "PORT": 5432,
     },
-    #     {
-    #     'default': {
-    #         'ENGINE': 'django.db.backends.sqlite3',
-    #         'NAME': BASE_DIR / 'db.sqlite3',
-    #     }
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'NAME': BASE_DIR / 'db.sqlite3',
     # }
 }
 
@@ -190,3 +188,8 @@ AWS_S3_VERITY = True
 
 if not DEBUG:
     DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+
+# admin
+
+LOGIN_URL = '/admin/login/'
