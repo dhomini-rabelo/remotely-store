@@ -1,3 +1,4 @@
-import { MEDIA_BASE_URL } from '@/code/settings/main'
+import { MEDIA_BASE_URL, DEBUG } from '@/code/settings/main'
 
-export const getImage = (path: string) => `${MEDIA_BASE_URL}${path}`
+export const getImage = (path: string) =>
+  DEBUG ? `${MEDIA_BASE_URL}${path}` : path

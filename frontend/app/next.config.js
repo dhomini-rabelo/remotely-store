@@ -17,6 +17,12 @@ const nextConfig = {
         pathname: '/media/**',
       },
       {
+        protocol: 'https',
+        hostname: 'remotely-storages.s3.amazonaws.com',
+        port: '',
+        pathname: '/**',
+      },
+      {
         protocol: 'http',
         hostname: 'localhost',
         port: '3000',
