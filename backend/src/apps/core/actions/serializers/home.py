@@ -22,7 +22,6 @@ class ProductHomeSerializer(serializers.ModelSerializer):
     department = DepartmentHomeSerializer()
 
     def to_representation(self, product: Product):
-        print(product.price)
         return {
             **super().to_representation(product),
             'rating': product.rating or 50,
