@@ -36,9 +36,10 @@ export function ProductCart({ product }: { product: IProductCartData }) {
       <div className="flex justify-center items-center bg-white p-2.5 min-w-[105px] min-h-[86px] rounded-lg">
         <Image
           src={getImage(product.image)}
-          width={60}
-          height={60}
+          width={64}
+          height={64}
           alt={product.description}
+          className="max-w-16 max-h-16 object-contain block"
         />
       </div>
       <div className="flex flex-col">

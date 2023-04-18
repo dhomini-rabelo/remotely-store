@@ -19,12 +19,13 @@ export function SuccessStep() {
       <h2 className="text-xl font-bold inter leading-[29px] mt-4 sm:mt-10 text-center w-full block">
         Compra Efetuada!
       </h2>
-      <div className="flex flex-col items-center justify-center grow sm:mb-40 tsm:mt-6">
+      <div className="flex flex-col items-center justify-center grow sm:mb-40">
         <Image
           src={SuccessImage}
           width={382}
           height={282}
           alt="Imagem de uma caixa de papelão com fundo de circulo bem colorida"
+          className="mt-6"
         />
       </div>
       <div className="block tsm:pt-10 tsm:pb-4 sm:fixed sm:bottom-0 sm:left-0 w-full sm:py-10 sm:px-6 bg-white">
