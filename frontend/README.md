@@ -134,7 +134,7 @@ Usado para exibir mensagens de sucesso e erro em todo o sistema, utilizando o co
 <img src="./readme/departments.gif" />
 <br>
 
-<h3>- Página de produto</h3>
+<h3>- Página do produto</h3>
 <img src="./readme/product.gif" />
 <br>
 
@@ -146,7 +146,7 @@ Usado para exibir mensagens de sucesso e erro em todo o sistema, utilizando o co
 <img src="./readme/my-account-page.gif" />
 <br>
 
-<h3>-> Telas no computador</h3>
+<h3>=> Telas no computador</h3>
 <img src="./readme/pc.gif" />
 <br>
 
