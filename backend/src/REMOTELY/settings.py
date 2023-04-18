@@ -18,6 +18,7 @@ PROJECT_NAME = 'REMOTELY'
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
+    "https://remotely-store.vercel.app",
 ]
 
 INSTALLED_APPS = [
