@@ -10,6 +10,7 @@ import { BagPopover } from './subcomponents/BagPopover'
 import Link from 'next/link'
 import { authConsumer } from '@/code/settings/main'
 
+/* eslint-disable */
 export function Header({ products }: { products: IProductData[] }) {
   const [page, setPage] = useAtom(currentPageAtom)
   const [search, setSearch] = useAtom(searchTextAtom)

@@ -2,6 +2,7 @@ import { Dialog, Transition } from '@headlessui/react'
 import { X } from 'phosphor-react'
 import { Fragment, ReactNode, useEffect, useRef, useState } from 'react'
 
+/* eslint-disable */
 export interface IDefaultProps {
   title?: string
   children: ReactNode

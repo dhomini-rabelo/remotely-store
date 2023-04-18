@@ -11,6 +11,7 @@ export interface IProductCartData extends IProductData {
   quantity: number
 }
 
+/* eslint-disable */
 export function CartSession({
   products,
   inPopover,

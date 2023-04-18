@@ -2,6 +2,7 @@ import { SimpleLoading } from '@/layout/simple-components/Loading/simple'
 import * as React from 'react'
 import { ButtonStyles, ButtonStylesProps } from './styles'
 
+/* eslint-disable */
 interface Props
   extends ButtonStylesProps,
   React.ButtonHTMLAttributes<HTMLButtonElement> {
