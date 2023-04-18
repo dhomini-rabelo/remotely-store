@@ -1,5 +1,5 @@
 <h1>📖 Documentação Back-end</h1>
-<p>Este back-end foi desenvolvido, principalmente, com Python, Django e Django Rest Framework. O projeto está disponível no link <a href="http://159.89.229.10">http://159.89.229.10</a>, o deploy foi feito usando nginx e gunicorn em uma máquina virtual na Digital Ocean. Para visualizar o sistema administrativo informe viewer para usuário e null0000 para senha. <a href="./readme/remotely.json" type="application/json" download="remotely.json">Baixar o Insomnia com as rotas</a></p>
+<p>Este back-end foi desenvolvido, principalmente, com Python, Django e Django Rest Framework. O projeto está disponível no link <a href="http://159.89.229.10">http://159.89.229.10</a>, o deploy foi feito usando nginx e gunicorn em uma máquina virtual na Digital Ocean. Para visualizar o sistema administrativo informe viewer para usuário e null0000 para senha. <a href="./readme/remotely.json" type="application/json" download="remotely.json">Baixar o Insomnia com as rotas.</a></p>
 
 <br>
 
