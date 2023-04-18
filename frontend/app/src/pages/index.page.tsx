@@ -21,7 +21,6 @@ export const getStaticProps: GetStaticProps = async () => {
   try {
     const response = await simpleClient.get('/home/data')
     const data = response.data as HomeProps
-    console.log(data)
     return {
       props: {
         departments: data.departments,
