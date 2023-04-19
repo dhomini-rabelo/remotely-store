@@ -49,7 +49,7 @@ export function Header({ products }: { products: IProductData[] }) {
 
   return (
     <header
-      className={`flex justify-between items-center ${!['home', 'search'].includes(page) && 'hidden'
+      className={`flex gap-x-6 justify-between items-center ${!['home', 'search'].includes(page) && 'hidden'
         }`}
     >
       <Link href="/">
