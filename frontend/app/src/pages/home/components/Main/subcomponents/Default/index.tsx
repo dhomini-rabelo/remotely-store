@@ -83,7 +83,7 @@ export function DefaultMain({
             .filter((product) => banner.includes(product.id))
             .map((product, index) => (
               <Div.bannerSlideItem
-                className="keen-slider__slide"
+                className={`keen-slider__slide ${!sliderRef && 'd-none'}`}
                 key={product.id}
               >
                 <Banner product={product} index={index} />
@@ -118,11 +118,12 @@ export function DefaultMain({
           </div>
         </div>
         <div className="keen-slider mt-3" ref={departmentRef}>
+          {/* eslint-disable */}
           {departments.map((department) => (
             <Div.departmentSlideItem
               key={department.id}
               onClick={() => handleShowProductsFromDepartment(department)}
-              className="cursor-pointer keen-slider__slide w-[136px] h-[178px]"
+              className={`cursor-pointer keen-slider__slide w-[136px] h-[178px] ${!sliderRef && 'd-none'}`}
             >
               <Department name={department.name} imageUrl={department.image} />
             </Div.departmentSlideItem>
