@@ -47,12 +47,17 @@ export function Header({ products }: { products: IProductData[] }) {
     }
   }
 
+  function handleClearSearchText() {
+    setSearch('')
+    setShowSearch(false)
+  }
+
   return (
     <header
       className={`flex gap-x-6 justify-between items-center ${!['home', 'search'].includes(page) && 'hidden'
         }`}
     >
-      <Link href="/">
+      <div onClick={handleClearSearchText} className="cursor-pointer">
         <div className="flex items-center justify-center text-center gap-x-2">
           <div className="logo px-3.5 py-2 rounded-full bg-Black-500 border-Green-300 border flex justify-center">
             <Image
@@ -65,7 +70,7 @@ export function Header({ products }: { products: IProductData[] }) {
             Remotely.io
           </h2>
         </div>
-      </Link>
+      </div>
       <nav className="flex gap-x-3">
         <div
           className={`${!showSearch && 'sm:hidden'
