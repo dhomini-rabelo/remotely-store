@@ -44,6 +44,22 @@ def product_and_price():
     return product, price
 
 
+@fixture
+def product_with_promotional_price():
+    product = Product.objects.create(
+        name='test',
+        image='',
+        department=None,
+        provider=None,
+    )
+    Price.objects.create(
+        value=1000,
+        product=product,
+        promotional_value=900,
+    )
+    return product
+
+
 @mark.django_db
 def test_get_active_price_when_without_price(product_without_price: Product):
     assert product_without_price.manager.get_active_price() is None
@@ -62,6 +78,11 @@ def test_get_active_price_when_with_price(product: Product):
 @mark.django_db
 def test_get_price_when_with_price(product: Product):
     assert product.manager.get_price() == 1000
+
+
+@mark.django_db
+def test_get_price_when_with_promotional_price(product_with_promotional_price: Product):
+    assert product_with_promotional_price.manager.get_price() == 900
 
 
 @mark.django_db
