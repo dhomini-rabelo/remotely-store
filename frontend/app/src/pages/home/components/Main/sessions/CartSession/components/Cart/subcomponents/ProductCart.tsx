@@ -1,5 +1,5 @@
-import { getImage } from '@/code/utils/layout'
-import { priceFormatter } from '@/code/utils/layout/formatters'
+import { getImage } from '@/layout/utils'
+import { priceFormatter } from '@/layout/utils/formatters'
 import Image from 'next/image'
 import { MinusCircle, PlusCircle, Trash } from 'phosphor-react'
 import { useContextSelector } from 'use-context-selector'

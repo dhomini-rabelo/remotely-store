@@ -1,4 +1,4 @@
-import { getImage } from '@/code/utils/layout'
+import { getImage } from '@/layout/utils'
 import Image from 'next/image'
 
 export function Department({

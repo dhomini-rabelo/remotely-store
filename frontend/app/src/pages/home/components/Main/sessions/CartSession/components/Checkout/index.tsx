@@ -1,6 +1,6 @@
 import { CaretLeft, Circle } from 'phosphor-react'
 import { Button } from '@/layout/components/Button'
-import { priceFormatter } from '@/code/utils/layout/formatters'
+import { priceFormatter } from '@/layout/utils/formatters'
 import { Div } from './styles'
 import { useRef, useState } from 'react'
 import CardIcon from '@/assets/icons/card.svg'

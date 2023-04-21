@@ -2,7 +2,7 @@ import { Package, User } from 'phosphor-react'
 import { Header } from './components/Header'
 import { useContextSelector } from 'use-context-selector'
 import { AuthContext } from '@/code/contexts/Auth'
-import { dateFormatter, priceFormatter } from '@/code/utils/layout/formatters'
+import { dateFormatter, priceFormatter } from '@/layout/utils/formatters'
 import { PageLoading } from '@/layout/simple-components/Loading/page'
 
 export function MyAccount() {

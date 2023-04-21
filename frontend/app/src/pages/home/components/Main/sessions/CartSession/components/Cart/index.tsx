@@ -5,7 +5,7 @@ import { ProductCart } from './subcomponents/ProductCart'
 import { IProductCartData } from '../..'
 import { useRouter } from 'next/router'
 import { useFeedback } from '@/layout/hooks/useFeedback'
-import { priceFormatter } from '@/code/utils/layout/formatters'
+import { priceFormatter } from '@/layout/utils/formatters'
 import { Button } from '@/layout/components/Button'
 import { authConsumer } from '@/code/settings/main'
 
