@@ -25,7 +25,7 @@ export function Main({
     setPage('home')
   }, [setPage])
 
-  if (page === 'home' || (page === 'search' && search === '')) {
+  if (['home', 'search'].includes(page) && search === '') {
     return (
       <DefaultMain
         banner={banner}
@@ -34,7 +34,7 @@ export function Main({
         productsForBuy={productsForBuy}
       />
     )
-  } else if (page === 'search') {
+  } else if (['home', 'search'].includes(page) && search !== '') {
     return <Search search={search} productsForBuy={productsForBuy} />
   } else if (page === 'product') {
     return <ProductDetail productsForBuy={productsForBuy} />
