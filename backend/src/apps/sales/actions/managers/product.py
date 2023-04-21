@@ -17,7 +17,10 @@ class ProductManager:
 
     def get_price(self) -> int:
         active_price = self.get_active_price()
-        return active_price.value if active_price else 0
+        if active_price:
+            return active_price.value if not active_price.promotional_value else active_price.promotional_value
+        else:
+            return 0
 
     def update_price(self, price: Decimal, promocional_price: Decimal | None, user: User):
         active_price = self.get_active_price()
