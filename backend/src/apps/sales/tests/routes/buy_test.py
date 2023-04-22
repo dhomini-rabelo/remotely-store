@@ -1,10 +1,15 @@
+from functools import reduce
 import json
+from typing import TypedDict
+from django.db.models import QuerySet
 from rest_framework.test import APIClient
 from pytest import fixture, mark
 
 from django.urls import reverse
 from Core.forms.errors import ErrorMessages
+from apps.sales.actions.services.Buy.typings import ICart, IProductCart
 from apps.sales.app.models.products import Product, Price
+from apps.sales.app.models.sales import Sale
 
 
 @fixture
@@ -118,8 +123,13 @@ class TestBuyAPI:
         response = auth_client.post(self.ROUTE, data=json.dumps(data), content_type='application/json')
         assert response.data['products'][0].code == ErrorMessages.DUPLICATED_PRODUCT_IN_THE_CART.code
 
-    def test_api_success_case(self, auth_client: APIClient, products: list[Product]):
-        data = {
+    def test_api_success_case(self, auth_client: APIClient, products: QuerySet[Product]):
+        def sum_price(accumulator: int, product_data: IProductCart) -> int:
+            product = Product.objects.get(id=product_data.get('id'))
+            price = product.manager.get_active_price()
+            return ((price.promotional_value or price.value) * product_data['quantity']) + accumulator
+
+        data: ICart = {
             'products': [
                 {
                     'id': str(product.id),
@@ -130,4 +140,6 @@ class TestBuyAPI:
             'payment_method': 'pix',
         }
         response = auth_client.post(self.ROUTE, data=json.dumps(data), content_type='application/json')
-        assert response.status_code == 200
+        assert response.status_code == 200 and Sale.objects.first().total_value == reduce(
+            sum_price, data['products'], 0
+        )
