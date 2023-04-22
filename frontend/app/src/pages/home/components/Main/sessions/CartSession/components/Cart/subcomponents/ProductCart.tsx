@@ -47,7 +47,7 @@ export function ProductCart({ product }: { product: IProductCartData }) {
           {product.name}
         </strong>
         <strong className="text-Orange-500 mt-1 text-sm">
-          {priceFormatter.format(product.price.currentValue * product.quantity)}
+          {priceFormatter.format(product.price.currentValue)}
         </strong>
         <div className="grow flex flex-col justify-end">
           <div className="flex items-center text-base text-Gray-500 gap-x-2">
