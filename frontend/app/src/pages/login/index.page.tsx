@@ -92,7 +92,7 @@ export default function LoginPage() {
               </Button>
             </form>
           </IndexForm.container>
-          <div className="flex justify-center mt-20">
+          <div className="flex justify-center mt-20 mb-4">
             <Link className="text-Orange-500 font-bold" href="/cadastro">
               Cadastrar-se
             </Link>
