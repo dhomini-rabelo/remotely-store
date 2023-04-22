@@ -7,6 +7,7 @@ import { IProductData } from '../../types'
 import { CartSession } from './sessions/CartSession'
 import { DefaultMain } from './subcomponents/Default'
 import { useEffect } from 'react'
+import { neutralizeBack, revivalBack } from '@/layout/utils/window'
 
 export interface MainProps extends HomeProps {
   productsForBuy: IProductData[]
@@ -22,8 +23,18 @@ export function Main({
   const [search] = useAtom(searchTextAtom)
 
   useEffect(() => {
-    setPage('home')
-  }, [setPage])
+    if (page !== 'home') {
+      neutralizeBack(() => {
+        setPage('home')
+      })
+    } else if (window.onpopstate !== null) {
+      revivalBack()
+    }
+
+    return () => {
+      revivalBack()
+    }
+  }, [setPage, page])
 
   if (['home', 'search'].includes(page) && search === '') {
     return (
