@@ -12,13 +12,16 @@ SECRET_KEY = config('SECRET_KEY')
 
 DEBUG = config('DEBUG', default=False, cast=bool)
 
-ALLOWED_HOSTS: list[str] = ['localhost', 'remotely-store.vercel.app', 'api.remotely-backend.tech']
+ALLOWED_HOSTS: list[str] = ['*']
+
+CSRF_TRUSTED_ORIGINS = ['https://*.remotely-backend.tech']
 
 PROJECT_NAME = 'REMOTELY'
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "https://remotely-store.vercel.app",
+    "*",
 ]
 
 INSTALLED_APPS = [
