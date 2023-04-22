@@ -14,7 +14,7 @@ export default function Document() {
           href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&&family=Poppins:wght@400;500;700&family=Inter:wght@400;500;600;700&family=Nunito+Sans:wght@400;500;600;700&family=Poppins:wght@200;300;400;500;600;800&display=swap"
           rel="stylesheet"
         />
-        <link rel="icon" type="image/png" href="/favicon.png" />
+        <link rel="icon" type="image/svg" href="/cart.svg" />
       </Head>
       <body>
         <Main />
