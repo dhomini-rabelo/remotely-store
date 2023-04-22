@@ -53,19 +53,19 @@ export function Cart({
           onClick={backToHome}
         />
         <div className="flex justify-between items-center mt-4 sm:mt-10">
-          <h2 className="text-1xl font-bold inter leading-[29px]">Carrinho</h2>
+          <h2 className="text-1xl font-bold inter leading-[29px]">Sacola</h2>
           <div className="text-Gray-500 flex items-center gap-x-2">
             <span className="text-xs">
               {productsCart.length} {productsCart.length > 1 ? 'itens' : 'item'}
             </span>
           </div>
         </div>
-        <div className="flex flex-col mt-6 gap-y-3 max-h-[1000px]">
+        <div className="flex flex-col mt-6 gap-y-3 sm:pb-44">
           {productsCart.map((productCart) => (
             <ProductCart key={productCart.id} product={productCart} />
           ))}
         </div>
-        <div className="block tsm:pt-10 tsm:pb-4 sm:fixed sm:bottom-0 sm:left-0 w-full sm:py-10 sm:px-6 bg-white">
+        <div className="block tsm:pt-10 tsm:pb-4 sm:fixed sm:bottom-0 sm:left-0 w-full sm:pt-3 sm:pb-5 sm:px-6 bg-white">
           <div className="flex flex-col gap-y-2 sm:gap-y-8">
             <div className="flex justify-between items-center">
               <span className="text-base font-bold leading-[22px] inter">
