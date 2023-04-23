@@ -24,7 +24,8 @@ export function Main({
 
   useEffect(() => {
     window.onpopstate = null
-  }, [])
+    setPage('home')
+  }, [setPage])
 
   useEffect(() => {
     if (page !== 'home') {
