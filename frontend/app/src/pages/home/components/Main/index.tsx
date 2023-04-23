@@ -23,15 +23,15 @@ export function Main({
   const [search] = useAtom(searchTextAtom)
 
   useEffect(() => {
+    window.onpopstate = null
+  }, [])
+
+  useEffect(() => {
     if (page !== 'home') {
       neutralizeBack(() => {
         setPage('home')
       })
     } else if (window.onpopstate !== null) {
-      revivalBack()
-    }
-
-    return () => {
       revivalBack()
     }
   }, [setPage, page])
