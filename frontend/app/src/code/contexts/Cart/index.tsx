@@ -34,20 +34,13 @@ export function CartProvider({ children }: { children: ReactNode }) {
 
   /* eslint-enable */
 
-  const addProduct = useCallback(
-    (product: IProductCart) => {
-      if (product.quantity <= 0) {
-        throw new Error('Quantidade inválida para produto')
-      } else if (
-        cart.products.find((productItem) => productItem.id === product.id)
-      ) {
-        throw new Error('O produto já está no carrinho')
-      } else {
-        cartDispatch(CartConsumer.addProduct(product))
-      }
-    },
-    [cart.products],
-  )
+  const addProduct = useCallback((product: IProductCart) => {
+    if (product.quantity <= 0) {
+      throw new Error('Quantidade inválida para produto')
+    } else {
+      cartDispatch(CartConsumer.addProduct(product))
+    }
+  }, [])
 
   const removeProduct = useCallback(
     (productId: string) => {
