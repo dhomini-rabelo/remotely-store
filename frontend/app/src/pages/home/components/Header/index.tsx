@@ -2,7 +2,7 @@ import CartIcon from '../../../../assets/icons/cart.svg'
 import SearchIcon from '../../../../assets/icons/search.svg'
 import Image from 'next/image'
 import { useAtom } from 'jotai'
-import { ArrowRight, User } from 'phosphor-react'
+import { ArrowRight, User, X } from 'phosphor-react'
 import { currentPageAtom, searchTextAtom } from '../../code/states'
 import { ChangeEvent, useEffect, useRef, useState } from 'react'
 import { IProductData } from '../../types'
@@ -57,14 +57,18 @@ export function Header({ products }: { products: IProductData[] }) {
       className={`flex gap-x-6 justify-between items-center ${!['home', 'search'].includes(page) && 'hidden'
         }`}
     >
-      <div onClick={handleClearSearchText} className="cursor-pointer">
+      <div className="cursor-pointer">
         <div className="flex items-center justify-center text-center gap-x-2">
           <div className="logo px-3.5 py-2 rounded-full bg-Black-500 border-Green-300 border flex justify-center">
-            <Image
-              src={CartIcon}
-              className="w-[1.5rem] h-[1.5rem] sm:w-[1.375rem] sm:h-[1.375rem]"
-              alt="ícone de carrinho de compras personalizado"
-            />
+            {!showSearch ? (
+              <Image
+                src={CartIcon}
+                className="w-[1.5rem] h-[1.5rem] sm:w-[1.375rem] sm:h-[1.375rem]"
+                alt="ícone de carrinho de compras personalizado"
+              />
+            ) : (
+              <X size={20} className="text-Green-300" onClick={handleClearSearchText} />
+            )}
           </div>
           <h2 className="font-bold text-xl text-Green-300 block md:hidden">
             Remotely.io
