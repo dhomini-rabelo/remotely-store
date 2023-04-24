@@ -49,7 +49,7 @@ export default function LoginPage() {
       </Head>
       {FeedbackElement}
       <main className="grow flex justify-center">
-        <div className="w-full max-w-esm px-6 mt-40">
+        <div className="w-full max-w-esm px-6 mt-40 md:mt-24">
           <header className="flex items-center gap-x-2 text-1xl">
             <Image
               src={HelloIcon}
@@ -66,7 +66,7 @@ export default function LoginPage() {
           </header>
           <IndexForm.container>
             <form
-              className="mt-16 flex flex-col gap-y-6"
+              className="mt-16 sm:mt-12 flex flex-col gap-y-6"
               onSubmit={handleSubmit(onValidSubmit)}
             >
               <div className="field">

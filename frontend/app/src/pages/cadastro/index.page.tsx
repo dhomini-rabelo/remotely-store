@@ -55,7 +55,7 @@ export default function RegisterPage() {
       </Head>
       {FeedbackElement}
       <main className="grow flex justify-center">
-        <div className="w-full max-w-esm px-6 mt-28">
+        <div className="w-full max-w-esm px-6 mt-28 md:mt-16">
           <header>
             <h1 className="font-bold text-1xl">
               Cadastre-se no{' '}
@@ -66,7 +66,7 @@ export default function RegisterPage() {
           </header>
           <IndexForm.container>
             <form
-              className="mt-16 flex flex-col gap-y-6"
+              className="mt-16 flex flex-col gap-y-6 sm:mt-12"
               onSubmit={handleSubmit(onValidSubmit)}
             >
               <div className="field">
