@@ -18,7 +18,6 @@
 <li><a href="#contexts">Contextos</a></li>
 <li><a href="#hooks">Hooks</a></li>
 <li><a href="#routes">Rotas</a></li>
-<li><a href="#tests">Testes</a></li>
 </ul>
 
 <br>
