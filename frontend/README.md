@@ -125,7 +125,7 @@ Usado para exibir mensagens de sucesso e erro em todo o sistema, utilizando o co
 <img src="./readme/home-page.gif" />
 <br>
 
-<h3>- Buscar</h3>
+<h3>- Buscar produtos</h3>
 <img src="./readme/search.gif" />
 <br>
 
@@ -139,6 +139,10 @@ Usado para exibir mensagens de sucesso e erro em todo o sistema, utilizando o co
 
 <h3>- Carrinho</h3>
 <img src="./readme/cart.gif" />
+<br>
+
+<h3>- Compra</h3>
+<img src="./readme/buy.gif" />
 <br>
 
 <h3>• Minha conta</h3>
